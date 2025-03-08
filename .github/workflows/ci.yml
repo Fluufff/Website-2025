@@ -1,0 +1,36 @@
+name: Development CI
+
+on:
+  push:
+    branches: ['*', '!testing', '!main']
+  pull_request:
+    branches: ['*']
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Tests & Lints
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Deno
+        uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.2.3
+
+      - name: Astro & Typescript checks
+        run: deno task check
+
+      - name: Deno linter
+        run: deno lint
+
+      - name: ESLint
+        run: deno task lint
+
+      - name: Check formatting
+        run: deno task format:check

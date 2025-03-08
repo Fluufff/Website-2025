@@ -1,12 +1,8 @@
 ---
-import '../styles/main.scss'
+import Base from '../layouts/Base.astro'
+import {SITE_BASE_URL} from 'astro:env/server'
 ---
-<html>
-<head>
-    <meta charset="utf-8"/>
-    <title>Flüüfff</title>
-</head>
-<body>
-<h1>Hello, Flüüfff!</h1>
-</body>
-</html>
+<Base>
+    <h1>Hello, Flüüfff!</h1>
+    <a href={`${SITE_BASE_URL}about`}>Go to about</a>
+</Base>

@@ -1,0 +1,72 @@
+name: Deploy to Testing environment
+
+on:
+  push:
+    branches: [testing]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  test:
+    name: Tests & Lints
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Deno
+        uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.2.3
+
+      - name: Astro & Typescript checks
+        run: deno task check
+
+      - name: Deno linter
+        run: deno lint
+
+      - name: ESLint
+        run: deno task lint
+
+      - name: Check formatting
+        run: deno task format:check
+
+  build:
+    needs: test
+    runs-on: ubuntu-latest
+    environment: github-pages
+    env:
+      SITE: ${{ vars.SITE }}
+      SITE_BASE_URL: ${{ vars.SITE_BASE_URL }}
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Deno
+        uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.2.3
+
+      - name: Build Website
+        run: deno task build
+
+      - name: Upload Pages Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
