@@ -1,0 +1,4 @@
+{
+  "image": "denoland/deno:2.2.3",
+  "forwardPorts": [4321]
+}

@@ -1,0 +1,23 @@
+{
+  "tasks": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "nodeModulesDir": "auto",
+  "imports": {
+    "astro": "npm:astro@^5.4.2",
+    "sass-embedded": "npm:sass-embedded@^1.85.1"
+  },
+  "unstable": [
+    "fmt-component"
+  ],
+  "exclude": [
+    "./.astro",
+    "/dist"
+  ],
+  "fmt": {
+    "singleQuote": true,
+    "semiColons": false
+  }
+}
