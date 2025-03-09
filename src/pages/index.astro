@@ -1,8 +1,159 @@
 ---
 import Base from '../layouts/Base.astro'
-import {SITE_BASE_URL} from 'astro:env/server'
+import Logo from '../assets/logo.svg'
 ---
+
 <Base>
-    <h1>Hello, Flüüfff!</h1>
-    <a href={`${SITE_BASE_URL}about`}>Go to about</a>
+  <div id="main_logo">
+    <Logo height={96} />
+    <span>Forest Fantasy</span>
+  </div>
+  <div id="info">
+    <div id="taglines">
+      <p>
+        For the 6th edition of Belgium’s furry convention, our team would love
+        to lure you into the intriguing Toxic City at the Bedford Hotel &
+        Congress Center in Brussels.
+      </p>
+
+      <p>
+        Let's bring everyone around and party under the neon lights! Beware of
+        the toxic waste though: radioactivity is not a joke, and you never know
+        what you can get close to…
+      </p>
+    </div>
+    <span id="separator"></span>
+    <div id="dates">
+      <p id="savethedate">Save the date!</p>
+      <p id="date">November 6th-9th, 2025</p>
+    </div>
+  </div>
 </Base>
+
+<style is:global lang="scss">
+  @use 'sass:color';
+  @use 'sass:map';
+  @use '../styles/charter';
+
+  body {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-end;
+  }
+
+  #main_logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+
+    border-top: solid 4px map.get(charter.$artNouveau2, 'brown');
+    border-bottom: solid 4px map.get(charter.$forestFantasy, 'brown');
+    padding: 32px;
+    align-self: stretch;
+
+    background: linear-gradient(
+      color.change(map.get(charter.$artNouveau2, 'brown'), $alpha: 0.95) 0%,
+      color.change(map.get(charter.$forestFantasy, 'brown'), $alpha: 0.95) 70%
+    );
+
+    backdrop-filter: sepia(100%) blur(4px);
+
+    fill: map.get(charter.$artNouveau1, 'beige');
+
+    box-shadow:
+      0 2px 5px map.get(charter.$forestFantasy, 'brown'),
+      0 0 75px
+        color.change(map.get(charter.$forestFantasy, 'cyan'), $alpha: 0.5),
+      -2px 0 25px
+        color.change(map.get(charter.$forestFantasy, 'cyan'), $alpha: 0.5);
+
+    > svg {
+      height: 96px !important;
+      overflow: visible;
+      filter: drop-shadow(
+        0 5px 15px
+          color.change(map.get(charter.$artNouveau1, 'black'), $alpha: 0.5)
+      );
+    }
+
+    path:nth-child(n + 6):not(:nth-child(n + 9)) {
+      fill: map.get(charter.$artNouveau2, 'cyan');
+      stroke: map.get(charter.$forestFantasy, 'blue');
+      stroke-width: 0.5px;
+      filter: drop-shadow(
+        0 0 4px
+          color.change(map.get(charter.$forestFantasy, 'cyan'), $alpha: 0.25)
+      );
+    }
+
+    > span {
+      font-size: 64px;
+      font-family: 'Boecklins Universe', serif;
+      color: map.get(charter.$forestFantasy, 'orange');
+      filter: drop-shadow(
+        0 3px 5px
+          color.change(map.get(charter.$artNouveau1, 'black'), $alpha: 0.5)
+      );
+    }
+  }
+
+  #info {
+    display: flex;
+    flex-direction: row;
+    backdrop-filter: sepia(90%) blur(2px);
+    padding: 16px 64px;
+    gap: 64px;
+    background: color.change(
+      map.get(charter.$artNouveau1, 'beige'),
+      $alpha: 0.5
+    );
+
+    > #separator {
+      width: 3px;
+      background: linear-gradient(
+        color.change(map.get(charter.$artNouveau1, 'red'), $alpha: 0),
+        map.get(charter.$artNouveau1, 'red') 10%,
+        map.get(charter.$artNouveau1, 'red') 90%,
+        color.change(map.get(charter.$artNouveau1, 'red'), $alpha: 0)
+      );
+    }
+
+    > div {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 2;
+      gap: 16px;
+      padding: 8px 0 32px 0;
+    }
+
+    #taglines {
+      font-size: 24px;
+      color: map.get(charter.$artNouveau1, 'red');
+      flex: 1;
+    }
+
+    #dates {
+      padding: 16px 64px;
+      text-align: center;
+      #savethedate {
+        font-size: 32px;
+        color: map.get(charter.$artNouveau1, 'red');
+      }
+      #date {
+        font-size: 48px;
+
+        font-family: 'Boecklins Universe', serif;
+        color: color.change(
+          map.get(charter.$forestFantasy, 'orange'),
+          $lightness: 45%
+        );
+        text-shadow: 0 1px 1px map.get(charter.$artNouveau1, 'red');
+      }
+    }
+  }
+</style>

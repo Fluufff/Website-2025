@@ -1,12 +1,40 @@
 ---
 import '../styles/main.scss'
+import backgroundImage from '../assets/background.png'
+import { getImage } from 'astro:assets'
+import Fonts from '../assets/fonts.astro'
+
+const [bgJpg, bgWebp] = await Promise.all([
+  getImage({ src: backgroundImage, format: 'jpg' }),
+  getImage({ src: backgroundImage, format: 'webp' })
+])
 ---
+
 <html>
-<head>
-    <meta charset="utf-8"/>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Flüüfff</title>
-</head>
-<body>
-<slot/>
-</body>
+    <Fonts />
+  </head>
+  <body>
+    <slot />
+  </body>
 </html>
+
+<style
+  define:vars={{ bgJpg: `url(${bgJpg.src})`, bgWebp: `url(${bgWebp.src})` }}
+  is:global
+  lang="scss"
+>
+  body {
+    background-image: var(--bgJpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+
+    @supports (background-image: var(--bgWebp)) {
+      background-image: var(--bgWebp);
+    }
+  }
+</style>

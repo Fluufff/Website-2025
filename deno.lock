@@ -14,6 +14,7 @@
     "npm:prettier@3.5.3": "3.5.3",
     "npm:prettier@^3.5.3": "3.5.3",
     "npm:sass-embedded@^1.85.1": "1.85.1",
+    "npm:sharp@~0.33.5": "0.33.5",
     "npm:typescript-eslint@^8.26.0": "8.26.0_eslint@9.22.0_typescript@5.8.2_@typescript-eslint+parser@8.26.0__eslint@9.22.0__typescript@5.8.2",
     "npm:typescript@^5.8.2": "5.8.2"
   },
@@ -3222,6 +3223,7 @@
       "npm:prettier-plugin-astro@~0.14.1",
       "npm:prettier@^3.5.3",
       "npm:sass-embedded@^1.85.1",
+      "npm:sharp@~0.33.5",
       "npm:typescript-eslint@^8.26.0",
       "npm:typescript@^5.8.2"
     ]
