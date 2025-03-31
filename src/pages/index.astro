@@ -12,7 +12,7 @@ import Logo from '../assets/logo.svg'
         <span class="separator"></span>
         <div id="info">
             <p id="date">November 5th-9th, 2025</p>
-            <p id="location">Bedford Hotel, Brussels</p>
+            <p id="location">Bedford Hotel, Brussels, Belgium</p>
             <p id="comingsoon">Coming soon!</p>
         </div>
     </div>
@@ -25,6 +25,7 @@ import Logo from '../assets/logo.svg'
             <a href="https://beta.furrynetwork.com/fluufff/" rel="noreferrer">FurryNetwork</a> ~
             <a href="https://t.me/fluufff_announcements" target="_blank" rel="noreferrer">Telegram</a>
         </div>
+        <p id="belgium">Made with ❤️ and 🍺 in 🇧🇪 !</p>
     </div>
 </Base>
 
@@ -161,10 +162,16 @@ import Logo from '../assets/logo.svg'
     display: flex;
     flex-direction: column;
     margin-top: auto;
-    gap: 8px;
+    gap: 4px;
 
     p {
       color: map.get(charter.$artNouveau1, 'yellow');
+
+      &#belgium {
+        opacity: .8;
+        font-size: 12px;
+        color: map.get(charter.$forestFantasy, 'orange');
+      }
     }
 
     #socials_links {
