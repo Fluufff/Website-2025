@@ -4,30 +4,28 @@ import Logo from '../assets/logo.svg'
 ---
 
 <Base>
-  <div id="main_logo">
-    <Logo height={96} />
-    <span>Forest Fantasy</span>
-  </div>
-  <div id="info">
-    <div id="taglines">
-      <p>
-        For the 6th edition of Belgium’s furry convention, our team would love
-        to lure you into the intriguing Toxic City at the Bedford Hotel &
-        Congress Center in Brussels.
-      </p>
-
-      <p>
-        Let's bring everyone around and party under the neon lights! Beware of
-        the toxic waste though: radioactivity is not a joke, and you never know
-        what you can get close to…
-      </p>
+    <div id="main">
+        <div id="main_logo">
+            <Logo height={32}/>
+            <span>Forest Fantasy</span>
+        </div>
+        <span class="separator"></span>
+        <div id="info">
+            <p id="date">November 5th-9th, 2025</p>
+            <p id="location">Bedford Hotel, Brussels</p>
+            <p id="comingsoon">Coming soon!</p>
+        </div>
     </div>
-    <span id="separator"></span>
-    <div id="dates">
-      <p id="savethedate">Save the date!</p>
-      <p id="date">November 6th-9th, 2025</p>
+    <div id="socials">
+        <p>Follow us on:</p>
+        <div id="socials_links">
+            <a href="https://twitter.com/FluufffCon" target="_blank" rel="noreferrer">Twitter</a> ~
+            <a href="https://www.furaffinity.net/user/fluufff/" target="_blank" rel="noreferrer">FurAffinity</a> ~
+            <a href="https://www.facebook.com/fluufff/" target="_blank" rel="noreferrer">Facebook</a> ~
+            <a href="https://beta.furrynetwork.com/fluufff/" rel="noreferrer">FurryNetwork</a> ~
+            <a href="https://t.me/fluufff_announcements" target="_blank" rel="noreferrer">Telegram</a>
+        </div>
     </div>
-  </div>
 </Base>
 
 <style is:global lang="scss">
@@ -38,39 +36,59 @@ import Logo from '../assets/logo.svg'
   body {
     display: flex;
     flex-direction: column;
-    align-items: stretch;
-    justify-content: flex-end;
+    text-align: center;
+  }
+
+  #main {
+    display: flex;
+    flex-direction: row;
+    gap: 32px;
+    justify-content: center;
+    margin-top: auto;
+    max-width: 100%;
+
+    .separator {
+      width: 2px;
+      background: linear-gradient(
+                      color.change(map.get(charter.$artNouveau1, 'red'), $alpha: 0),
+                      map.get(charter.$artNouveau1, 'red') 20%,
+                      map.get(charter.$artNouveau1, 'red') 80%,
+                      color.change(map.get(charter.$artNouveau1, 'red'), $alpha: 0)
+      );
+    }
+
+    $base: color.change(map.get(charter.$forestFantasy, 'brown'), $alpha: 90%, $lightness: 10%);
+    $transparent: color.change($base, $alpha: 0%);
+
+    background-image: radial-gradient(circle, $base 0%, $base 40%, $transparent 100%);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
   }
 
   #main_logo {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 32px;
+    gap: 8px;
+    margin: auto 0;
 
-    border-top: solid 4px map.get(charter.$artNouveau2, 'brown');
-    border-bottom: solid 4px map.get(charter.$forestFantasy, 'brown');
-    padding: 32px;
+    /* border-top: solid 4px map.get(charter.$artNouveau2, 'brown');
+    border-bottom: solid 4px map.get(charter.$forestFantasy, 'brown'); */
+    padding: 16px;
     align-self: stretch;
 
-    background: linear-gradient(
+    /* background: linear-gradient(
       color.change(map.get(charter.$artNouveau2, 'brown'), $alpha: 0.95) 0%,
       color.change(map.get(charter.$forestFantasy, 'brown'), $alpha: 0.95) 70%
-    );
+    );*/
 
-    backdrop-filter: sepia(100%) blur(4px);
+    // backdrop-filter: sepia(100%) blur(4px);
 
     fill: map.get(charter.$artNouveau1, 'beige');
 
-    box-shadow:
-      0 2px 5px map.get(charter.$forestFantasy, 'brown'),
-      0 0 75px
-        color.change(map.get(charter.$forestFantasy, 'cyan'), $alpha: 0.5),
-      -2px 0 25px
-        color.change(map.get(charter.$forestFantasy, 'cyan'), $alpha: 0.5);
-
     > svg {
-      height: 96px !important;
+      height: 48px !important;
       overflow: visible;
       filter: drop-shadow(
         0 5px 15px
@@ -78,82 +96,115 @@ import Logo from '../assets/logo.svg'
       );
     }
 
-    path:nth-child(n + 6):not(:nth-child(n + 9)) {
-      fill: map.get(charter.$artNouveau2, 'cyan');
-      stroke: map.get(charter.$forestFantasy, 'blue');
-      stroke-width: 0.5px;
-      filter: drop-shadow(
-        0 0 4px
-          color.change(map.get(charter.$forestFantasy, 'cyan'), $alpha: 0.25)
-      );
-    }
-
     > span {
-      font-size: 64px;
+      font-size: 32px;
       font-family: 'Boecklins Universe', serif;
-      color: map.get(charter.$forestFantasy, 'orange');
-      filter: drop-shadow(
-        0 3px 5px
-          color.change(map.get(charter.$artNouveau1, 'black'), $alpha: 0.5)
+      color: color.change(
+                      map.get(charter.$forestFantasy, 'orange'),
+              $lightness: 45%
       );
+      text-shadow: 0 1px 1px map.get(charter.$artNouveau1, 'red');
     }
   }
 
   #info {
     display: flex;
-    flex-direction: row;
-    backdrop-filter: sepia(90%) blur(2px);
-    padding: 16px 64px;
-    gap: 64px;
-    background: color.change(
+    flex-direction: column;
+    // backdrop-filter: sepia(90%) blur(2px);
+    padding: 16px;
+    gap: 8px;
+    /*background: color.change(
       map.get(charter.$artNouveau1, 'beige'),
       $alpha: 0.5
-    );
+    );*/
 
-    > #separator {
-      width: 3px;
-      background: linear-gradient(
-        color.change(map.get(charter.$artNouveau1, 'red'), $alpha: 0),
-        map.get(charter.$artNouveau1, 'red') 10%,
-        map.get(charter.$artNouveau1, 'red') 90%,
-        color.change(map.get(charter.$artNouveau1, 'red'), $alpha: 0)
-      );
-    }
+    font-family: 'Sunlight Dreams', serif;
+    color: map.get(charter.$artNouveau1, 'beige');
 
-    > div {
+    > p {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       position: relative;
       z-index: 2;
-      gap: 16px;
-      padding: 8px 0 32px 0;
     }
 
-    #taglines {
+    #date {
       font-size: 24px;
-      color: map.get(charter.$artNouveau1, 'red');
-      flex: 1;
+
+      color: color.change(
+                      map.get(charter.$forestFantasy, 'orange'),
+              $lightness: 45%
+      );
+      text-shadow: 0 1px 1px map.get(charter.$artNouveau1, 'red');
     }
 
-    #dates {
-      padding: 16px 64px;
-      text-align: center;
-      #savethedate {
-        font-size: 32px;
-        color: map.get(charter.$artNouveau1, 'red');
-      }
-      #date {
-        font-size: 48px;
+    #location {
+      color: color.change(
+                      map.get(charter.$forestFantasy, 'red'),
+              $lightness: 45%
+      );
+      font-size: 20px;
+    }
 
-        font-family: 'Boecklins Universe', serif;
-        color: color.change(
-          map.get(charter.$forestFantasy, 'orange'),
-          $lightness: 45%
-        );
-        text-shadow: 0 1px 1px map.get(charter.$artNouveau1, 'red');
+    #comingsoon {
+      font-size: 40px;
+      font-family: 'Boecklins Universe', serif;
+      margin-top: 16px;
+      text-shadow: 0 1px 1px map.get(charter.$artNouveau1, 'red');
+    }
+  }
+
+  #socials {
+    font-family: 'Sunlight Dreams', serif;
+    display: flex;
+    flex-direction: column;
+    margin-top: auto;
+    gap: 8px;
+
+    p {
+      color: map.get(charter.$artNouveau1, 'yellow');
+    }
+
+    #socials_links {
+      color: map.get(charter.$artNouveau1, 'yellow');
+      text-shadow: 0 1px 1px map.get(charter.$artNouveau1, 'red');
+      display: flex;
+      flex-direction: row;
+      gap: 8px;
+      justify-content: center;
+
+      a {
+        color: map.get(charter.$artNouveau1, 'beige');
+        text-shadow: none;
+        text-decoration: none;
       }
+    }
+  }
+
+  @media (orientation: portrait) {
+    body {
+      background-color: color.change(map.get(charter.$forestFantasy, 'brown'), $alpha: 0.85, $lightness: 10%);
+    }
+    #main {
+      flex-direction: column;
+      background: none;
+
+      .separator {
+        height: 2px;
+        width: auto;
+        background: linear-gradient(to right,
+                        color.change(map.get(charter.$artNouveau1, 'red'), $alpha: 0),
+                        map.get(charter.$artNouveau1, 'red') 20%,
+                        map.get(charter.$artNouveau1, 'red') 80%,
+                        color.change(map.get(charter.$artNouveau1, 'red'), $alpha: 0)
+        );
+      }
+    }
+
+    #socials_links {
+      flex-wrap: wrap;
     }
   }
 </style>

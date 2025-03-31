@@ -27,14 +27,24 @@ const [bgJpg, bgWebp] = await Promise.all([
   is:global
   lang="scss"
 >
-  body {
+  @use 'sass:color';
+  @use 'sass:map';
+  @use '../styles/charter';
+
+  html {
     background-image: var(--bgJpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
 
+    background-color: #333;
+
     @supports (background-image: var(--bgWebp)) {
       background-image: var(--bgWebp);
     }
+  }
+
+  body {
+    background-color: color.change(map.get(charter.$forestFantasy, 'brown'), $alpha: 0.4, $lightness: 20%);
   }
 </style>
