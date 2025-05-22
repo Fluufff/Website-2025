@@ -1,13 +1,7 @@
 ---
-import '../styles/main.scss'
-import backgroundImage from '../assets/background.png'
-import { getImage } from 'astro:assets'
+import '../styles/global.scss'
 import Fonts from '../assets/fonts.astro'
-
-const [bgJpg, bgWebp] = await Promise.all([
-  getImage({ src: backgroundImage, format: 'jpg' }),
-  getImage({ src: backgroundImage, format: 'webp' })
-])
+import Header from '../components/sections/Header.astro'
 ---
 
 <html>
@@ -18,33 +12,14 @@ const [bgJpg, bgWebp] = await Promise.all([
     <Fonts />
   </head>
   <body>
+    <Header />
     <slot />
   </body>
 </html>
 
-<style
-  define:vars={{ bgJpg: `url(${bgJpg.src})`, bgWebp: `url(${bgWebp.src})` }}
-  is:global
-  lang="scss"
->
-  @use 'sass:color';
-  @use 'sass:map';
-  @use '../styles/charter';
-
-  html {
-    background-image: var(--bgJpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-
-    background-color: #333;
-
-    @supports (background-image: var(--bgWebp)) {
-      background-image: var(--bgWebp);
-    }
-  }
-
+<style is:global lang="scss">
   body {
-    background-color: color.change(map.get(charter.$forestFantasy, 'brown'), $alpha: 0.4, $lightness: 20%);
+    display: flex;
+    flex-direction: column;
   }
 </style>

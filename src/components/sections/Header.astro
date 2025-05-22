@@ -1,0 +1,102 @@
+---
+import Logo from '../../assets/logo.svg'
+---
+
+<nav id="preheader">
+  <div id="preheader_links">
+    <a href="/">Staff & Volunteering</a>
+    <a href="/">Register</a>
+  </div>
+</nav>
+<nav id="header">
+  <Logo height={48} width="" />
+  <nav id="header_links">
+    <a href="/" class="active">Home</a>
+    <a href="/">Attend</a>
+    <a href="/">Program</a>
+    <a href="/">About</a>
+    <a href="/">Contact</a>
+  </nav>
+</nav>
+<div id="registration_banner">
+  <div id="registration_banner_text">Registration opens in…</div>
+  <div id="registration_banner_countdown">
+    <span id="registration_banner_countdown_time">08 : 12 : 44 : 28</span>
+    <span class="days">Days</span>
+    <span class="hours">Hours</span>
+    <span class="minutes">Minutes</span>
+    <span class="seconds">Seconds</span>
+  </div>
+</div>
+
+<style is:global lang="scss">
+  @use '../../styles/charter';
+  @use '../../styles/text-styles';
+
+  #registration_banner {
+    display: flex;
+    padding: 32px;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    background: charter.$accent700;
+
+    &_text {
+      color: charter.$neutrals100;
+      text-align: right;
+      font-family: var(--font-gatsby), sans-serif;
+      font-size: 32px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 40px; /* 125% */
+    }
+  }
+
+  #header {
+    display: flex;
+    padding: 24px 32px;
+    justify-content: space-between;
+    align-items: center;
+    background: charter.$primary100;
+
+    > svg {
+      fill: charter.$neutrals700;
+    }
+
+    &_links {
+      display: flex;
+      gap: 35px;
+
+      a {
+        color: charter.$primary600;
+        @include text-styles.display3Regular;
+        text-align: center;
+
+        &.active {
+          font-weight: 700;
+        }
+      }
+    }
+  }
+
+  #preheader {
+    display: flex;
+    padding: 24px 32px;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 35px;
+    background: charter.$primary700;
+
+    &_links {
+      display: flex;
+      gap: 35px;
+
+      a {
+        color: charter.$neutrals100;
+        @include text-styles.display2Bold;
+        text-align: center;
+      }
+    }
+  }
+</style>
