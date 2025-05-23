@@ -1,0 +1,36 @@
+---
+interface Props {
+  label: string
+  to?: string
+  outline?: boolean
+}
+
+const { label, to, outline = false } = Astro.props
+
+const Element = to ? 'a' : 'button'
+---
+
+<Element :href={to} class="button" class:list={{ outline }}>{label}</Element>
+
+<style lang="scss" is:global>
+  @use '../styles/charter';
+  @use '../styles/text-styles';
+
+  .button {
+    cursor: pointer;
+
+    @include text-styles.display2SemiBold;
+    padding: 14px 18px;
+    gap: 3px;
+    border-radius: 6px;
+
+    background: charter.$secondary500;
+    color: charter.$neutrals100;
+    border: solid 1px charter.$secondary500;
+
+    &.outline {
+      color: charter.$secondary500;
+      background: charter.$neutrals100;
+    }
+  }
+</style>

@@ -1,0 +1,65 @@
+---
+import { getImage } from 'astro:assets';
+import type { GetImageResult } from 'astro';
+
+import Accordion from '../components/Accordion.vue'
+import AccordionTab from '../components/AccordionTab.vue'
+import Content from '../components/sections/Content.astro'
+import Button from "../components/Button.astro";
+
+import dances from '../assets/images/dances.jpg'
+import dd from '../assets/images/dd.jpg'
+import finale from '../assets/images/finale.jpg'
+import panels from '../assets/images/panels.jpg'
+
+interface Props {
+    bg?: 'darker'
+}
+
+const { bg } = Astro.props
+
+// TODO: make images responsive
+const images = {
+  dances: (await getImage({ src: dances })).src,
+  dd: (await getImage({ src: dd })).src,
+  finale: (await getImage({ src: finale })).src,
+  panels: (await getImage({ src: panels })).src
+}
+
+---
+
+<Content headline="A glimpse between the leaves…" bg={bg}>
+  <p>
+    What awaits you amidst the foliage, you ask? Wander into our forest and
+    you’ll find more than just trees. Expect dancing under enchanted lights,
+    playful panels where knowledge meets laughter, and a grand finale where
+    talents bloom. Whether you come to perform, explore, or simply be — there’s
+    a path waiting for you here.
+  </p>
+  <Accordion client:visible images={images} default='dances'>
+    <AccordionTab headline="Dances" value="dances">
+      <p>
+        Get ready to dance! Our DJs will keep the dance floor buzzing with a mix of styles — from House and Hardcore to Drum & Bass, Dubstep, Techno, and more. You bring the moves, we’ll bring the beats.
+      </p>
+      <Button slot="actions" label="Learn more" />
+    </AccordionTab>
+    <AccordionTab headline="Panels" value="panels">
+      <p>
+        Get ready to dance! Our DJs will keep the dance floor buzzing with a mix of styles — from House and Hardcore to Drum & Bass, Dubstep, Techno, and more. You bring the moves, we’ll bring the beats.
+      </p>
+      <Button slot="actions" label="Learn more" />
+    </AccordionTab>
+    <AccordionTab headline="Dealer's Den" value="dd">
+      <p>
+        Get ready to dance! Our DJs will keep the dance floor buzzing with a mix of styles — from House and Hardcore to Drum & Bass, Dubstep, Techno, and more. You bring the moves, we’ll bring the beats.
+      </p>
+      <Button slot="actions" label="Learn more" />
+    </AccordionTab>
+    <AccordionTab headline="Flüüfff Finale" value="finale">
+      <p>
+        Get ready to dance! Our DJs will keep the dance floor buzzing with a mix of styles — from House and Hardcore to Drum & Bass, Dubstep, Techno, and more. You bring the moves, we’ll bring the beats.
+      </p>
+      <Button slot="actions" label="Learn more" />
+    </AccordionTab>
+  </Accordion>
+</Content>
