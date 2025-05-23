@@ -21,11 +21,13 @@ import Logo from '../../assets/logo.svg'
 <div id="registration_banner">
   <div id="registration_banner_text">Registration opens in…</div>
   <div id="registration_banner_countdown">
-    <span id="registration_banner_countdown_time">08 : 12 : 44 : 28</span>
-    <span class="days">Days</span>
-    <span class="hours">Hours</span>
-    <span class="minutes">Minutes</span>
-    <span class="seconds">Seconds</span>
+    <div><span class="time">08</span><span class="label">Days</span></div>
+    :
+    <div><span class="time">12</span><span class="label">Hours</span></div>
+    :
+    <div><span class="time">44</span><span class="label">Minutes</span></div>
+    :
+    <div><span class="time">28</span><span class="label">Seconds</span></div>
   </div>
 </div>
 
@@ -38,18 +40,42 @@ import Logo from '../../assets/logo.svg'
     padding: 32px;
     flex-direction: row;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     gap: 20px;
     background: charter.$accent700;
 
-    &_text {
+    #registration_banner_countdown {
+      display: flex;
+      flex-direction: row;
+      gap: 2px;
+
+      > div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-width: 2em;
+      }
+    }
+
+    #registration_banner_countdown .label {
+      color: charter.$accent300;
+      font-family: var(--font-inter), sans-serif;
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 500;
+      text-transform: uppercase;
+      line-height: 12px;
+    }
+
+    #registration_banner_text,
+    #registration_banner_countdown {
       color: charter.$neutrals100;
-      text-align: right;
       font-family: var(--font-gatsby), sans-serif;
       font-size: 32px;
       font-style: normal;
       font-weight: 400;
       line-height: 40px; /* 125% */
+      text-transform: uppercase;
     }
   }
 
@@ -94,7 +120,7 @@ import Logo from '../../assets/logo.svg'
 
       a {
         color: charter.$neutrals100;
-        @include text-styles.display2Bold;
+        @include text-styles.display2SemiBold;
         text-align: center;
       }
     }

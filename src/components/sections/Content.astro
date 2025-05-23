@@ -1,0 +1,55 @@
+---
+interface Props {
+  headline: string
+  bg?: 'darker'
+}
+
+const { headline, bg } = Astro.props
+---
+
+<section class="content" class:list={[bg]}>
+  <h2>{headline}</h2>
+  <slot />
+  <div class="content__actions"><slot name="actions" /></div>
+</section>
+
+<style lang="scss" is:global>
+  @use '../../styles/text-styles';
+  @use '../../styles/charter';
+
+  .content {
+    padding: 80px 104px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: charter.$neutrals700;
+    background: charter.$neutrals100;
+
+    > h2 {
+      @include text-styles.heading2;
+      margin-bottom: 16px;
+    }
+
+    > p {
+      @include text-styles.paragraphMediumRegular;
+      text-align: center;
+
+      & + p {
+        margin-top: 32px;
+      }
+    }
+
+    .content__actions {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      margin-top: 32px;
+      gap: 16px;
+    }
+
+    &.darker {
+      background: charter.$neutrals200;
+    }
+  }
+</style>

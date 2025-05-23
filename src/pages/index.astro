@@ -1,9 +1,42 @@
 ---
 import Base from '../layouts/Base.astro'
+import Hero from '../components/sections/Hero.astro'
+
+import heroImage from '../assets/images/hero/welcome.png'
+import Button from '../components/Button.astro'
+import Content from '../components/sections/Content.astro'
+import Program_preview from "../shared_content/program_preview.astro";
 ---
 
 <Base>
-  <div>Foo!</div>
+  <Hero headline="Enter the forest" image={heroImage}>
+    <p>
+      This year, when the veil between worlds grows thin, a hidden forest stirs.
+      Creatures of every shape and stripe gather under lush, green branches.
+      Flüüfff returns for its 7th edition—this time, as a Forest Fantasy nestled
+      in the heart of Brussels.
+    </p>
+    <Fragment slot="actions">
+      <Button label="Join the fantasy" />
+      <Button label="Explore the program" outline />
+    </Fragment>
+  </Hero>
+  <Content headline="Welcome to Flüüfff!" bg="darker">
+    <p>
+      Flüüfff is a Belgian furry convention right in the heart of Brussels!<br
+      />
+      It’s a 5-day celebration of everything furry — a place where fans of anthropomorphic
+      characters, their friends, and curious visitors come together to connect, celebrate,
+      and have fun.
+    </p>
+    <p>
+      This year, Flüüfff takes place from <strong
+        >November 5th to 9th, 2025</strong
+      >, at the <strong>Bedford Hotel & Congress Center</strong>.
+    </p>
+    <Button slot="actions" label="Learn more about Flüüfff" outline />
+  </Content>
+  <Program_preview />
 </Base>
 
 <style is:global lang="scss"></style>
