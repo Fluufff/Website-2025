@@ -4,7 +4,7 @@
       <slot />
     </div>
     <div class="accordion__aside">
-      <img :src="images[active]" alt="" />
+      <slot name="images" />
     </div>
   </div>
 </template>
@@ -12,7 +12,7 @@
 <script setup lang="ts">
 import { ref, provide } from 'vue'
 
-const props = defineProps<{ images: Record<string, string>; default: string }>()
+const props = defineProps<{ default: string }>()
 
 const active = ref(props.default)
 provide('active', active)
@@ -31,7 +31,7 @@ provide('active', active)
   }
 
   &__aside {
-    > img {
+    img {
       height: 100%;
       width: 100%;
       object-fit: cover;

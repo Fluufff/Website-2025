@@ -4962,6 +4962,7 @@
     ],
     "packageJson": {
       "dependencies": [
+        "npm:@astrojs/vue@^5.1.0",
         "npm:@iconify-json/cib@^1.2.2",
         "npm:@iconify-json/mdi@^1.2.3",
         "npm:@iconify-json/ri@^1.2.5"

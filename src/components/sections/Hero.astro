@@ -16,7 +16,7 @@ const { headline, image } = Astro.props
     !!image && (
       <Picture
         src={image}
-        formats={['webp']}
+        formats={['avif', 'webp']}
         fallbackFormat="jpg"
         alt=""
         height={612}
