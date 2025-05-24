@@ -1,0 +1,78 @@
+---
+import { Icon } from 'astro-icon/components'
+---
+
+<div class="socials">
+  <h2>Join the Flüüfff community!</h2>
+  <div class="socials__list">
+    <a
+      href="https://bsky.app/profile/fluufffcon.bsky.social"
+      target="_blank"
+      rel="noreferrer"><Icon name="ri:bluesky-fill" /></a
+    >
+    <a
+      href="https://t.me/fluufff_announcements"
+      target="_blank"
+      rel="noreferrer"><Icon name="cib:telegram-plane" /></a
+    >
+    <a
+      href="https://www.furaffinity.net/user/fluufff/"
+      target="_blank"
+      rel="noreferrer"><Icon name="cib:fur-affinity" /></a
+    >
+    <a href="https://www.facebook.com/fluufff/" target="_blank" rel="noreferrer"
+      ><Icon name="mdi:facebook" /></a
+    >
+    <a
+      href="https://beta.furrynetwork.com/fluufff/"
+      target="_blank"
+      rel="noreferrer"><Icon name="cib:furry-network" /></a
+    >
+    <a href="https://twitter.com/FluufffCon" target="_blank" rel="noreferrer"
+      ><Icon name="mdi:twitter" /></a
+    >
+  </div>
+</div>
+
+<style lang="scss" is:global>
+  @use '../styles/charter';
+  @use '../styles/text-styles';
+
+  .socials {
+    display: flex;
+    flex-direction: row;
+    padding: 64px 167px;
+    background: charter.$primary500;
+    justify-content: space-between;
+
+    > h2 {
+      @include text-styles.heading2;
+      color: charter.$neutrals100;
+      flex: 2;
+    }
+
+    .socials__list {
+      display: flex;
+      flex-direction: row;
+      row-gap: 16px;
+      column-gap: 35px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+
+      a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 48px;
+        width: 48px;
+        background: charter.$neutrals100;
+        border-radius: 5px;
+
+        [data-icon] {
+          font-size: 24px;
+          color: charter.$primary500;
+        }
+      }
+    }
+  }
+</style>
