@@ -6,10 +6,12 @@ import Button from '../components/Button.astro'
 
 import heroImage from '../assets/images/hero/welcome.png'
 import attend from '../assets/images/attend.jpg'
+import hotel from '../assets/images/hotel_rooftop.png'
 
 import Program_preview from '../content/program_preview.astro'
 import Fun_facts from '../content/fun_facts.astro'
 import Highlights from '../content/highlights.astro'
+import Socials from '../content/socials.astro'
 ---
 
 <Base>
@@ -46,8 +48,8 @@ import Highlights from '../content/highlights.astro'
       Flüüfff is one of the oldest furry conventions in Belgium, small enough to
       be cozy and big enough to be fun. It’s a place where you can express
       yourself freely, meet kindred spirits, and celebrate what makes you come
-      alive — whether that’s in fur, feathers, or something all your own. No suit
-      required. No experience needed. Just curiosity and an open mind.
+      alive — whether that’s in fur, feathers, or something all your own. No
+      suit required. No experience needed. Just curiosity and an open mind.
     </p>
     <Fragment slot="actions">
       <Button label="Register" />
@@ -56,6 +58,20 @@ import Highlights from '../content/highlights.astro'
   </Content>
   <Fun_facts />
   <Highlights />
+  <Content headline="About the location" bg="darker" sideImage={hotel}>
+    <p>
+      Located just steps from Brussels' historic heart, the
+      <strong>Bedford Hotel & Congress Center</strong>
+      offers everything you need for a comfortable and hassle-free convention stay.
+    </p>
+    <p>
+      With spacious rooms, a cozy on-site restaurant, and easy access to public
+      transport, it’s the ideal base to relax, connect, and explore the city
+      between Flüüfff activities.
+    </p>
+    <Button slot="actions" label="Learn more about attending" outline />
+  </Content>
+  <Socials />
 </Base>
 
 <style is:global lang="scss"></style>

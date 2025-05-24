@@ -1,4 +1,5 @@
 import { defineConfig, envField, fontProviders } from 'astro/config'
+import icon from 'astro-icon'
 import vue from '@astrojs/vue'
 /// <reference types="deno" />
 
@@ -6,7 +7,7 @@ import vue from '@astrojs/vue'
 export default defineConfig({
   site: Deno.env.get('SITE'),
   base: Deno.env.get('SITE_BASE_URL'),
-  integrations: [vue()],
+  integrations: [icon(), vue()],
 
   env: {
     schema: {
