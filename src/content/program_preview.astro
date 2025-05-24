@@ -1,5 +1,5 @@
 ---
-import { getImage } from 'astro:assets'
+import {getImage, Picture} from 'astro:assets'
 import type { GetImageResult } from 'astro'
 
 import Accordion from '../components/Accordion.vue'
@@ -17,14 +17,6 @@ interface Props {
 }
 
 const { bg } = Astro.props
-
-// TODO: make images responsive
-const images = {
-  dances: (await getImage({ src: dances })).src,
-  dd: (await getImage({ src: dd })).src,
-  finale: (await getImage({ src: finale })).src,
-  panels: (await getImage({ src: panels })).src
-}
 ---
 
 <Content headline="A glimpse between the leaves…" bg={bg}>
@@ -35,7 +27,16 @@ const images = {
     talents bloom. Whether you come to perform, explore, or simply be — there’s
     a path waiting for you here.
   </p>
-  <Accordion images={images} default="dances">
+  <Accordion default="dances">
+    <Fragment slot="images">
+      <Picture
+          src={dances}
+          formats={['avif', 'webp']}
+          fallbackFormat="jpg"
+          alt=""
+          widths={[400, 800]}
+      />
+    </Fragment>
     <AccordionTab headline="Dances" value="dances" visible>
       <p>
         Get ready to dance! Our DJs will keep the dance floor buzzing with a mix
