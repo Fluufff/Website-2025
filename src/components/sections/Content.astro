@@ -27,7 +27,7 @@ const { headline, bg, sideImage, right } = Astro.props
       <>
         <Picture
           src={sideImage}
-          formats={['webp']}
+          formats={['avif', 'webp']}
           fallbackFormat="jpg"
           alt=""
           widths={[400, 800, 1200]}
@@ -60,6 +60,12 @@ const { headline, bg, sideImage, right } = Astro.props
     &.withSide {
       flex-direction: row;
       gap: 92px;
+
+      &, .content__side_container {
+        > p {
+          text-align: left;
+        }
+      }
     }
 
     .content__side_container {
