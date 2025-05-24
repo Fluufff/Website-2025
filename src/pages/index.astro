@@ -1,11 +1,15 @@
 ---
 import Base from '../layouts/Base.astro'
+import Content from '../components/sections/Content.astro'
 import Hero from '../components/sections/Hero.astro'
+import Button from '../components/Button.astro'
 
 import heroImage from '../assets/images/hero/welcome.png'
-import Button from '../components/Button.astro'
-import Content from '../components/sections/Content.astro'
-import Program_preview from '../shared_content/program_preview.astro'
+import attend from '../assets/images/attend.jpg'
+
+import Program_preview from '../content/program_preview.astro'
+import Fun_facts from '../content/fun_facts.astro'
+import Highlights from '../content/highlights.astro'
 ---
 
 <Base>
@@ -37,6 +41,19 @@ import Program_preview from '../shared_content/program_preview.astro'
     <Button slot="actions" label="Learn more about Flüüfff" outline />
   </Content>
   <Program_preview />
+  <Content headline="Why Attend Flüüfff?" sideImage={attend} bg="darker">
+    Flüüfff is one of the oldest furry conventions in Belgium, small enough to
+    be cozy and big enough to be fun. It’s a place where you can express
+    yourself freely, meet kindred spirits, and celebrate what makes you come
+    alive — whether that’s in fur, feathers, or something all your own. No suit
+    required. No experience needed. Just curiosity and an open mind.
+    <Fragment slot="actions">
+      <Button label="Register" />
+      <Button label="Learn more" outline />
+    </Fragment>
+  </Content>
+  <Fun_facts />
+  <Highlights />
 </Base>
 
 <style is:global lang="scss"></style>

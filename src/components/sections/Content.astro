@@ -1,16 +1,47 @@
 ---
+import { Picture } from 'astro:assets'
 interface Props {
   headline: string
+  sideImage?: ImageMetadata
+  right?: boolean
   bg?: 'darker'
 }
 
-const { headline, bg } = Astro.props
+const { headline, bg, sideImage, right } = Astro.props
 ---
 
-<section class="content" class:list={[bg]}>
-  <h2>{headline}</h2>
-  <slot />
-  <div class="content__actions"><slot name="actions" /></div>
+<section class="content" class:list={[bg, { withSide: !!sideImage, right }]}>
+  {
+    !sideImage && (
+      <>
+        <h2>{headline}</h2>
+        <slot />
+        <div class="content__actions">
+          <slot name="actions" />
+        </div>
+      </>
+    )
+  }
+  {
+    !!sideImage && (
+      <>
+        <Picture
+          src={sideImage}
+          formats={['webp']}
+          fallbackFormat="jpg"
+          alt=""
+          widths={[400, 800, 1200]}
+        />
+        <div class="content__side_container">
+          <h2>{headline}</h2>
+          <slot />
+          <div class="content__actions">
+            <slot name="actions" />
+          </div>
+        </div>
+      </>
+    )
+  }
 </section>
 
 <style lang="scss" is:global>
@@ -26,27 +57,54 @@ const { headline, bg } = Astro.props
     color: charter.$neutrals700;
     background: charter.$neutrals100;
 
-    > h2 {
-      @include text-styles.heading2;
-      margin-bottom: 16px;
-    }
-
-    > p {
-      @include text-styles.paragraphMediumRegular;
-      text-align: center;
-      color: charter.$neutrals600;
-
-      & + p {
-        margin-top: 32px;
-      }
-    }
-
-    .content__actions {
-      display: flex;
+    &.withSide {
       flex-direction: row;
-      flex-wrap: wrap;
-      margin-top: 32px;
-      gap: 16px;
+      gap: 92px;
+    }
+
+    .content__side_container {
+      flex: 1;
+    }
+
+    > picture {
+      flex: 1;
+
+      > img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        object-position: center;
+        border-radius: 8px;
+      }
+      pointer-events: none;
+      position: relative;
+      width: 50%;
+    }
+
+    &,
+    .content__side_container {
+      > h2 {
+        @include text-styles.heading2;
+        margin-bottom: 16px;
+      }
+
+      > p {
+        @include text-styles.paragraphMediumRegular;
+        text-align: center;
+        color: charter.$neutrals600;
+
+        & + p {
+          margin-top: 32px;
+        }
+      }
+
+      .content__actions {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        margin-top: 32px;
+        gap: 16px;
+      }
     }
 
     &.darker {
