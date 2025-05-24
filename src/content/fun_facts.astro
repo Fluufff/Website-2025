@@ -1,0 +1,45 @@
+<div class="fun_facts">
+  <h2>Fun Flüüfff facts</h2>
+  <ul class="fun_facts__content">
+    <li><em>400+</em>attendees</li>
+    <li><em>80+</em>staff members</li>
+    <li><em>1000+</em>hugs given</li>
+  </ul>
+</div>
+
+<style lang="scss" is:global>
+  @use '../styles/text-styles';
+  @use '../styles/charter';
+
+  .fun_facts {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: charter.$primary500;
+    color: charter.$neutrals100;
+    padding: 64px;
+    gap: 40px;
+
+    > h2 {
+      @include text-styles.heading2;
+    }
+
+    > ul {
+      display: flex;
+      gap: 60px;
+      list-style: none;
+
+      > li {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        align-items: center;
+        @include text-styles.display3SemiBold;
+
+        > em {
+          @include text-styles.heading3;
+        }
+      }
+    }
+  }
+</style>

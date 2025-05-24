@@ -1,5 +1,5 @@
 <template>
-  <div class="accordion-tab" :class="{visible}">
+  <div class="accordion-tab" :class="{ visible }">
     <h3>{{ headline }}</h3>
     <div class="accordion-tab__content" :class="{ visible }"><slot /></div>
     <div class="accordion-tab__actions"><slot name="actions" /></div>
@@ -7,7 +7,7 @@
 </template>
 
 <script setup lang="ts">
-defineProps<{ value: string; headline: string, visible?: boolean }>()
+defineProps<{ value: string; headline: string; visible?: boolean }>()
 </script>
 
 <style lang="scss">
@@ -15,7 +15,6 @@ defineProps<{ value: string; headline: string, visible?: boolean }>()
 @use '../styles/text-styles';
 
 .accordion-tab {
-
   &.visible {
     .accordion-tab__content {
       padding-top: 24px;
