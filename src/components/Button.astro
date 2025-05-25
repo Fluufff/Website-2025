@@ -1,22 +1,28 @@
 ---
+import { Icon } from 'astro-icon/components'
+
 interface Props {
   label: string
   to?: string
   outline?: boolean
+  go?: boolean
 }
 
-const { label, to, outline = false } = Astro.props
+const { label, to, outline = false, go = false } = Astro.props
 
 const Element = to ? 'a' : 'button'
 ---
 
-<Element :href={to} class="button" class:list={{ outline }}>{label}</Element>
+<Element :href={to} class="button" class:list={{ outline }}>{label}{!!go && <Icon name="mdi:arrow-right" />}</Element>
 
 <style lang="scss" is:global>
   @use '../styles/charter';
   @use '../styles/text-styles';
 
   .button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     cursor: pointer;
 
     @include text-styles.display2SemiBold;
@@ -32,6 +38,11 @@ const Element = to ? 'a' : 'button'
     &.outline {
       color: charter.$secondary500;
       background: charter.$neutrals100;
+    }
+
+    > [data-icon] {
+      font-size: 16px;
+      margin: -3px 0 -3px 3px;
     }
   }
 </style>

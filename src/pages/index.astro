@@ -24,7 +24,7 @@ import FaqItem from '../components/FaqItem.astro'
       the heart of Brussels.
     </p>
     <Fragment slot="actions">
-      <Button label="Join the fantasy" />
+      <Button label="Join the fantasy" go />
       <Button label="Explore the program" outline />
     </Fragment>
   </Hero>
@@ -50,7 +50,7 @@ import FaqItem from '../components/FaqItem.astro'
       and an open mind.
     </p>
     <Fragment slot="actions">
-      <Button label="Register" />
+      <Button label="Register" go />
       <Button label="Learn more" outline />
     </Fragment>
   </Content>
@@ -71,12 +71,31 @@ import FaqItem from '../components/FaqItem.astro'
   <Socials />
   <Faq client:load>
     <FaqItem question="How can I pay for food and drinks at the hotel?">
-      With spacious rooms, a cozy on-site restaurant, and easy access to public transport, it’s the ideal base to relax,
-      connect, and explore the city between Flüüfff activities.
+      You can pay directly at the hotel bar or restaurant. They accept most common payment methods including debit
+      cards. Prices are reasonable, and breakfast is included if you have a residential ticket.
     </FaqItem>
     <FaqItem question="Does the hotel have a car park?">
       No, but there is one nearby at Parking Panorama — Flüüfff attendees pay €13/day (ask for discount at the hotel
       reception).
+    </FaqItem>
+    <FaqItem question="I have a food allergy/intolerance. What should I do?">
+      Please inform the hotel staff directly if you have food allergies. The restaurant at the Bedford Hotel offers a
+      varied buffet and à la carte options, and they are usually able to accommodate dietary needs.
+    </FaqItem>
+    <FaqItem question="Does the hotel have Wifi?">
+      Yes, the Bedford Hotel offers free WiFi in both rooms and public areas.
+    </FaqItem>
+    <FaqItem question="What and where to eat?">
+      You can eat at the hotel’s own restaurant Le Magellan, which offers a buffet and à la carte menu with locally
+      sourced ingredients. There are also plenty of restaurants nearby — we’ve listed our favorites on the Attend page.
+    </FaqItem>
+    <FaqItem question="Can I pay in installments?">
+      Installment payment is not officially offered. Tickets must be paid in full at registration unless a specific
+      arrangement has been made.
+    </FaqItem>
+    <FaqItem question="Which payment methods do you accept?">
+      Payments for registration are handled online and accept most major cards and payment platforms. For hotel or food
+      purchases, local card and cash payments are accepted at the venue.
     </FaqItem>
   </Faq>
 </Base>
