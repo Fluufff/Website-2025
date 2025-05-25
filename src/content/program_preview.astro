@@ -1,5 +1,5 @@
 ---
-import {getImage, Picture} from 'astro:assets'
+import { getImage, Picture } from 'astro:assets'
 import type { GetImageResult } from 'astro'
 
 import Accordion from '../components/Accordion.vue'
@@ -30,11 +30,11 @@ const { bg } = Astro.props
   <Accordion default="dances">
     <Fragment slot="images">
       <Picture
-          src={dances}
-          formats={['avif', 'webp']}
-          fallbackFormat="jpg"
-          alt=""
-          widths={[400, 800]}
+        src={dances}
+        formats={['avif', 'webp']}
+        fallbackFormat="jpg"
+        alt=""
+        widths={[400, 800]}
       />
     </Fragment>
     <AccordionTab headline="Dances" value="dances" visible>
