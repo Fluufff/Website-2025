@@ -8,7 +8,9 @@ interface Props {
 const { question } = Astro.props
 ---
 
-<div class="faq-item__question"><span>{question}</span><Icon name="mdi:close" /></div>
+<div class="faq-item__question">
+  <span>{question}</span><Icon name="mdi:close" />
+</div>
 <div class="faq-item__answer"><slot /></div>
 
 <style is:global lang="scss">
@@ -46,7 +48,6 @@ const { question } = Astro.props
       }
     }
 
-
     .faq-item__answer + .faq-item__question {
       border-top: solid 1px charter.$neutrals400;
     }
@@ -70,7 +71,7 @@ const { question } = Astro.props
 
       &:before {
         counter-increment: question_number;
-        content: "0" counter(question_number);
+        content: '0' counter(question_number);
 
         @include text-styles.display4SemiBold;
       }

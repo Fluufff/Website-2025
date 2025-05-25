@@ -2,9 +2,8 @@
   <div class="content darker faq">
     <h2>Frequently asked questions</h2>
     <p>
-      Whether this is your first time in the forest or you’ve walked this path
-      before, a few questions always arise. Here’s what you might be wondering
-      before you step beneath the branches...
+      Whether this is your first time in the forest or you’ve walked this path before, a few questions always arise.
+      Here’s what you might be wondering before you step beneath the branches...
     </p>
     <div class="faq_questions" :class="{ collapsible }" ref="parent">
       <slot />
@@ -27,12 +26,8 @@ onMounted(() => {
   const questions: Element[] = []
   const answers: Element[] = []
 
-  parent.value
-    .querySelectorAll('.faq-item__question')
-    .forEach((e) => questions.push(e))
-  parent.value
-    .querySelectorAll('.faq-item__answer')
-    .forEach((e) => answers.push(e))
+  parent.value.querySelectorAll('.faq-item__question').forEach((e) => questions.push(e))
+  parent.value.querySelectorAll('.faq-item__answer').forEach((e) => answers.push(e))
 
   qaElements = questions.map((q, i) => [q, answers[i]!])
   qaElements.forEach(([q, a]) => {

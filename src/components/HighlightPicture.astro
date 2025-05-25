@@ -8,11 +8,4 @@ interface Props {
 const { image, className } = Astro.props
 ---
 
-<Picture
-  class={className}
-  src={image}
-  formats={['avif', 'webp']}
-  fallbackFormat="jpg"
-  alt=""
-  widths={[400, 800]}
-/>
+<Picture class={className} src={image} formats={['avif', 'webp']} fallbackFormat="jpg" alt="" widths={[400, 800]} />
