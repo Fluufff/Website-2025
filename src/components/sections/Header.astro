@@ -2,12 +2,6 @@
 import Logo from '../../assets/logo.svg'
 ---
 
-<nav id="preheader">
-  <div id="preheader_links">
-    <a href="/">Staff & Volunteering</a>
-    <a href="/">Register</a>
-  </div>
-</nav>
 <nav id="header">
   <Logo height={48} width="" />
   <nav id="header_links">
@@ -16,6 +10,7 @@ import Logo from '../../assets/logo.svg'
     <a href="/">Program</a>
     <a href="/">About</a>
     <a href="/">Contact</a>
+    <a class="button" href="/">Register</a>
   </nav>
 </nav>
 <div id="registration_banner">
@@ -92,6 +87,7 @@ import Logo from '../../assets/logo.svg'
 
     &_links {
       display: flex;
+      align-items: center;
       gap: 35px;
 
       a {
@@ -102,26 +98,12 @@ import Logo from '../../assets/logo.svg'
         &.active {
           font-weight: 700;
         }
-      }
-    }
-  }
 
-  #preheader {
-    display: flex;
-    padding: 24px 32px;
-    justify-content: flex-end;
-    align-items: center;
-    gap: 35px;
-    background: charter.$primary700;
-
-    &_links {
-      display: flex;
-      gap: 35px;
-
-      a {
-        color: charter.$neutrals100;
-        @include text-styles.display2SemiBold;
-        text-align: center;
+        &.button {
+          background: charter.$primary600 !important;
+          border: 0;
+          color: charter.$primary100;
+        }
       }
     }
   }

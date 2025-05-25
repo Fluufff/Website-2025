@@ -25,13 +25,7 @@ const { headline, bg, sideImage, right } = Astro.props
   {
     !!sideImage && (
       <>
-        <Picture
-          src={sideImage}
-          formats={['avif', 'webp']}
-          fallbackFormat="jpg"
-          alt=""
-          widths={[400, 800, 1200]}
-        />
+        <Picture src={sideImage} formats={['avif', 'webp']} fallbackFormat="jpg" alt="" widths={[400, 800, 1200]} />
         <div class="content__side_container">
           <h2>{headline}</h2>
           <slot />
