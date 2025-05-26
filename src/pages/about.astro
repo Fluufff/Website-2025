@@ -1,0 +1,127 @@
+---
+import Base from '../layouts/Base.astro'
+import Hero from '../components/sections/Hero.astro'
+
+import heroImage from '../assets/images/hero/about.jpg'
+import missionImage from '../assets/images/mission.jpg'
+import fandomImage from '../assets/images/fandom.jpg'
+
+import Content from '../components/sections/Content.astro'
+import Peep from '../components/Peep.astro'
+---
+
+<Base>
+  <Hero headline="About Flüüfff – where memories take root" image={heroImage}>
+    <p>Flüüfff is a place where creatures gather, friendships grow, and creativity runs wild.</p>
+    <p>Here’s everything you need to know about our little corner of the forest.</p>
+  </Hero>
+  <Content headline="What is Flüüfff?" bg="darker">
+    <p>
+      Flüüfff 2025 is the 7th edition of the Flüüfff convention.<br />
+      It is all about bringing furries together in one place to share friendship, fun, and creativity — values our community
+      can be proud of. You don’t have to be a furry to join the celebration!
+    </p>
+
+    <p>
+      The convention lasts 5 days and can be enjoyed in many ways:<br /> Dance like a party animal, lounge with friends,
+      play board-games, attend panels or participate in one of the many activities.
+    </p>
+  </Content>
+  <Content headline="Our mission" sideImage={missionImage} right>
+    <p>
+      Flüüfff is Belgium’s premier furry convention—a vibrant, five-day celebration of anthropomorphic creativity,
+      community, and joy. Held annually in Brussels, Flüüfff brings together furries and friends from across Europe and
+      beyond to share in a spirit of inclusivity, imagination, and fun.
+    </p>
+
+    <p>
+      We are more than just a convention; we are a gathering of kindred spirits who value friendship, self-expression,
+      and the boundless possibilities of the furry fandom. Whether you're dancing like a party animal, lounging with new
+      friends, showcasing your fursuit, or participating in panels and games, Flüüfff is your space to be your authentic
+      self.
+    </p>
+
+    <p>
+      Each edition of Flüüfff is themed—from seaside holidays and abbey adventures to tropical islands and grand
+      casinos—offering fresh experiences and memories year after year. Our commitment to creativity, respect, and
+      community ensures that everyone feels welcome, whether you're a seasoned furry or a curious newcomer.
+    </p>
+
+    <p>
+      As a registered non-profit organization (ASBL), we reinvest all proceeds into enhancing future events or
+      supporting charitable causes, reflecting our dedication to giving back to the community that makes Flüüfff
+      possible.
+    </p>
+
+    <p>Come as you are, leave as part of the Flüüfff family.</p>
+  </Content>
+  <Content headline="What is the furry fandom?" sideImage={fandomImage}>
+    <p>
+      The furry fandom is a community inspired by anthropomorphic animals (animals with human traits).<br />
+      People who are part of the fandom are called furries.
+    </p>
+    <p>You can compare it to other fan communities like Star Wars, anime, or fantasy fairs.</p>
+    <p>
+      The furry fandom is mainly about creativity and is also known as a very social community. Most furries create
+      their own character (also called a fursona), based on a certain animal, real or otherwise.
+    </p>
+    <p>
+      There are regular animals, hybrids, mythical creatures, and some even invent their own species. If there’s a
+      meetup or convention, you’ll likely find people wearing fursuits — costumes based on their fursona.
+    </p>
+    <p>
+      At conventions and within the community, it’s all about creating art, writing stories, roleplaying, socializing,
+      and making and wearing fursuits.
+    </p>
+    <p>Most furry conventions and several furry groups also raise funds and organize panels for various charities.</p>
+  </Content>
+  <Content headline="Meet the Dream Team" bg="primary-light">
+    <p>
+      Flüüfff wouldn’t happen without the amazing crew working behind the scenes.<br />
+      From handling the big picture to sorting out the smallest details, our team of staff and volunteers makes sure everything
+      runs smoothly.
+    </p>
+    <p>They’re the ones making sure the con feels like home — year after year.</p>
+    <div id="dream_team_peeps">
+      <Peep name="Jawbreaker" title={['Chairdragon', 'Head of Hotel Relations']} icon="Jawbreaker.png" />
+      <Peep name="Faelan" title={['Secretary', 'Head of Registration']} icon="Faelan.png" />
+      <Peep name="Vrydi" title={['Treasurer', 'Head of Accounting', 'Deputy of Conbook']} icon="Vrydi.jpg" />
+      <Peep name="Aelkan" title={['Head of HR', 'Deputy of PR']} icon="Aelkan.jpg" />
+      <Peep name="Kazuma" title="Head of Art" />
+      <Peep name="Vhydra" title="Deputy of Art" />
+      <Peep name="Niki" title="Head of Bar" icon="Niki.png" />
+      <Peep name="Amarog" title="Deputy of Bar" />
+      <Peep name="DD" title="Deputy of Bar" />
+      <Peep name="Goomuin" title="Head of Conbook" icon="Goomuin.jpg" />
+      <Peep name="Azana" title="Head of Dealer's Den" icon="Azana.png" />
+      <Peep name="Alex Dax" title="Deputy of Dealer's Den" />
+      <Peep name="Larixe" title={['Deputy of Decorations', 'Deputy of HR']} />
+      <Peep name="Nimalen" title="Head of Entertainment" />
+      <Peep name="Jenky" title="Head of Fursuit Affairs" />
+      <Peep name="Alexis" title="Deputy of Hotel Relations" icon="Alexis.jpg" />
+      <Peep name="Juravenator" title="Deputy of IT" icon="Jura.png" />
+      <Peep name="Proko" title="Deputy of IT" icon="Proko.jpg" />
+      <Peep name="Cyber" title="Head of PR" icon="Cyber.png" />
+      <Peep name="Akylian" title="Deputy of Registration" icon="Akylian.png" />
+      <Peep name="Kanso" title="Head of Stage" />
+      <Peep name="Thinder" title="Deputy of Stage" icon="Thinder.png" />
+      <Peep name="Narf" title="Head of Stewards & Safety" icon="Narf.jpg" />
+      <Peep name="Milo" title="Deputy of Stewards & Safety" icon="Milo.png" />
+      <Peep name="Bleats" title="Deputy of Stewards & Safety" icon="Bleats.png" />
+      <Peep name="Choob" title="Head of Feedback" icon="Choob.jpg" />
+    </div>
+  </Content>
+</Base>
+
+<style is:global lang="scss">
+  #dream_team_peeps {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: center;
+    margin-top: 40px;
+
+    gap: 64px;
+  }
+</style>
