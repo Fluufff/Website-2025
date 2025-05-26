@@ -13,7 +13,7 @@ const { label, to, outline = false, go = false } = Astro.props
 const Element = to ? 'a' : 'button'
 ---
 
-<Element :href={to} class="button" class:list={{ outline }}>{label}{!!go && <Icon name="mdi:arrow-right" />}</Element>
+<Element href={to} class="button" class:list={{ outline }}>{label}{!!go && <Icon name="mdi:arrow-right" />}</Element>
 
 <style lang="scss" is:global>
   @use '../styles/charter';

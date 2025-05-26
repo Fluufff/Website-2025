@@ -6,15 +6,17 @@ import Content from './Content.astro'
 interface Props {
   headline: string
   image?: ImageMetadata
+  alignImageLeft?: boolean
 }
 
-const { headline, image } = Astro.props
+const { headline, image, alignImageLeft } = Astro.props
 ---
 
 <div class="hero">
   {
     !!image && (
       <Picture
+        class:list={{ alignImageLeft }}
         src={image}
         formats={['avif', 'webp']}
         fallbackFormat="jpg"
@@ -26,7 +28,7 @@ const { headline, image } = Astro.props
   }
   <Content headline={headline}>
     <slot />
-    <slot name="actions" slot="actions" />
+    {Astro.slots.has('actions') && <slot name="actions" slot={Astro.slots.has('actions') ? 'actions' : ''} />}
   </Content>
 </div>
 
@@ -46,7 +48,10 @@ const { headline, image } = Astro.props
         width: 100%;
         height: 100%;
         object-fit: cover;
-        object-position: left;
+        object-position: center;
+        &.alignImageLeft {
+          object-position: left;
+        }
       }
     }
 
@@ -59,6 +64,7 @@ const { headline, image } = Astro.props
 
     .content {
       align-items: flex-start;
+      justify-content: center;
       > h2 {
         @include text-styles.heading1;
       }

@@ -4,7 +4,7 @@ interface Props {
   headline: string
   sideImage?: ImageMetadata
   right?: boolean
-  bg?: 'darker'
+  bg?: 'darker' | 'primary'
 }
 
 const { headline, bg, sideImage, right } = Astro.props
@@ -16,9 +16,11 @@ const { headline, bg, sideImage, right } = Astro.props
       <>
         <h2>{headline}</h2>
         <slot />
-        <div class="content__actions">
-          <slot name="actions" />
-        </div>
+        {Astro.slots.has('actions') && (
+          <div class="content__actions">
+            <slot name="actions" />
+          </div>
+        )}
       </>
     )
   }
@@ -29,9 +31,11 @@ const { headline, bg, sideImage, right } = Astro.props
         <div class="content__side_container">
           <h2>{headline}</h2>
           <slot />
-          <div class="content__actions">
-            <slot name="actions" />
-          </div>
+          {Astro.slots.has('actions') && (
+            <div class="content__actions">
+              <slot name="actions" />
+            </div>
+          )}
         </div>
       </>
     )
@@ -93,6 +97,7 @@ const { headline, bg, sideImage, right } = Astro.props
         @include text-styles.paragraphMediumRegular;
         text-align: center;
         color: charter.$neutrals600;
+        max-width: 700px;
 
         & + p {
           margin-top: 32px;
@@ -110,6 +115,21 @@ const { headline, bg, sideImage, right } = Astro.props
 
     &.darker {
       background: charter.$neutrals200;
+    }
+
+    &.primary {
+      background: charter.$primary500;
+      color: charter.$neutrals100;
+
+      p {
+        color: charter.$neutrals100;
+      }
+
+      .button {
+        background: charter.$neutrals100;
+        border-color: charter.$neutrals100;
+        color: charter.$primary500;
+      }
     }
   }
 </style>

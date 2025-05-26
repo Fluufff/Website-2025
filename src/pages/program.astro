@@ -1,0 +1,105 @@
+---
+import Base from '../layouts/Base.astro'
+import Hero from '../components/sections/Hero.astro'
+
+import heroImage from '../assets/images/hero/program.png'
+import Program_preview from '../content/program_preview.astro'
+import Content from '../components/sections/Content.astro'
+import Button from '../components/Button.astro'
+import Socials from '../content/socials.astro'
+import Faq from '../content/Faq.astro'
+import FaqItem from '../content/FaqItem.astro'
+---
+
+<Base>
+  <Hero headline="Discover the heart of the forest" image={heroImage}>
+    <p>
+      When the forest awakens, it invites you to dance, share, learn, and create. Here's what’s waiting beneath the
+      canopy…
+    </p>
+  </Hero>
+  <Program_preview bg="darker" />
+  <Content headline="Host your own panel" bg="primary">
+    <p>Bring your own passion to the forest.</p>
+    <p>
+      You can host your own panel at Flüüfff — about something you love or something you know a lot about. You can
+      suggest a panel or a meet-up through our Panel Proposal form.
+    </p>
+    <Button slot="actions" label="Submit your panel proposal" go to="/" />
+  </Content>
+  <Content headline="Event labels explained">
+    <p>Look out for these icons during the convention. They help you find events that match your vibe.</p>
+    <dl id="event_labels">
+      <dt>🧠 Educational</dt>
+      <dd>Hosted by a (semi-)professional or the result of deep research. Focused on informing and teaching.</dd>
+      <dt>🐾 Fursuit-friendly</dt>
+      <dd>Includes amenities for fursuiters (fans, water stations) or adjusted pacing/materials.</dd>
+      <dt>🔨 Workshop</dt>
+      <dd>Requires active participation.</dd>
+      <dt>🔞 NSFW</dt>
+      <dd>
+        Elements or themes related to fetishes or related topics.<br />
+        However, this event is strictly non-sexual so no nudity is shown.
+      </dd>
+      <dt>💡 Flashing lights</dt>
+      <dd>This event will feature flashing lights.</dd>
+      <dt>🏃 Sporty</dt>
+      <dd>Requires a certain level of movement. Bring comfy clothes, water, and a towel.</dd>
+      <dt>❤️ Charity</dt>
+      <dd>Event is organized in cooperation with our chosen charity.</dd>
+      <dt>🚪 Open door event</dt>
+      <dd>Can be joined and left at any point during its duration.</dd>
+    </dl>
+  </Content>
+  <Socials />
+  <Faq>
+    <FaqItem question="Do I need to sign up for events in advance?">
+      For most events, no sign-up is needed — just show up and enjoy! If an event requires advance registration, this
+      will be clearly indicated in the program.
+    </FaqItem>
+    <FaqItem question="Do I need to be a performer to attend the Flüüfff Finale?">
+      No, everyone is welcome to enjoy the show. If you want to perform, just submit an Act Proposal.
+    </FaqItem>
+    <FaqItem question="Will there be things for me to do if I don’t dance or perform?">
+      Absolutely! There are panels, workshops, casual meetups, art spaces, and plenty of chill corners to explore and
+      enjoy.
+    </FaqItem>
+    <FaqItem question="Is there a schedule available?">
+      The full program schedule will be published closer to the event. We’ll announce it on the website and via social
+      media when it’s ready.
+    </FaqItem>
+    <FaqItem question="Can I host my own panel or meet?">
+      Yes! You’re welcome to suggest a panel, activity, or meet-up via the Panel Proposal Form.
+    </FaqItem>
+  </Faq>
+</Base>
+
+<style lang="scss" is:global>
+  @use '../styles/charter';
+  @use '../styles/text-styles';
+
+  dl#event_labels {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    border-bottom: solid 1px charter.$neutrals400;
+    margin-top: 64px;
+
+    dd,
+    dt {
+      padding: 22px 14px;
+      border-top: solid 1px charter.$neutrals400;
+    }
+
+    dt {
+      color: charter.$neutrals700;
+      display: flex;
+      align-items: center;
+      @include text-styles.heading4;
+    }
+
+    dd {
+      color: charter.$neutrals600;
+      @include text-styles.display3Regular;
+    }
+  }
+</style>

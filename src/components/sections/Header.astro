@@ -1,5 +1,6 @@
 ---
 import Logo from '../../assets/logo.svg'
+import Button from '../Button.astro'
 ---
 
 <nav id="header">
@@ -7,10 +8,10 @@ import Logo from '../../assets/logo.svg'
   <nav id="header_links">
     <a href="/" class="active">Home</a>
     <a href="/">Attend</a>
-    <a href="/">Program</a>
+    <a href="/program">Program</a>
     <a href="/">About</a>
     <a href="/">Contact</a>
-    <a class="button" href="/">Register</a>
+    <Button label="Register" to="/" />
   </nav>
 </nav>
 <div id="registration_banner">
