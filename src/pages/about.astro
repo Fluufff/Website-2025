@@ -8,6 +8,9 @@ import fandomImage from '../assets/images/fandom.jpg'
 
 import Content from '../components/sections/Content.astro'
 import Peep from '../components/Peep.astro'
+import Socials from '../content/socials.astro'
+import Faq from '../content/Faq.astro'
+import FaqItem from '../content/FaqItem.astro'
 ---
 
 <Base>
@@ -111,6 +114,15 @@ import Peep from '../components/Peep.astro'
       <Peep name="Choob" title="Head of Feedback" icon="Choob.jpg" />
     </div>
   </Content>
+  <Socials />
+  <Faq>
+    <FaqItem question="Can I help with Flüüfff?" />
+    <FaqItem question="Are there rules during the convention?" />
+    <FaqItem question="Where can I find the websites of previous editions?" />
+    <FaqItem question="Do I need to be 18 or older to attend?" />
+    <FaqItem question="What if I don't know anyone?" />
+    <FaqItem question="How do I find out what's happening during the convention?" />
+  </Faq>
 </Base>
 
 <style is:global lang="scss">
