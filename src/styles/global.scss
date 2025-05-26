@@ -1,3 +1,5 @@
+@use './charter';
+
 * {
   margin: 0;
   padding: 0;
@@ -30,4 +32,9 @@ a {
   transition:
     color 0.2s ease-in-out,
     background-color 0.2s ease-in-out;
+}
+
+p a {
+  text-decoration: underline;
+  color: charter.$neutrals700;
 }
