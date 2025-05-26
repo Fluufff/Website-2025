@@ -28,7 +28,10 @@ onMounted(() => {
 
   qaElements = headers.map((q, i) => [q, contents[i]!])
   qaElements.forEach(([q, a], i) => {
-    q.addEventListener('click', () => { clicked(q, a); emit('change', i) })
+    q.addEventListener('click', () => {
+      clicked(q, a)
+      emit('change', i)
+    })
   })
 
   if (props.alwaysOpen) {
@@ -62,6 +65,10 @@ function clicked(q: Element, a: Element) {
   display: flex;
   flex-direction: column;
 
+  &.collapsible.alwaysOpen .accordion-item__header.active {
+    cursor: default;
+  }
+
   &.collapsible {
     .accordion-item__header {
       > [data-icon] {
@@ -70,8 +77,6 @@ function clicked(q: Element, a: Element) {
       }
 
       &.active {
-        cursor: default;
-
         > [data-icon] {
           transform: rotate(0deg);
         }
@@ -102,7 +107,6 @@ function clicked(q: Element, a: Element) {
 
     > span {
       flex: 1;
-      height: 22px;
     }
 
     > [data-icon] {

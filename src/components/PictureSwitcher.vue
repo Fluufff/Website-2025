@@ -28,7 +28,7 @@ function showPicture(index: number) {
   newElement.classList.add('active')
 }
 
-watch(  () => props.current,    showPicture)
+watch(() => props.current, showPicture)
 </script>
 
 <style lang="scss">

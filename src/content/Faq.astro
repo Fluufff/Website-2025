@@ -3,7 +3,7 @@ import Accordion from '../components/Accordion.vue'
 import Content from '../components/sections/Content.astro'
 ---
 
-<Content headline="Frequently asked questions">
+<Content headline="Frequently asked questions" bg="darker">
   <p>
     Whether this is your first time in the forest or you’ve walked this path before, a few questions always arise.
     Here’s what you might be wondering before you step beneath the branches...
@@ -20,6 +20,7 @@ import Content from '../components/sections/Content.astro'
   .faq_questions {
     counter-reset: question_number;
     max-width: 650px;
+    margin: 32px;
 
     .accordion-item__content + .accordion-item__header {
       border-top: solid 1px charter.$neutrals400;
@@ -38,6 +39,7 @@ import Content from '../components/sections/Content.astro'
       &:before {
         counter-increment: question_number;
         content: '0' counter(question_number);
+        margin-top: -2px;
 
         @include text-styles.display4SemiBold;
       }

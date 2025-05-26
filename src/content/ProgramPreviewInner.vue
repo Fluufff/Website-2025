@@ -8,7 +8,7 @@ const currentImage = ref(0)
 
 <template>
   <div class="program_preview">
-    <Accordion alwaysOpen @change="i => currentImage = i">
+    <Accordion alwaysOpen @change="(i) => (currentImage = i)">
       <slot name="accordion" />
     </Accordion>
     <PictureSwitcher :current="currentImage">
@@ -16,5 +16,3 @@ const currentImage = ref(0)
     </PictureSwitcher>
   </div>
 </template>
-
-<style scoped lang="scss"></style>
