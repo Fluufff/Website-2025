@@ -10,7 +10,8 @@ import dances from '../assets/images/dances.jpg'
 import dd from '../assets/images/dd.jpg'
 import finale from '../assets/images/finale.jpg'
 import panels from '../assets/images/panels.jpg'
-import AccordionItem from "../components/AccordionItem.astro";
+import AccordionItem from '../components/AccordionItem.astro'
+import ProgramPreviewInner from './ProgramPreviewInner.vue'
 
 interface Props {
   bg?: 'darker'
@@ -25,13 +26,13 @@ const { bg } = Astro.props
     dancing under enchanted lights, playful panels where knowledge meets laughter, and a grand finale where talents
     bloom. Whether you come to perform, explore, or simply be — there’s a path waiting for you here.
   </p>
-  <div class="program_preview">
-    <Accordion client:load alwaysOpen>
+  <ProgramPreviewInner client:load>
+    <Fragment slot="accordion">
       <AccordionItem>
         <Fragment slot="header">Dances</Fragment>
         <p>
-          Get ready to dance! Our DJs will keep the dance floor buzzing with a mix of styles — from House and Hardcore to
-          Drum & Bass, Dubstep, Techno, and more. You bring the moves, we’ll bring the beats.
+          Get ready to dance! Our DJs will keep the dance floor buzzing with a mix of styles — from House and Hardcore
+          to Drum & Bass, Dubstep, Techno, and more. You bring the moves, we’ll bring the beats.
         </p>
       </AccordionItem>
       <AccordionItem>
@@ -41,17 +42,17 @@ const { bg } = Astro.props
           <strong>Furry Femme</strong> panel, to lighter-hearted gatherings like the <strong>Coffee panel</strong>.
         </p>
         <p>
-          Of course, a con is nothing without its attendees. Many have hosted their own panels, and we welcome yours too!
-          Do you have a creative panel or activity in mind? Something you love or know a lot about. Submit your idea
-          through the Panel Proposal form — we can't wait to see what you bring.
+          Of course, a con is nothing without its attendees. Many have hosted their own panels, and we welcome yours
+          too! Do you have a creative panel or activity in mind? Something you love or know a lot about. Submit your
+          idea through the Panel Proposal form — we can't wait to see what you bring.
         </p>
       </AccordionItem>
       <AccordionItem>
         <Fragment slot="header">Dealer's Den</Fragment>
         <p>
           Wander into the <strong>Dealer's Den</strong>, where a gathering of artists and craftsfolk from our community
-          offer their creations. From hand-drawn posters to cozy coasters, from fursuit parts to wearable art — you never
-          know what treasures you’ll discover beneath the trees.
+          offer their creations. From hand-drawn posters to cozy coasters, from fursuit parts to wearable art — you
+          never know what treasures you’ll discover beneath the trees.
         </p>
       </AccordionItem>
       <AccordionItem>
@@ -68,11 +69,14 @@ const { bg } = Astro.props
           friends, we’d love to see you on stage — just send in your idea via the Act Proposal form.
         </p>
       </AccordionItem>
-    </Accordion>
-    <div class="images">
-      <Picture src={dances} formats={['avif', 'webp']} fallbackFormat="jpg" alt="" widths={[400, 800]} />
-    </div>
-  </div>
+    </Fragment>
+    <Fragment slot="pictures">
+      <Picture class="active" src={dances} formats={['avif', 'webp']} fallbackFormat="jpg" alt="" widths={[400, 800]} />
+      <Picture class="active" src={panels} formats={['avif', 'webp']} fallbackFormat="jpg" alt="" widths={[400, 800]} />
+      <Picture class="active" src={dd} formats={['avif', 'webp']} fallbackFormat="jpg" alt="" widths={[400, 800]} />
+      <Picture class="active" src={finale} formats={['avif', 'webp']} fallbackFormat="jpg" alt="" widths={[400, 800]} />
+    </Fragment>
+  </ProgramPreviewInner>
 </Content>
 
 <style lang="scss" is:global>
@@ -113,7 +117,7 @@ const { bg } = Astro.props
       }
     }
 
-    .images {
+    .picture-switcher {
       img {
         height: 100%;
         width: 100%;
