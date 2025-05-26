@@ -1,4 +1,4 @@
-﻿<template>
+<template>
   <div class="accordion" :class="[{ collapsible, alwaysOpen }, props['class']]" ref="parent">
     <slot />
   </div>
@@ -7,10 +7,12 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 
-const props = defineProps<{ alwaysOpen?: boolean, 'class'?: string }>()
+const props = defineProps<{ alwaysOpen?: boolean; class?: string }>()
 
 const collapsible = ref(false)
 const parent = ref<HTMLElement | null>(null)
+
+const emit = defineEmits<{ change: [index: number] }>()
 
 let qaElements: [Element, Element][] = []
 
@@ -25,14 +27,15 @@ onMounted(() => {
   parent.value.querySelectorAll('.accordion-item__content').forEach((e) => contents.push(e))
 
   qaElements = headers.map((q, i) => [q, contents[i]!])
-  qaElements.forEach(([q, a]) => {
-    q.addEventListener('click', () => clicked(q, a))
+  qaElements.forEach(([q, a], i) => {
+    q.addEventListener('click', () => { clicked(q, a); emit('change', i) })
   })
 
   if (props.alwaysOpen) {
     const firstElement = qaElements[0]
     if (firstElement) {
       clicked(firstElement[0], firstElement[1])
+      emit('change', 0)
     }
   }
 })
@@ -40,8 +43,7 @@ onMounted(() => {
 function clicked(q: Element, a: Element) {
   const isActive = q.classList.contains('active')
 
-  if (isActive && props.alwaysOpen)
-    return
+  if (isActive && props.alwaysOpen) return
 
   qaElements.forEach(([q, a]) => {
     q.classList.remove('active')

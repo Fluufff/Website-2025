@@ -1,14 +1,14 @@
-﻿---
+---
 import { Icon } from 'astro-icon/components'
 
 interface Props {
-    showClose?: boolean
+  showClose?: boolean
 }
 
 const { showClose = false } = Astro.props
 ---
 
 <div class="accordion-item__header">
-    <slot name="header" />{!!showClose && <Icon name="mdi:close" /> }
+  <slot name="header" />{!!showClose && <Icon name="mdi:close" />}
 </div>
 <div class="accordion-item__content"><slot /></div>
