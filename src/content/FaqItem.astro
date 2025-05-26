@@ -1,0 +1,14 @@
+---
+import AccordionItem from "../components/AccordionItem.astro";
+
+interface Props {
+  question: string
+}
+
+const { question } = Astro.props
+---
+
+<AccordionItem showClose>
+  <span slot="header">{question}</span>
+  <slot />
+</AccordionItem>

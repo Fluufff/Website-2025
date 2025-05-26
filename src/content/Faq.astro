@@ -1,0 +1,57 @@
+﻿---
+import Accordion from "../components/Accordion.vue";
+import Content from "../components/sections/Content.astro";
+---
+<Content headline="Frequently asked questions">
+    <p>
+        Whether this is your first time in the forest or you’ve walked this path before, a few questions always arise.
+        Here’s what you might be wondering before you step beneath the branches...
+    </p>
+    <Accordion class="faq_questions" client:load>
+        <slot />
+    </Accordion>
+</Content>
+
+<style is:global lang="scss">
+  @use '../styles/charter';
+  @use '../styles/text-styles';
+
+  .faq_questions {
+    counter-reset: question_number;
+    max-width: 650px;
+
+    .accordion-item__content + .accordion-item__header {
+      border-top: solid 1px charter.$neutrals400;
+    }
+
+    .accordion-item__header {
+      display: flex;
+      flex-direction: row;
+      gap: 10px;
+      padding: 30px 10px;
+
+      @include text-styles.heading4;
+      color: charter.$secondary500;
+      align-items: center;
+
+      &:before {
+        counter-increment: question_number;
+        content: '0' counter(question_number);
+
+        @include text-styles.display4SemiBold;
+      }
+    }
+
+    .accordion-item__content {
+      display: flex;
+      flex-direction: column;
+      box-sizing: border-box;
+
+      font-family: var(--font-inter), sans-serif;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 22px; /* 137.5% */
+    }
+  }
+</style>
