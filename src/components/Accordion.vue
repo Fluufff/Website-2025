@@ -1,46 +1,122 @@
-<template>
-  <div class="accordion">
-    <div class="accordion__panels">
-      <slot />
-    </div>
-    <div class="accordion__aside">
-      <slot name="images" />
-    </div>
+﻿<template>
+  <div class="accordion" :class="[{ collapsible, alwaysOpen }, props['class']]" ref="parent">
+    <slot />
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, provide } from 'vue'
+import { ref, onMounted } from 'vue'
 
-const props = defineProps<{ default: string }>()
+const props = defineProps<{ alwaysOpen?: boolean, 'class'?: string }>()
 
-const active = ref(props.default)
-provide('active', active)
+const collapsible = ref(false)
+const parent = ref<HTMLElement | null>(null)
+
+let qaElements: [Element, Element][] = []
+
+onMounted(() => {
+  collapsible.value = true
+  if (!parent.value) return
+
+  const headers: Element[] = []
+  const contents: Element[] = []
+
+  parent.value.querySelectorAll('.accordion-item__header').forEach((e) => headers.push(e))
+  parent.value.querySelectorAll('.accordion-item__content').forEach((e) => contents.push(e))
+
+  qaElements = headers.map((q, i) => [q, contents[i]!])
+  qaElements.forEach(([q, a]) => {
+    q.addEventListener('click', () => clicked(q, a))
+  })
+
+  if (props.alwaysOpen) {
+    const firstElement = qaElements[0]
+    if (firstElement) {
+      clicked(firstElement[0], firstElement[1])
+    }
+  }
+})
+
+function clicked(q: Element, a: Element) {
+  const isActive = q.classList.contains('active')
+
+  if (isActive && props.alwaysOpen)
+    return
+
+  qaElements.forEach(([q, a]) => {
+    q.classList.remove('active')
+    a.classList.remove('active')
+  })
+
+  if (!isActive) {
+    q.classList.add('active')
+    a.classList.add('active')
+  }
+}
 </script>
 
 <style lang="scss">
 .accordion {
   display: flex;
-  flex-direction: row;
-  margin-top: 60px;
+  flex-direction: column;
 
-  &__panels {
-    width: 50%;
-    box-sizing: border-box;
-    padding-right: 92px;
+  &.collapsible {
+    .accordion-item__header {
+      > [data-icon] {
+        visibility: visible;
+        transform: rotate(45deg);
+      }
+
+      &.active {
+        cursor: default;
+
+        > [data-icon] {
+          transform: rotate(0deg);
+        }
+      }
+    }
+
+    .accordion-item__content {
+      height: 0;
+      opacity: 0;
+      visibility: hidden;
+      padding: 0;
+
+      &.active {
+        height: auto;
+        opacity: 1;
+        visibility: visible;
+        padding: 0 32px 30px 40px;
+      }
+    }
   }
 
-  &__aside {
-    img {
-      height: 100%;
-      width: 100%;
-      object-fit: cover;
-      object-position: center;
-      border-radius: 8px;
+  .accordion-item__header {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    padding: 30px 10px;
+    cursor: pointer;
+
+    > span {
+      flex: 1;
+      height: 22px;
     }
-    pointer-events: none;
-    position: relative;
-    width: 50%;
+
+    > [data-icon] {
+      margin-left: 16px;
+      display: block;
+      visibility: hidden;
+    }
+  }
+
+  .accordion-item__content {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    gap: 24px;
+
+    padding: 0 32px 30px 40px;
   }
 }
 </style>
