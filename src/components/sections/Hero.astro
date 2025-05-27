@@ -34,10 +34,13 @@ const { headline, image, alignImageLeft } = Astro.props
 
 <style lang="scss" is:global>
   @use '../../styles/text-styles';
+  @use '../../styles/charter';
+  @use 'sass:color';
 
   .hero {
     display: flex;
     flex-direction: row;
+    position: relative;
 
     > picture {
       overflow: hidden;
@@ -50,7 +53,7 @@ const { headline, image, alignImageLeft } = Astro.props
         object-fit: cover;
         object-position: center;
         &.alignImageLeft {
-          object-position: left;
+          object-position: left center;
         }
       }
     }
@@ -74,6 +77,29 @@ const { headline, image, alignImageLeft } = Astro.props
       > .content__actions {
         align-self: flex-start;
         margin-top: 64px;
+      }
+    }
+  }
+
+  @media (max-width: 900px) {
+    .hero {
+      position: relative;
+      flex-direction: column;
+      width: 100%;
+      overflow-x: clip;
+
+      > picture {
+        position: sticky;
+        width: 100%;
+        height: 100vh;
+        top: 0;
+      }
+
+      .content {
+        position: relative;
+        margin-top: -20vh;
+        width: 100%;
+        background: color.change(charter.$neutrals100, $alpha: 0.9) !important;
       }
     }
   }
