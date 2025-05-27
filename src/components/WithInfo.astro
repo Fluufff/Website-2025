@@ -1,0 +1,62 @@
+---
+import { Icon } from 'astro-icon/components'
+
+interface Props {
+  info: string
+}
+---
+
+<span class="with_info" data-info={Astro.props.info}><slot /><Icon name="mdi:info-circle" /></span><style lang="scss" is:global>
+  @use '../styles/charter';
+  @use '../styles/text-styles';
+
+  .with_info {
+    position: relative;
+    font-weight: 600;
+    cursor: pointer;
+
+    > [data-icon] {
+      position: relative;
+      font-size: 16px;
+      color: charter.$accent600;
+      vertical-align: middle;
+      padding-left: 3px;
+    }
+
+    &:before, &:after {
+      position: absolute;
+      background: charter.$neutrals100;
+      border: solid 1px charter.$neutrals200;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.14), 0 0 2px 0 rgba(0, 0, 0, 0.12);
+      transition: opacity .3s ease-out;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    &:hover:before, &:hover:after {
+      opacity: 1;
+    }
+
+    &:after {
+      content: "";
+      top: 20px;
+      right: -1px;
+      width: 16px;
+      height: 16px;
+      transform: rotate(45deg);
+      clip-path: polygon(-100% -100%, 100% -100%, 100% 0%, -100% 200%);
+      border-radius: 3px;
+    }
+
+    &:before {
+      content: attr(data-info);
+      width: 200px;
+      top: 28px;
+      right: -180px;
+      border-radius: 5px;
+      padding: 5px 12px;
+      font-weight: 400;
+      color: charter.$neutrals600;
+    }
+  }
+</style>
