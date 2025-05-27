@@ -39,7 +39,7 @@ a {
   @include text-styles.paragraphMediumRegular;
   color: charter.$neutrals700;
 
-  a {
+  a:not(.button) {
     text-decoration: underline;
     color: charter.$neutrals700;
   }
