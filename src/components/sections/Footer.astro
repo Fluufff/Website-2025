@@ -5,7 +5,7 @@ import { Icon } from 'astro-icon/components'
 
 <footer>
   <div class="footer__socials">
-    <Logo class="footer__socials__logo" height={40} width="" />
+    <a href="/"><Logo class="footer__socials__logo" height={40} width="" /></a>
     <div class="socials__list">
       <a href="https://t.me/fluufff_announcements" target="_blank" rel="noreferrer"
         ><Icon name="cib:telegram-plane" /></a
@@ -21,28 +21,28 @@ import { Icon } from 'astro-icon/components'
     </div>
   </div>
   <div class="footer__links">
-    <h4>About us</h4>
-    <a href="/">Mission</a>
-    <a href="/">Dream Team</a>
+    <h4><a href="/about">About us</a></h4>
+    <a href="/about#mission">Mission</a>
+    <a href="/about#dreamteam">Dream Team</a>
   </div>
   <div class="footer__links">
-    <h4>Attend</h4>
-    <a href="/">Tickets</a>
-    <a href="/">Hotel + Rooms</a>
-    <a href="/">Food and drinks</a>
-    <a href="/">Practical info</a>
-    <a href="/">Terms and Rules</a>
+    <h4><a href="/attend">Attend</a></h4>
+    <a href="/attend#tickets">Tickets</a>
+    <a href="/attend#hotel">Hotel + Rooms</a>
+    <a href="/attend#our_favorite_restaurants">Food and drinks</a>
+    <a href="/attend#getting_there">Practical info</a>
+    <a href="/attend">Terms and Rules</a>
   </div>
   <div class="footer__links">
-    <h4>Program</h4>
-    <a href="/">Dances</a>
-    <a href="/">Dealer's den</a>
-    <a href="/">Panels</a>
-    <a href="/">Flüüfff Finale</a>
-    <a href="/">Host your own</a>
+    <h4><a href="/program">Program</a></h4>
+    <a href="/program#program_preview">Dances</a>
+    <a href="/program#program_preview">Dealer's den</a>
+    <a href="/program#program_preview">Panels</a>
+    <a href="/program#program_preview">Flüüfff Finale</a>
+    <a href="/program#host_your_own">Host your own</a>
   </div>
   <div class="footer__links">
-    <h4>Contact us</h4>
+    <h4><a href="/contact">Contact us</a></h4>
     <a href="/">Information</a>
     <a href="/">Help Center</a>
   </div>
@@ -100,9 +100,9 @@ import { Icon } from 'astro-icon/components'
     > .footer__links {
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 8px;
 
-      h4 {
+      h4, h4 a {
         @include text-styles.display3SemiBold;
         margin-bottom: 8px;
         color: charter.$neutrals700;
@@ -111,6 +111,11 @@ import { Icon } from 'astro-icon/components'
       a {
         @include text-styles.display3Regular;
         color: charter.$neutrals600;
+        padding: 4px 0;
+
+        &:hover {
+          text-decoration: underline;
+        }
       }
     }
   }

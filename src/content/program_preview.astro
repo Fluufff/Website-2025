@@ -12,12 +12,13 @@ import ProgramPreviewInner from './ProgramPreviewInner.vue'
 
 interface Props {
   bg?: 'darker'
+  id?: string
 }
 
-const { bg } = Astro.props
+const { bg, id } = Astro.props
 ---
 
-<Content headline="A glimpse between the leaves…" bg={bg}>
+<Content headline="A glimpse between the leaves…" bg={bg} id={id}>
   <p>
     What awaits you amidst the foliage, you ask? Wander into our forest and you’ll find more than just trees. Expect
     dancing under enchanted lights, playful panels where knowledge meets laughter, and a grand finale where talents
