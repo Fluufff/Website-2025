@@ -1,3 +1,4 @@
+@use './text-styles';
 @use './charter';
 
 * {
@@ -34,7 +35,15 @@ a {
     background-color 0.2s ease-in-out;
 }
 
-p a {
-  text-decoration: underline;
+.content {
+  @include text-styles.paragraphMediumRegular;
   color: charter.$neutrals700;
+
+  a {
+    text-decoration: underline;
+    color: charter.$neutrals700;
+  }
+  ul {
+    margin-left: 1em;
+  }
 }
