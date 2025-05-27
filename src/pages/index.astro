@@ -24,8 +24,8 @@ import FaqItem from '../content/FaqItem.astro'
       the heart of Brussels.
     </p>
     <Fragment slot="actions">
-      <Button label="Join the fantasy" go />
-      <Button label="Explore the program" outline />
+      <Button label="Join the fantasy" go to="https://registration.fluufff.org"/>
+      <Button label="Explore the program" outline to="/program" />
     </Fragment>
   </Hero>
   <Content headline="Welcome to Flüüfff!" bg="darker">
@@ -39,7 +39,7 @@ import FaqItem from '../content/FaqItem.astro'
         >Bedford Hotel & Congress Center</strong
       >.
     </p>
-    <Button slot="actions" label="Learn more about Flüüfff" outline />
+    <Button slot="actions" label="Learn more about Flüüfff" outline to="/about" />
   </Content>
   <Program_preview />
   <Content headline="Why Attend Flüüfff?" sideImage={attend} bg="darker">
@@ -50,8 +50,8 @@ import FaqItem from '../content/FaqItem.astro'
       and an open mind.
     </p>
     <Fragment slot="actions">
-      <Button label="Register" go />
-      <Button label="Learn more" outline />
+      <Button label="Register" go to="https://registration.fluufff.org" />
+      <Button label="Learn more" outline to="/about" />
     </Fragment>
   </Content>
   <Fun_facts />
@@ -66,7 +66,7 @@ import FaqItem from '../content/FaqItem.astro'
       With spacious rooms, a cozy on-site restaurant, and easy access to public transport, it’s the ideal base to relax,
       connect, and explore the city between Flüüfff activities.
     </p>
-    <Button slot="actions" label="Learn more about attending" outline />
+    <Button slot="actions" label="Learn more about attending" outline to="/attend#hotel" />
   </Content>
   <Socials />
   <Faq>
@@ -94,7 +94,7 @@ import FaqItem from '../content/FaqItem.astro'
       arrangement has been made.
     </FaqItem>
     <FaqItem question="Which payment methods do you accept?">
-      Payments for registration are handled online and accept most major cards and payment platforms. For hotel or food
+      Payments for registration are handled online and are via bank transfer only. For hotel or food
       purchases, local card and cash payments are accepted at the venue.
     </FaqItem>
   </Faq>

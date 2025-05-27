@@ -25,18 +25,17 @@ import WithInfo from '../components/WithInfo.astro'
   </Content>
   <Content headline="The Venue: Bedford Hotel Brussels" sideImage={hotel} bg="darker" id="hotel">
     <p>
-      The event takes place at the renowned Bedford Hotel in Brussels — an easy 12min (1km) walk from Brussels Central
-      Station, the main subway connections, and the vibrant city life.
+      This year's hotel is the wonderful Bedford Hotel in Brussels — a cozy base just steps away from the city centre, the train station, countless eateries, and the vibrant nightlife.
     </p>
     <Fragment slot="actions">
-      <Button label="Getting there" outline />
+      <Button label="Getting there" outline to="#getting_there" />
       <Button label="Hotel Rooms" outline to="#hotel_rooms" />
       <Button label="The restaurant" outline to="#hotel_restaurant" />
     </Fragment>
   </Content>
   <Content headline="Room Types and Comforts" bg="darker" sideImage={hotelRooms} right id="hotel_rooms">
     <p>
-      All residential rooms are stylish and offer a range of amenities. Rooms are in
+      All Standard rooms are stylish and offer a range of amenities. Rooms are in
       <WithInfo info="Private room with one bed for one person.">Single</WithInfo>,
       <WithInfo info="Room with one shared double bed for two people.">Double</WithInfo>,
       <WithInfo info="Room with two separate single beds, shared with one other person.">Twin</WithInfo>,
@@ -46,23 +45,22 @@ import WithInfo from '../components/WithInfo.astro'
     </p>
     <p>Amenities include:</p>
     <ul class="amenities">
-      <li>En-suite bathroom</li>
-      <li>Breakfast & daily cleaning (included by default)</li>
-      <li>Room cleaning by trained staff</li>
-      <li>Phone, safe & flat screen</li>
+      <li>Air conditioning</li>
+      <li>Bathtub with shower</li>
+      <li>Same day drycleaning and laundry (weekdays only)</li>
+      <li>Free luggage storage</li>
       <li>Hairdryer</li>
-      <li>Comfortable beds with soft, white sheets</li>
+      <li>Comfortable beds with soft, white duvets</li>
     </ul>
   </Content>
   <Content headline="Dine at Restaurant Le Magellan" bg="darker" sideImage={hotelRestaurant} id="hotel_restaurant">
-    <p>Dine in style on-site at the heart of the Magellan Restaurant, known for fresh food and friendly service.</p>
+    <p>Dine in style and at its finest in the Magellan Restaurant, located right inside the hotel.</p>
     <p>
-      From buffet breakfasts to à la carte dinners, you’ll find options that suit most diets — with a Belgian twist.
-      Meals are locally sourced where possible, and pricing is hotel standard.
+      With space for 240 guests, the restaurant offers both a buffet and “à la carte” dining experience, serving a wide
+      range of tastes and dietary needs. All ingredients are locally sourced.
     </p>
     <p>
-      The hotel's restaurant is open to the public, which means food for every price range. You can also find more ideas
-      below.
+      The hotel’s restaurant is a super nice area, with good food for decent prices. You can find the menu here.
     </p>
   </Content>
   <Content headline="Our favorite restaurants in Brussels" id="our_favorite_restaurants">
@@ -113,7 +111,7 @@ import WithInfo from '../components/WithInfo.astro'
         <div class="address"><a>Plattesteen 4</a>🚶‍♂️ 5 min, 450 m</div>
         <p>
           Craving a sandwich that’s just slightly different? These richly filled Japanese-style sandwiches might hit the
-          spot! Also serves donburi and ramune.
+          spot! Also serves <strong>donburi</strong> and <strong>ramune</strong>.
         </p>
       </AccordionItem>
     </Accordion>
@@ -162,7 +160,7 @@ import WithInfo from '../components/WithInfo.astro'
         <ul>
           <li>Parking is at <strong>Parking Panorama</strong>, managed by the city</li>
           <li>Standard rate: €16/day</li>
-          <li><strong>Flüüfff attendees</strong> get a reduced rate of €13/day (ask at the hotel reception)</li>
+          <li><strong>Flüüfff attendees</strong> get a reduced rate of <strong>€13/day</strong> (ask at the hotel reception)</li>
         </ul>
         <p>Note: The parking spots are small, and the parking itself is not large</p>
       </div>
