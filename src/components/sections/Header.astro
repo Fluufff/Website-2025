@@ -5,7 +5,7 @@ import Countdown from '../countdown.vue'
 ---
 
 <nav id="header">
-  <a href="/"><Logo height={48} width="" /></a>
+  <a id="header_logo" href="/"><Logo height={48} width="" /></a>
   <nav id="header_links">
     <a href="/" class="active">Home</a>
     <a href="/attend">Attend</a>
@@ -29,7 +29,7 @@ import Countdown from '../countdown.vue'
     padding: 32px;
     flex-direction: row;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
     gap: 20px;
     background: charter.$accent700;
 
@@ -75,19 +75,28 @@ import Countdown from '../countdown.vue'
     align-items: center;
     background: charter.$primary100;
 
-    > svg {
+    #header_logo svg {
       fill: charter.$primary700;
     }
 
     &_links {
       display: flex;
       align-items: center;
-      gap: 35px;
+      gap: 8px;
+      margin: -16px 0;
 
       a {
         color: charter.$primary600;
         @include text-styles.display3Regular;
         text-align: center;
+
+        &:not(.button) {
+          padding: 18px 12px;
+        }
+
+        &:not(.button):hover {
+          text-decoration: underline;
+        }
 
         &.active {
           font-weight: 700;
@@ -97,8 +106,87 @@ import Countdown from '../countdown.vue'
           background: charter.$primary600;
           border: 0;
           color: charter.$primary100 !important;
+          margin-left: 16px;
         }
       }
     }
   }
+
+  @media (max-width: 900px) {
+    #header {
+      flex-direction: column;
+      padding: 12px 24px;
+
+      #header_links {
+        margin: -8px 0;
+      }
+    }
+
+    #registration_banner {
+      padding: 16px 24px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    #header {
+      padding: 12px 12px 6px;
+
+      position: relative;
+      #header_logo {
+        align-self: flex-start;
+        svg {
+          height: 36px;
+        }
+      }
+
+      #header_links {
+        margin: 8px 0 0;
+        border-top: solid 1px charter.$primary200;
+        flex-wrap: wrap;
+        align-self: stretch;
+        align-items: center;
+        justify-content: center;
+        row-gap: 4px;
+        a:not(.button) {
+          padding: 12px;
+        }
+      }
+
+      .button {
+        position: absolute;
+        right: 24px;
+        top: 12px;
+        padding: 8px 12px;
+      }
+    }
+
+    #registration_banner {
+      flex-direction: column;
+      padding: 16px 12px;
+      gap: 8px;
+
+      #registration_banner_text {
+        font-size: 24px;
+        line-height: 28px;
+        text-align: center;
+      }
+
+      #registration_banner_countdown {
+        font-size: 24px;
+        line-height: 28px;
+
+        .time {
+          font-size: 24px;
+          line-height: 28px;
+        }
+
+        .label {
+          font-size: 10px;
+          line-height: 10px;
+        }
+      }
+    }
+  }
+
+
 </style>
