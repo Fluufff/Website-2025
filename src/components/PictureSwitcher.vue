@@ -43,9 +43,13 @@ watch(() => props.current, showPicture)
     right: 0;
     width: 100%;
     height: 100%;
+    opacity: 0;
     visibility: hidden;
 
+    transition: visibility .7s ease-out, opacity .7s ease-out;
+
     &.active {
+      opacity: 1;
       visibility: visible;
     }
   }
