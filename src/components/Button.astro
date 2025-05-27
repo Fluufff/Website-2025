@@ -23,6 +23,7 @@ const Element = to ? 'a' : 'button'
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: center;
     cursor: pointer;
     text-decoration: none !important;
 
@@ -33,11 +34,11 @@ const Element = to ? 'a' : 'button'
     line-height: 10px;
 
     background: charter.$secondary500;
-    color: charter.$neutrals100;
+    color: charter.$neutrals100 !important;
     border: solid 1px charter.$secondary500;
 
     &.outline {
-      color: charter.$secondary500;
+      color: charter.$secondary500 !important;
       background: charter.$neutrals100;
     }
 

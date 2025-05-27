@@ -67,6 +67,10 @@ function clicked(q: Element, a: Element) {
 
   &.collapsible.alwaysOpen .accordion-item__header.active {
     cursor: default;
+
+    > [data-icon] {
+      opacity: 0;
+    }
   }
 
   &.collapsible {
