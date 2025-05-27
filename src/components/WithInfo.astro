@@ -6,7 +6,10 @@ interface Props {
 }
 ---
 
-<span class="with_info" data-info={Astro.props.info}><slot /><Icon name="mdi:info-circle" /></span><style lang="scss" is:global>
+<span class="with_info" data-info={Astro.props.info}><slot /><Icon name="mdi:info-circle" /></span><style
+  lang="scss"
+  is:global
+>
   @use '../styles/charter';
   @use '../styles/text-styles';
 
@@ -23,22 +26,26 @@ interface Props {
       padding-left: 3px;
     }
 
-    &:before, &:after {
+    &:before,
+    &:after {
       position: absolute;
       background: charter.$neutrals100;
       border: solid 1px charter.$neutrals200;
-      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.14), 0 0 2px 0 rgba(0, 0, 0, 0.12);
-      transition: opacity .3s ease-out;
+      box-shadow:
+        0 4px 8px 0 rgba(0, 0, 0, 0.14),
+        0 0 2px 0 rgba(0, 0, 0, 0.12);
+      transition: opacity 0.3s ease-out;
       opacity: 0;
       pointer-events: none;
     }
 
-    &:hover:before, &:hover:after {
+    &:hover:before,
+    &:hover:after {
       opacity: 1;
     }
 
     &:after {
-      content: "";
+      content: '';
       top: 20px;
       right: -1px;
       width: 16px;
