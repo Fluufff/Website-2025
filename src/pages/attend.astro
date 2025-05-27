@@ -3,10 +3,14 @@ import Base from '../layouts/Base.astro'
 import Socials from '../content/socials.astro'
 import Content from '../components/sections/Content.astro'
 import Button from '../components/Button.astro'
+import Accordion from '../components/Accordion.vue'
 
 import hotel from '../assets/images/hotel.png'
 import hotelRooms from '../assets/images/hotel_room.png'
 import hotelRestaurant from '../assets/images/hotel_restaurant.png'
+import AccordionItem from '../components/AccordionItem.astro'
+import Faq from '../content/Faq.astro'
+import FaqItem from '../content/FaqItem.astro'
 ---
 
 <Base>
@@ -23,7 +27,7 @@ import hotelRestaurant from '../assets/images/hotel_restaurant.png'
     </p>
     <Fragment slot="actions">
       <Button label="Getting there" outline />
-      <Button label="Hotel Rooms" outline to="#hotel_rooms"/>
+      <Button label="Hotel Rooms" outline to="#hotel_rooms" />
       <Button label="The restaurant" outline to="#hotel_restaurant" />
     </Fragment>
   </Content>
@@ -54,8 +58,236 @@ import hotelRestaurant from '../assets/images/hotel_restaurant.png'
       below.
     </p>
   </Content>
-  <Content headline="Our favorite restaurants in Brussels">
-
+  <Content headline="Our favorite restaurants in Brussels" id="our_favorite_restaurants">
+    <p>
+      Did you hear that growl? It’s not a mystical creature from somewhere behind the trees, but your stomach! If you
+      don’t know where to eat while at Flüüfff, here are some nearby suggestions.
+    </p>
+    <Accordion alwaysOpen client:load>
+      <AccordionItem>
+        <Fragment slot="header">Wolf Food Market</Fragment>
+        <div class="address"><a>Wolvengracht / Rue du Fossé aux Loups 50</a>🚶‍♂️ 14 min, 1 km</div>
+        <p>
+          A food market perfect for furries! Here you can find food stands with food from all over the world. Italian,
+          Vietnamese, Mexican,… and it even has a microbrewery.
+        </p>
+      </AccordionItem>
+      <AccordionItem>
+        <Fragment slot="header">NOM POW</Fragment>
+        <div class="address"><a>Korte boterstraat / Petite Rue Au Beurre 14</a>🚶‍♂️ 7 min, 550 m</div>
+        <p>Korean Fried Chicken, baos, and more Asian noms can be found here! Also has vegetarian options.</p>
+      </AccordionItem>
+      <AccordionItem>
+        <Fragment slot="header">MANHATTN’S BURGERS</Fragment>
+        <div class="address"><a>Henri Mausstraat / Rue Henri Maus 39</a>🚶‍♂️ 7 min, 450 m</div>
+        <p>
+          I hope you’re ready for mouthwatering hamburgers! You thought we were having steamed hams? It’s a regional
+          dialect for hamburgers, despite the fact that they are obviously grilled.
+        </p>
+      </AccordionItem>
+      <AccordionItem>
+        <Fragment slot="header">RUGANTINO</Fragment>
+        <div class="address"><a>Anspachlaan / Boulevard Anspach 184</a>🚶‍♂️ 4 min, 270 m</div>
+        <p>
+          This Italian restaurant serves pizzas, pastas, and everything in between. Experience La Dolce Vita, only a
+          small walk away from the convention.
+        </p>
+      </AccordionItem>
+      <AccordionItem>
+        <Fragment slot="header">KEBAB HOUSE</Fragment>
+        <div class="address"><a>Zuidstraat / Rue du Midi 124</a>🚶‍♂️ 1 min, 70 m</div>
+        <p>
+          If you’re looking for the good ol’ Kebab, this place has it! Located right at the intersection on the left of
+          the hotel, this location also serves kapsalon, durum, burgers and salads.
+        </p>
+      </AccordionItem>
+      <AccordionItem>
+        <Fragment slot="header">CHOU SANDO</Fragment>
+        <div class="address"><a>Plattesteen 4</a>🚶‍♂️ 5 min, 450 m</div>
+        <p>
+          Craving a sandwich that’s just slightly different? These richly filled Japanese-style sandwiches might hit the
+          spot! Also serves donburi and ramune.
+        </p>
+      </AccordionItem>
+    </Accordion>
+  </Content>
+  <Content headline="Getting there and practical info" id="getting_there" bg="darker">
+    <p>Whether you arrive by wing, rail, or road — here’s how to find your way to the Forest.</p>
+    <div id="travel_info">
+      <div>
+        <h4>By Plane</h4>
+        <ul>
+          <li>Take a plane to <strong>Brussels Airport</strong> (Zaventem)</li>
+          <li>Walk to the airport <strong>train station</strong></li>
+          <li>Take the train from the airport to <strong>Brussels Central Station</strong></li>
+          <li>Trains run every 15 minutes</li>
+        </ul>
+      </div>
+      <div>
+        <h4>By Train</h4>
+        <ul>
+          <li>Take the train to <strong>Brussels Central Station</strong></li>
+          <li>
+            All travel instructions and timetables are available on the <a href="https://www.belgiantrain.be/en"
+              >Belgian Train website</a
+            >
+          </li>
+        </ul>
+      </div>
+      <div>
+        <h4>By Foot</h4>
+        <p>From <strong>Brussels Central Station</strong>, the hotel is a short walk away</p>
+      </div>
+      <div>
+        <h4>By Car</h4>
+        <ul>
+          <li>The hotel is located within <strong>Brussels' LEZ (Low Emission Zone)</strong></li>
+          <li>Older, diesel, or highly polluting cars cannot enter the city</li>
+          <li>
+            <strong>Registration is mandatory</strong> for all vehicles registered outside Belgium (except The Netherlands)
+          </li>
+          <li>Failing to register can result in a €350 fine</li>
+          <li>More info at <a href="https://lez.brussels/mytax/en/">LEZ info site</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Parking</h4>
+        <ul>
+          <li>Parking is at <strong>Parking Panorama</strong>, managed by the city</li>
+          <li>Standard rate: €16/day</li>
+          <li><strong>Flüüfff attendees</strong> get a reduced rate of €13/day (ask at the hotel reception)</li>
+        </ul>
+        <p>Note: The parking spots are small, and the parking itself is not large</p>
+      </div>
+      <div>
+        <h4>Driving Tips</h4>
+        <p>Belgium’s traffic rules can be a little complex — take care.</p>
+        <p><strong>Speed limits:</strong></p>
+        <ul>
+          <li>Urban areas: <strong>50km/h</strong></li>
+          <li>Outside urban areas in Flanders: <strong>70km/h</strong></li>
+          <li>Outside urban areas in Wallonia: <strong>90km/h</strong></li>
+        </ul>
+      </div>
+    </div>
   </Content>
   <Socials />
+  <Faq>
+    <FaqItem question="Do I need to book a hotel room separately?">
+      <p>
+        No. If you purchase a <strong>residential ticket</strong>, your hotel stay is included. Only
+        <strong>day tickets</strong> do not include accommodation. No additional booking with the hotel is required — we’ll
+        take care of that for you.
+      </p>
+    </FaqItem>
+    <FaqItem question="Can I share a room with friends?">
+      <p>Yes! You can indicate roommate preferences during registration.</p>
+      <ul>
+        <li><strong>One person (the room owner) has to book a FULL bedroom during registration.</strong></li>
+        <li><strong>Your roommates only have to buy a Convention Ticket to be able to join your room.</strong></li>
+      </ul>
+    </FaqItem>
+    <FaqItem question="When can I check in and out?">
+      <p>Check-in at the Bedford Hotel is from 16:00 on your arrival day.</p>
+      <p>Check-out is at 12:00 on your departure day.</p>
+      <p>You’ll be able to store your luggage with the hotel if you arrive early or leave later.</p>
+    </FaqItem>
+    <FaqItem question="Can I add an extra night (or two)?">
+      <p>
+        Yes! <strong>Early Arrival (4/11)</strong> and <strong>Late Departure</strong> (10/11) can be added to your booking
+        during registration.
+      </p>
+      <p>These are optional and give you more time to settle in or wind down.</p>
+    </FaqItem>
+    <FaqItem question="Do I need to be a furry to attend?">
+      <p>
+        Not at all. Flüüfff is open to anyone curious about the fandom or just looking for a creative, welcoming space.
+        You don’t need to be a furry — or have a fursuit — to enjoy the convention.
+      </p>
+    </FaqItem>
+    <FaqItem question="Can I still attend if I don’t stay at the hotel?">
+      <p>
+        Yes! You can purchase a <strong>Day Ticket</strong> to join for one or more days.<br />
+        This ticket gives you full access to the convention area and events on your selected day(s).<br />
+        Accommodation is not included in this ticket.<br />
+      </p>
+    </FaqItem>
+    <FaqItem question="What is included in my ticket?">
+      <p><strong>Day(s) ticket</strong> includes:</p>
+      <ul>
+        <li>Access to the convention area</li>
+        <li>Access to all events on your selected day(s)</li>
+      </ul>
+      <p><strong>Residential ticket</strong> includes:</p>
+      <ul>
+        <li>Access to the convention area</li>
+        <li>Access to all events</li>
+        <li>A bed at the Bedford Hotel</li>
+        <li>Daily breakfast</li>
+        <li>Daily room cleaning</li>
+      </ul>
+      <p><strong>Sponsor Pack</strong> includes your chosen ticket, plus:</p>
+      <ul>
+        <li>A convention T-shirt</li>
+        <li>Custom lanyard</li>
+        <li>Extra goodies</li>
+        <li>Our eternal gratitude</li>
+      </ul>
+    </FaqItem>
+  </Faq>
 </Base>
+
+<style lang="scss" is:global>
+  @use '../styles/charter';
+  @use '../styles/text-styles';
+
+  #our_favorite_restaurants .accordion {
+    margin-top: 48px;
+    max-width: 500px;
+
+    .accordion-item__header {
+      @include text-styles.heading3;
+      color: charter.$neutrals700;
+    }
+
+    .accordion-item__content {
+      a {
+        display: block;
+      }
+      @include text-styles.display3Regular;
+
+      & + .accordion-item__header {
+        border-top: solid 1px charter.$neutrals400;
+      }
+    }
+  }
+
+  #travel_info {
+    display: grid;
+    max-width: 1200px;
+    margin-top: 48px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: charter.$neutrals400;
+
+    > div {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      padding: 48px 48px 60px 48px;
+      background: charter.$neutrals200;
+
+      @include text-styles.paragraphMediumRegular;
+      color: charter.$neutrals600;
+
+      h4 {
+        @include text-styles.heading3;
+        color: charter.$neutrals700;
+      }
+
+      ul {
+        margin-left: 1em;
+      }
+    }
+  }
+</style>
