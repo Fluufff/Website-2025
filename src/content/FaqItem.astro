@@ -9,6 +9,6 @@ const { question } = Astro.props
 ---
 
 <AccordionItem showClose>
-  <span slot="header">{question}</span>
+  <Fragment slot="header">{question}</Fragment>
   <slot />
 </AccordionItem>

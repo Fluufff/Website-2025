@@ -1,0 +1,175 @@
+---
+import Button from '../components/Button.astro'
+import Accordion from '../components/Accordion.vue'
+import AccordionItem from '../components/AccordionItem.astro'
+---
+
+<div class="pricing">
+  <div class="pricing__prices">
+    <div class="pricing__option">
+      <h3><span class="badge">Day(s) ticket</span> <span class="price">€45<b>*</b><sub>incl. VAT</sub></span></h3>
+      <p>No need for accommodation? Stay for a day, the full event, or the weekend.</p>
+      <Button to="/" label="Get your Day(s) ticket" outline go />
+      <h4>What's included?</h4>
+      <ul>
+        <li>Access to the convention area</li>
+        <li>Access to all events on your selected day(s)</li>
+      </ul>
+      <p class="notes">
+        * Day(s) tickets allow access from the first planned event until the end of the last on the selected day(s).
+      </p>
+    </div>
+    <div class="pricing__option">
+      <h3><span class="badge">Residential</span> <span class="price">€378,50<b>**</b><sub>incl. VAT</sub></span></h3>
+      <p>Experience the convention in full — sleep, stay, and enjoy at the venue.</p>
+      <Button to="/" label="Get your Residential ticket" go />
+      <h4>What's included?</h4>
+      <ul>
+        <li>Access to the convention area</li>
+        <li>Access to all events</li>
+        <li>A bed at the Bedford Hotel</li>
+        <li>Daily breakfast</li>
+        <li>Daily room cleaning</li>
+      </ul>
+    </div>
+    <div class="pricing__option">
+      <h3><span class="badge">Sponsor pack</span> <span class="price">+ €40<b>**</b><sub>incl. VAT</sub></span></h3>
+      <p>Want to help Flüüfff grow for future editions? Become a sponsor!</p>
+      <Button to="/" label="Get your Sponsor pack" outline go />
+      <h4>What's included?</h4>
+      <ul>
+        <li>Everything in your Day(s) or Residential ticket, plus:</li>
+        <li>A convention T-shirt</li>
+        <li>Custom lanyard</li>
+        <li>Extra goodies</li>
+        <li>Our eternal gratitude</li>
+      </ul>
+    </div>
+  </div>
+  <div class="pricing__details">
+    <p class="notes">
+      ** The price listed above is per person and based on one spot in a shared Double or Twin room. You also have the
+      option to book an additional night during the registration process.
+    </p>
+    <Accordion client:load alwaysOpen>
+      <AccordionItem>
+        <Fragment slot="header">Booking Conditions</Fragment>
+        <ul>
+          <li>Double & Twin room prices listed above are per spot in a shared room.</li>
+          <li>
+            During Registration, you can only book the FULL bedroom, and your roommates only require a Convention
+            Ticket.
+          </li>
+          <li>Choice between Single, Double/Twin, Triple or Quadruple bedrooms.</li>
+        </ul>
+      </AccordionItem>
+
+      <AccordionItem>
+        <Fragment slot="header">Early Arrival and Late Departure</Fragment>
+        <p>
+          Want to extend your stay? You can book <strong>Early Arrival</strong> (4/11) or
+          <strong>Late Departure</strong> (10/11) as add-ons during registration. This gives you a little more time to settle
+          in or wind down — perfect if you're traveling far or want to enjoy a quieter arrival.
+        </p>
+        <p><em>(Details about dates and pricing will be shown in the registration system.)</em></p>
+      </AccordionItem>
+    </Accordion>
+  </div>
+</div>
+
+<style lang="scss" is:global>
+  @use '../styles/charter';
+  @use '../styles/text-styles';
+  .pricing {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    margin-top: 48px;
+
+    .notes {
+      color: charter.$neutrals500;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 24px; /* 171.429% */
+    }
+
+    .pricing__details {
+      display: grid;
+      column-gap: 16px;
+      grid-template-columns: 1fr 2fr;
+
+      .notes, .accordion {
+        grid-column: 2;
+      }
+
+      .accordion {
+        margin-top: 16px;
+
+        .accordion-item__header {
+          background: charter.$neutrals200;
+          @include text-styles.heading4;
+          color: charter.$secondary500;
+          padding: 16px;
+        }
+
+        .accordion-item__content {
+          background: charter.$neutrals200;
+          padding: 0 16px 16px 16px;
+          &:not(.active) {
+            padding: 0;
+          }
+          @include text-styles.paragraphMediumRegular;
+          color: charter.$neutrals700;
+
+          & + .accordion-item__header {
+            margin-top: 3px;
+          }
+        }
+      }
+    }
+
+    .pricing__prices {
+      display: grid;
+      max-width: 1200px;
+      grid-template-columns: repeat(3, 1fr);
+
+      .pricing__option {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        padding: 24px;
+
+        & + .pricing__option {
+          border-left: solid 1px charter.$secondary200;
+        }
+
+        h3 {
+          display: flex;
+          flex-direction: row-reverse;
+          align-items: flex-start;
+          justify-content: space-between;
+
+          > .badge {
+            background: charter.$secondary100;
+            @include text-styles.display2SemiBold;
+            padding: 5px 8px;
+            border-radius: 3px;
+          }
+
+          > .price {
+            @include text-styles.heading3;
+            > b {
+              color: charter.$neutrals500;
+            }
+            > sub {
+              display: block;
+              @include text-styles.paragraphMediumRegular;
+              color: charter.$neutrals600;
+            }
+          }
+        }
+      }
+    }
+  }
+</style>
