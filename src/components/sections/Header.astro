@@ -1,6 +1,7 @@
 ---
 import Logo from '../../assets/logo.svg'
 import Button from '../Button.astro'
+import Countdown from '../countdown.vue'
 ---
 
 <nav id="header">
@@ -16,15 +17,7 @@ import Button from '../Button.astro'
 </nav>
 <div id="registration_banner">
   <div id="registration_banner_text">Registration opens in…</div>
-  <div id="registration_banner_countdown">
-    <div><span class="time">08</span><span class="label">Days</span></div>
-    :
-    <div><span class="time">12</span><span class="label">Hours</span></div>
-    :
-    <div><span class="time">44</span><span class="label">Minutes</span></div>
-    :
-    <div><span class="time">28</span><span class="label">Seconds</span></div>
-  </div>
+  <Countdown targetDate="2025-06-01T09:00:00Z" client:load />
 </div>
 
 <style is:global lang="scss">
