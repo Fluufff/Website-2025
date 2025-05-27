@@ -78,6 +78,9 @@ function clicked(q: Element, a: Element) {
       > [data-icon] {
         visibility: visible;
         transform: rotate(45deg);
+        transition:
+          transform 0.3s ease-out,
+          opacity 0.15s ease-in-out;
       }
 
       &.active {
@@ -125,6 +128,8 @@ function clicked(q: Element, a: Element) {
     flex-direction: column;
     box-sizing: border-box;
     gap: 24px;
+    height: auto;
+    overflow: hidden;
 
     padding: 0 32px 30px 40px;
   }

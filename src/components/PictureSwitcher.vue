@@ -46,7 +46,9 @@ watch(() => props.current, showPicture)
     opacity: 0;
     visibility: hidden;
 
-    transition: visibility .7s ease-out, opacity .7s ease-out;
+    transition:
+      visibility 0.7s ease-out,
+      opacity 0.7s ease-out;
 
     &.active {
       opacity: 1;

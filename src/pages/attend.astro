@@ -12,6 +12,7 @@ import AccordionItem from '../components/AccordionItem.astro'
 import Faq from '../content/Faq.astro'
 import FaqItem from '../content/FaqItem.astro'
 import Pricing from '../content/pricing.astro'
+import WithInfo from '../components/WithInfo.astro'
 ---
 
 <Base>
@@ -35,8 +36,13 @@ import Pricing from '../content/pricing.astro'
   </Content>
   <Content headline="Room Types and Comforts" bg="darker" sideImage={hotelRooms} right id="hotel_rooms">
     <p>
-      All residential rooms are stylish and offer a range of amenities. Rooms are in Single, Double, Twin, Triple, or
-      Quadruple formats (based on ticket selection).
+      All residential rooms are stylish and offer a range of amenities. Rooms are in
+      <WithInfo info="Private room with one bed for one person.">Single</WithInfo>,
+      <WithInfo info="Room with one shared double bed for two people.">Double</WithInfo>,
+      <WithInfo info="Room with two separate single beds, shared with one other person.">Twin</WithInfo>,
+      <WithInfo info="Room with three separate beds. You book the full room for 3 people.">Triple</WithInfo>, or
+      <WithInfo info="Room with four separate  beds. You book the full room for 4 people.">Quadruple</WithInfo> formats (based
+      on ticket selection).
     </p>
     <p>Amenities include:</p>
     <ul class="amenities">
@@ -45,7 +51,6 @@ import Pricing from '../content/pricing.astro'
       <li>Room cleaning by trained staff</li>
       <li>Phone, safe & flat screen</li>
       <li>Hairdryer</li>
-      <li>Mini-fridge</li>
       <li>Comfortable beds with soft, white sheets</li>
     </ul>
   </Content>
