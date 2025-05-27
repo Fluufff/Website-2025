@@ -81,7 +81,7 @@
   line-height: 24px; /* 150% */
 }
 
-@mixin paragraphMediumRegular {
+@mixin paragraphDefaultRegular {
   /* Paragraph/Default/Regular */
   font-family: var(--font-inter), sans-serif;
   font-size: 14px;
