@@ -1,0 +1,61 @@
+---
+import Base from '../layouts/Base.astro'
+import Socials from '../content/socials.astro'
+import Content from '../components/sections/Content.astro'
+import Button from '../components/Button.astro'
+
+import hotel from '../assets/images/hotel.png'
+import hotelRooms from '../assets/images/hotel_room.png'
+import hotelRestaurant from '../assets/images/hotel_restaurant.png'
+---
+
+<Base>
+  <Content headline="Ticket options">
+    <p>
+      Choose how long you want to stay in the forest. Whether you're staying the full five days or just visiting for a
+      while, the journey is well worth it.
+    </p>
+  </Content>
+  <Content headline="The Venue: Bedford Hotel Brussels" sideImage={hotel} bg="darker">
+    <p>
+      The event takes place at the renowned Bedford Hotel in Brussels — an easy 12min (1km) walk from Brussels Central
+      Station, the main subway connections, and the vibrant city life.
+    </p>
+    <Fragment slot="actions">
+      <Button label="Getting there" outline />
+      <Button label="Hotel Rooms" outline to="#hotel_rooms"/>
+      <Button label="The restaurant" outline to="#hotel_restaurant" />
+    </Fragment>
+  </Content>
+  <Content headline="Room Types and Comforts" bg="darker" sideImage={hotelRooms} right id="hotel_rooms">
+    <p>
+      All residential rooms are stylish and offer a range of amenities. Rooms are in Single, Double, Twin, Triple, or
+      Quadruple formats (based on ticket selection).
+    </p>
+    <p>Amenities include:</p>
+    <ul class="amenities">
+      <li>En-suite bathroom</li>
+      <li>Breakfast & daily cleaning (included by default)</li>
+      <li>Room cleaning by trained staff</li>
+      <li>Phone, safe & flat screen</li>
+      <li>Hairdryer</li>
+      <li>Mini-fridge</li>
+      <li>Comfortable beds with soft, white sheets</li>
+    </ul>
+  </Content>
+  <Content headline="Dine at Restaurant Le Magellan" bg="darker" sideImage={hotelRestaurant} id="hotel_restaurant">
+    <p>Dine in style on-site at the heart of the Magellan Restaurant, known for fresh food and friendly service.</p>
+    <p>
+      From buffet breakfasts to à la carte dinners, you’ll find options that suit most diets — with a Belgian twist.
+      Meals are locally sourced where possible, and pricing is hotel standard.
+    </p>
+    <p>
+      The hotel's restaurant is open to the public, which means food for every price range. You can also find more ideas
+      below.
+    </p>
+  </Content>
+  <Content headline="Our favorite restaurants in Brussels">
+
+  </Content>
+  <Socials />
+</Base>
