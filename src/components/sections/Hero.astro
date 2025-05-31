@@ -75,7 +75,6 @@ const { headline, image, alignImageLeft } = Astro.props
         text-align: left;
       }
       > .content__actions {
-        align-self: flex-start;
         margin-top: 64px;
       }
     }
@@ -101,6 +100,17 @@ const { headline, image, alignImageLeft } = Astro.props
         width: 100%;
         background: color.change(charter.$neutrals100, $alpha: 0.9) !important;
       }
+    }
+  }
+
+  @media (max-width: 600px) {
+    .hero .content {
+      align-items: stretch;
+    }
+    .hero .content > h2 {
+      font-size: 40px;
+      line-height: 52px;
+      text-align: center;
     }
   }
 </style>

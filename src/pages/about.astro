@@ -116,12 +116,32 @@ import FaqItem from '../content/FaqItem.astro'
   </Content>
   <Socials />
   <Faq>
-    <FaqItem question="Can I help with Flüüfff?" />
-    <FaqItem question="Are there rules during the convention?" />
-    <FaqItem question="Where can I find the websites of previous editions?" />
-    <FaqItem question="Do I need to be 18 or older to attend?" />
-    <FaqItem question="What if I don't know anyone?" />
-    <FaqItem question="How do I find out what's happening during the convention?" />
+    <FaqItem question="Can I help with Flüüfff?">
+      <p>Of course! You can contact us through the contact form and we’ll look into it.</p>
+      <p>But the best way to support Flüüfff is simply by attending and spreading the word.</p>
+    </FaqItem>
+    {
+      /*<FaqItem question="Are there rules during the convention?" />
+    <FaqItem question="Where can I find the websites of previous editions?" /> */
+    }
+    <FaqItem question="Do I need to be 18 or older to attend?">
+      <p>Yes. Flüüfff is an 18+ event, even if some parts are family-friendly in nature.</p>
+      <p>This is for legal, insurance, and community safety reasons.</p>
+      <p>All attendees must be 18 or older at the start of the convention — no exceptions.</p>
+    </FaqItem>
+    <FaqItem question="What if I don't know anyone?">
+      <p>
+        That’s completely okay. Flüüfff is full of friendly faces, quiet corners, and fun things to do. Many people come
+        solo and leave with new connections.
+      </p>
+    </FaqItem>
+    <FaqItem question="How do I find out what's happening during the convention?">
+      <p>
+        You'll receive a conbook which includes a printed schedule. You'll also be able to find this schedule on our
+        website when it is published!
+      </p>
+      <p>Our team will also post updates on site and via our Telegram channels.</p>
+    </FaqItem>
   </Faq>
 </Base>
 

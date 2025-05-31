@@ -141,4 +141,21 @@ const { headline, bg, sideImage, right, id } = Astro.props
       }
     }
   }
+
+  @media (max-width: 600px) {
+    .content {
+      padding: 20px 16px;
+
+      &,
+      .content__side_container {
+        > h2 {
+          font-size: 24px;
+        }
+      }
+      .content__actions {
+        flex-direction: column;
+        justify-content: center;
+      }
+    }
+  }
 </style>
