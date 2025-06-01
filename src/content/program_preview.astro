@@ -128,4 +128,22 @@ const { bg, id } = Astro.props
       width: 50%;
     }
   }
+
+  @media (max-width: 900px) {
+    .program_preview {
+      margin-top: 24px;
+      .accordion {
+        width: auto;
+        padding-right: 0;
+
+        .accordion-item__header {
+          font-size: 22px;
+          line-height: 22px;
+        }
+      }
+      .picture-switcher {
+        display: none;
+      }
+    }
+  }
 </style>

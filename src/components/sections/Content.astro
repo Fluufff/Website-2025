@@ -146,10 +146,15 @@ const { headline, bg, sideImage, right, id } = Astro.props
     .content {
       padding: 20px 16px;
 
+      > picture {
+        display: none;
+      }
+
       &,
       .content__side_container {
         > h2 {
           font-size: 24px;
+          text-align: center;
         }
       }
       .content__actions {

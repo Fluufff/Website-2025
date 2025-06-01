@@ -65,42 +65,46 @@ function clicked(q: Element, a: Element) {
   display: flex;
   flex-direction: column;
 
-  &.collapsible.alwaysOpen .accordion-item__header.active {
-    cursor: default;
+  @media (min-width: 900px) {
 
-    > [data-icon] {
-      opacity: 0;
-    }
-  }
+    &.collapsible.alwaysOpen .accordion-item__header.active {
+      cursor: default;
 
-  &.collapsible {
-    .accordion-item__header {
       > [data-icon] {
-        visibility: visible;
-        transform: rotate(45deg);
-        transition:
-          transform 0.3s ease-out,
-          opacity 0.15s ease-in-out;
+        opacity: 0;
       }
+    }
 
-      &.active {
+    &.collapsible {
+      .accordion-item__header {
+        cursor: pointer;
         > [data-icon] {
-          transform: rotate(0deg);
+          visibility: visible;
+          transform: rotate(45deg);
+          transition:
+              transform 0.3s ease-out,
+              opacity 0.15s ease-in-out;
+        }
+
+        &.active {
+          > [data-icon] {
+            transform: rotate(0deg);
+          }
         }
       }
-    }
 
-    .accordion-item__content {
-      height: 0;
-      opacity: 0;
-      visibility: hidden;
-      padding: 0;
+      .accordion-item__content {
+        height: 0;
+        opacity: 0;
+        visibility: hidden;
+        padding: 0;
 
-      &.active {
-        height: auto;
-        opacity: 1;
-        visibility: visible;
-        padding: 0 32px 30px 40px;
+        &.active {
+          height: auto;
+          opacity: 1;
+          visibility: visible;
+          padding: 0 32px 30px 40px;
+        }
       }
     }
   }
@@ -110,7 +114,6 @@ function clicked(q: Element, a: Element) {
     flex-direction: row;
     gap: 10px;
     padding: 30px 10px;
-    cursor: pointer;
 
     > span {
       flex: 1;
