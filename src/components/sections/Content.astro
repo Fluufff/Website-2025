@@ -1,7 +1,7 @@
 ---
 import { Picture } from 'astro:assets'
 interface Props {
-  headline: string
+  headline?: string
   sideImage?: ImageMetadata
   right?: boolean
   id?: string
@@ -15,7 +15,7 @@ const { headline, bg, sideImage, right, id } = Astro.props
   {
     !sideImage && (
       <>
-        <h2>{headline}</h2>
+        {headline && <h2>{headline}</h2>}
         <slot />
         {Astro.slots.has('actions') && (
           <div class="content__actions">
