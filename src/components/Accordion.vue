@@ -66,7 +66,6 @@ function clicked(q: Element, a: Element) {
   flex-direction: column;
 
   @media (min-width: 900px) {
-
     &.collapsible.alwaysOpen .accordion-item__header.active {
       cursor: default;
 
@@ -82,8 +81,8 @@ function clicked(q: Element, a: Element) {
           visibility: visible;
           transform: rotate(45deg);
           transition:
-              transform 0.3s ease-out,
-              opacity 0.15s ease-in-out;
+            transform 0.3s ease-out,
+            opacity 0.15s ease-in-out;
         }
 
         &.active {

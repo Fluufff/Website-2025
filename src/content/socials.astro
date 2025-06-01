@@ -1,9 +1,9 @@
 ---
 import { Icon } from 'astro-icon/components'
+import Content from '../components/sections/Content.astro'
 ---
 
-<div class="socials">
-  <h2>Join the Flüüfff community!</h2>
+<Content headline="Join the Flüüfff community!" bg="primary" class="socials">
   <div class="socials__list">
     <a href="https://t.me/fluufff_announcements" target="_blank" rel="noreferrer"><Icon name="cib:telegram-plane" /></a>
     <a href="https://www.facebook.com/fluufff/" target="_blank" rel="noreferrer"><Icon name="mdi:facebook" /></a>
@@ -14,24 +14,14 @@ import { Icon } from 'astro-icon/components'
     >
     <a href="https://youtube.com/@fluufff" target="_blank" rel="noreferrer"><Icon name="ri:youtube-fill" /></a>
   </div>
-</div>
-
+</Content>
 <style lang="scss" is:global>
   @use '../styles/charter';
   @use '../styles/text-styles';
 
   .socials {
-    display: flex;
     flex-direction: row;
-    padding: 64px 167px;
-    background: charter.$primary500;
     justify-content: space-between;
-
-    > h2 {
-      @include text-styles.heading2;
-      color: charter.$neutrals100;
-      flex: 2;
-    }
 
     .socials__list {
       display: flex;
@@ -57,26 +47,14 @@ import { Icon } from 'astro-icon/components'
       }
     }
   }
-  
+
   @media (max-width: 900px) {
     .socials {
       gap: 16px;
       flex-direction: column;
-
-      > h2 {
-        text-align: center;
-      }
-
       .socials__list {
         justify-content: center;
       }
-    }
-  }
-
-
-  @media (max-width: 600px) {
-    .socials {
-      padding: 28px 16px;
     }
   }
 </style>

@@ -152,9 +152,16 @@ import FaqItem from '../content/FaqItem.astro'
     flex-wrap: wrap;
     align-items: flex-start;
     justify-content: center;
+    align-self: stretch;
     margin-top: 40px;
     max-width: 1200px;
 
     gap: 64px;
+
+    @media (max-width: 600px) {
+      align-items: stretch;
+      flex-direction: column;
+      gap: 32px;
+    }
   }
 </style>

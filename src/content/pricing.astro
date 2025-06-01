@@ -118,7 +118,9 @@ import AccordionItem from '../components/AccordionItem.astro'
           background: charter.$neutrals200;
           padding: 0 16px 16px 16px;
           &:not(.active) {
-            padding: 0;
+            @media (min-width: 900px) {
+              padding: 0;
+            }
           }
           @include text-styles.paragraphMediumRegular;
           color: charter.$neutrals700;
@@ -170,6 +172,40 @@ import AccordionItem from '../components/AccordionItem.astro'
             }
           }
         }
+      }
+    }
+  }
+
+  @media (max-width: 900px) {
+    .pricing {
+      .pricing__prices {
+        display: flex;
+        flex-direction: column;
+
+        .pricing__option {
+          flex-direction: column;
+          > h3 {
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 16px;
+
+            .badge {
+              align-self: stretch;
+              text-align: center;
+            }
+          }
+
+          & + .pricing__option {
+            border-top: solid 1px charter.$secondary200;
+            border-left: 0;
+          }
+        }
+      }
+
+      .pricing__details {
+        display: flex;
+        flex-direction: column;
       }
     }
   }

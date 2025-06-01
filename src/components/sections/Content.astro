@@ -6,12 +6,13 @@ interface Props {
   right?: boolean
   id?: string
   bg?: 'darker' | 'primary' | 'primary-light'
+  class?: string
 }
 
 const { headline, bg, sideImage, right, id } = Astro.props
 ---
 
-<section class="content" class:list={[bg, { withSide: !!sideImage, right }]} id={id}>
+<section class="content" class:list={[bg, { withSide: !!sideImage, right }, Astro.props.class]} id={id}>
   {
     !sideImage && (
       <>
