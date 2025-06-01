@@ -1,6 +1,7 @@
 {
   "tasks": {
     "dev": "astro dev",
+    "devhost": "astro dev --host 0.0.0.0",
     "build": "astro build",
     "preview": "astro preview",
     "check": "astro check",
