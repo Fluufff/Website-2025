@@ -144,4 +144,24 @@ import { Icon } from 'astro-icon/components'
       text-decoration: underline;
     }
   }
+  
+  @media (max-width: 600px) {
+    footer {
+      position: relative;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 16px;
+
+      > .footer__socials {
+        width: 100%;
+        align-items: center;
+        margin-bottom: 16px;
+      }
+    }
+
+    .footer_legals {
+      flex-wrap: wrap;
+    }
+  }
 </style>

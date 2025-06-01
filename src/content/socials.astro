@@ -57,4 +57,26 @@ import { Icon } from 'astro-icon/components'
       }
     }
   }
+  
+  @media (max-width: 900px) {
+    .socials {
+      gap: 16px;
+      flex-direction: column;
+
+      > h2 {
+        text-align: center;
+      }
+
+      .socials__list {
+        justify-content: center;
+      }
+    }
+  }
+
+
+  @media (max-width: 600px) {
+    .socials {
+      padding: 28px 16px;
+    }
+  }
 </style>
