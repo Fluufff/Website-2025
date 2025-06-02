@@ -53,17 +53,43 @@ interface Props {
       transform: rotate(45deg);
       clip-path: polygon(-100% -100%, 100% -100%, 100% 0%, -100% 200%);
       border-radius: 3px;
+      z-index: 1;
     }
 
     &:before {
       content: attr(data-info);
       width: 200px;
       top: 28px;
-      right: -180px;
+      right: -80px;
+      text-align: center;
       border-radius: 5px;
       padding: 5px 12px;
       font-weight: 400;
       color: charter.$neutrals600;
+      z-index: 1;
     }
   }
+
+  @media (hover: none) {
+    .with_info.active {
+      &:before, &:after {
+        opacity: 1;
+      }
+    }
+  }
+
 </style>
+
+<script>
+    const elements = document.querySelectorAll('.with_info')
+
+    elements.forEach((el) => el.addEventListener('click', () => {
+        el.classList.toggle('active', true);
+    }))
+
+    document.addEventListener('click', e => {
+        elements.forEach(el => { if (!(e.target instanceof Node) ||!el.contains(e.target)) {
+            el.classList.toggle('active', false);
+        }})
+    })
+</script>
