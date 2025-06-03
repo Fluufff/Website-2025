@@ -115,15 +115,17 @@ import AccordionItem from '../components/AccordionItem.astro'
         }
 
         .accordion-item__content {
+          @include text-styles.paragraphMediumRegular;
+
           background: charter.$neutrals200;
           padding: 0 16px 16px 16px;
+          color: charter.$neutrals700;
+
           &:not(.active) {
             @media (min-width: 900px) {
               padding: 0;
             }
           }
-          @include text-styles.paragraphMediumRegular;
-          color: charter.$neutrals700;
 
           & + .accordion-item__header {
             margin-top: 3px;
