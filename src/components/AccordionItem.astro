@@ -5,4 +5,4 @@ import { Icon } from 'astro-icon/components'
 <div class="accordion-item__header">
   <span><slot name="header" /></span><Icon name="mdi:close" />
 </div>
-<div class="accordion-item__content"><slot /></div>
+<div class="accordion-item__content"><div class="accordion-item__content__inner"><slot /></div></div>

@@ -93,16 +93,16 @@ function clicked(q: Element, a: Element) {
       }
 
       .accordion-item__content {
-        height: 0;
+        display: grid;
+        grid-template-rows: 0fr;
         opacity: 0;
         visibility: hidden;
-        padding: 0;
+        transition: grid-template-rows 0.3s ease-out, visibility 0.3s ease-out, opacity 0.3s ease-out;
 
         &.active {
-          height: auto;
+          grid-template-rows: 1fr;
           opacity: 1;
           visibility: visible;
-          padding: 0 32px 30px 40px;
         }
       }
     }
@@ -133,7 +133,10 @@ function clicked(q: Element, a: Element) {
     height: auto;
     overflow: hidden;
 
-    padding: 0 32px 30px 40px;
+    > .accordion-item__content__inner {
+      padding: 0 32px 30px 40px;
+      overflow: hidden;
+    }
   }
 }
 </style>
