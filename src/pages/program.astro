@@ -19,16 +19,20 @@ import FaqItem from '../content/FaqItem.astro'
     </p>
   </Hero>
   <Program_preview bg="darker" id="program_preview" />
-  {
-    /*<Content headline="Host your own panel" bg="primary" id="host_your_own">
+  <Content headline="Host your own event" bg="primary" id="host_your_own">
     <p>Bring your own passion to the forest.</p>
     <p>
-      You can host your own panel at Flüüfff — about something you love or something you know a lot about. You can
-      suggest a panel or a meet-up through our Panel Proposal form.
+      You can host your own event at Flüüfff — about something you love or something you know a lot about. You can
+      suggest a panel or a meet-up through our Event Proposal form.
     </p>
-    <Button slot="actions" label="Submit your panel proposal" go to="/" />
-  </Content>*/
-  }
+    <Button
+      slot="actions"
+      label="Submit your Event proposal"
+      go
+      newTab
+      to="https://docs.google.com/forms/d/e/1FAIpQLSczO0qpWnzzL_B2frDOpYZfpuqQAjf41eO6tvjPiDxNQunPTg/viewform?usp=dialog"
+    />
+  </Content>
   <Content headline="Event labels explained">
     <p>Look out for these icons during the convention. They help you find events that match your vibe.</p>
     <dl id="event_labels">
@@ -69,6 +73,9 @@ import FaqItem from '../content/FaqItem.astro'
     <FaqItem question="Is there a schedule available?">
       The full program schedule will be published closer to the event. We’ll announce it on the website and via social
       media when it’s ready.
+    </FaqItem>
+    <FaqItem question="Can I host my own panel or meet?">
+      Yes! You’re welcome to suggest a panel, activity, or meet-up via the <a href="https://docs.google.com/forms/d/e/1FAIpQLSczO0qpWnzzL_B2frDOpYZfpuqQAjf41eO6tvjPiDxNQunPTg/viewform?usp=dialog" target="_blank">Panel Proposal Form</a>.
     </FaqItem>
   </Faq>
 </Base>

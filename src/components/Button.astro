@@ -6,14 +6,17 @@ interface Props {
   to?: string
   outline?: boolean
   go?: boolean
+  newTab?: boolean
 }
 
-const { label, to, outline = false, go = false } = Astro.props
+const { label, to, outline = false, go = false, newTab = false } = Astro.props
 
 const Element = to ? 'a' : 'button'
 ---
 
-<Element href={to} class="button" class:list={{ outline }}>{label}{!!go && <Icon name="mdi:arrow-right" />}</Element>
+<Element href={to} class="button" class:list={{ outline }} target={newTab ? '_blank' : undefined}
+  >{label}{!!go && <Icon name="mdi:arrow-right" />}</Element
+>
 
 <style lang="scss" is:global>
   @use '../styles/charter';

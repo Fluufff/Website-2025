@@ -97,7 +97,10 @@ function clicked(q: Element, a: Element) {
         grid-template-rows: 0fr;
         opacity: 0;
         visibility: hidden;
-        transition: grid-template-rows 0.3s ease-out, visibility 0.3s ease-out, opacity 0.3s ease-out;
+        transition:
+          grid-template-rows 0.3s ease-out,
+          visibility 0.3s ease-out,
+          opacity 0.3s ease-out;
 
         &.active {
           grid-template-rows: 1fr;

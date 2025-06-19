@@ -72,24 +72,28 @@ interface Props {
 
   @media (hover: none) {
     .with_info.active {
-      &:before, &:after {
+      &:before,
+      &:after {
         opacity: 1;
       }
     }
   }
-
 </style>
 
 <script>
-    const elements = document.querySelectorAll('.with_info')
+  const elements = document.querySelectorAll('.with_info')
 
-    elements.forEach((el) => el.addEventListener('click', () => {
-        el.classList.toggle('active', true);
-    }))
-
-    document.addEventListener('click', e => {
-        elements.forEach(el => { if (!(e.target instanceof Node) ||!el.contains(e.target)) {
-            el.classList.toggle('active', false);
-        }})
+  elements.forEach((el) =>
+    el.addEventListener('click', () => {
+      el.classList.toggle('active', true)
     })
+  )
+
+  document.addEventListener('click', (e) => {
+    elements.forEach((el) => {
+      if (!(e.target instanceof Node) || !el.contains(e.target)) {
+        el.classList.toggle('active', false)
+      }
+    })
+  })
 </script>
