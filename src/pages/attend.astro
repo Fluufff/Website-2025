@@ -7,7 +7,6 @@ import Accordion from '../components/Accordion.vue'
 
 import hotel from '../assets/images/hotel.png'
 import hotelRooms from '../assets/images/hotel_room.png'
-import hotelRestaurant from '../assets/images/hotel_restaurant.png'
 import AccordionItem from '../components/AccordionItem.astro'
 import Faq from '../content/Faq.astro'
 import FaqItem from '../content/FaqItem.astro'
@@ -31,7 +30,6 @@ import WithInfo from '../components/WithInfo.astro'
     <Fragment slot="actions">
       <Button label="Getting there" outline to="#getting_there" />
       <Button label="Hotel Rooms" outline to="#hotel_rooms" />
-      <Button label="The restaurant" outline to="#hotel_restaurant" />
     </Fragment>
   </Content>
   <Content headline="Room Types and Comforts" bg="darker" sideImage={hotelRooms} right id="hotel_rooms">
@@ -53,14 +51,6 @@ import WithInfo from '../components/WithInfo.astro'
       <li>Hairdryer</li>
       <li>Comfortable beds with soft, white duvets</li>
     </ul>
-  </Content>
-  <Content headline="Dine at Restaurant Le Magellan" bg="darker" sideImage={hotelRestaurant} id="hotel_restaurant">
-    <p>Dine in style and at its finest in the Magellan Restaurant, located right inside the hotel.</p>
-    <p>
-      With space for 240 guests, the restaurant offers both a buffet and “à la carte” dining experience, serving a wide
-      range of tastes and dietary needs. All ingredients are locally sourced.
-    </p>
-    <p>The hotel’s restaurant is a super nice area, with good food for decent prices. You can find the menu here.</p>
   </Content>
   <Content headline="Our favorite restaurants in Brussels" id="our_favorite_restaurants">
     <p>
