@@ -3,9 +3,8 @@ import Logo from '../../assets/logo.svg'
 import Button from '../Button.astro'
 import Countdown from '../countdown.vue'
 
-function ariaCurrent(path: string) {
-  const currentPath = Astro.url.pathname
-  return currentPath === path ? 'page' : undefined
+function ariaCurrent(routePattern: string) {
+    return Astro.routePattern === routePattern ? 'page' : undefined
 }
 ---
 
