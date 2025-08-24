@@ -2,7 +2,11 @@
 import Logo from '../../assets/logo.svg'
 import Button from '../Button.astro'
 import Countdown from '../countdown.vue'
-import { Icon } from 'astro-icon/components'
+
+function ariaCurrent(path: string) {
+  const currentPath = Astro.url.pathname
+  return currentPath === path ? 'page' : undefined
+}
 ---
 
 {
@@ -13,11 +17,11 @@ import { Icon } from 'astro-icon/components'
 <nav id="header">
   <a id="header_logo" href="/"><Logo height={48} width="" /></a>
   <nav id="header_links">
-    <a href="/" class="active">Home</a>
-    <a href="/attend">Attend</a>
-    <a href="/program">Program</a>
-    <a href="/about">About</a>
-    <a href="/contact">Contact</a>
+    <a href="/" aria-current={ariaCurrent('/')}>Home</a>
+    <a href="/attend" aria-current={ariaCurrent('/attend')}>Attend</a>
+    <a href="/program" aria-current={ariaCurrent('/program')}>Program</a>
+    <a href="/about" aria-current={ariaCurrent('/about')}>About</a>
+    <a href="/contact" aria-current={ariaCurrent('/contact')}>Contact</a>
     <Button label="Register" to="https://registration.fluufff.org" />
   </nav>
 </nav>
@@ -114,7 +118,7 @@ import { Icon } from 'astro-icon/components'
           text-decoration: underline;
         }
 
-        &.active {
+        &[aria-current='page'] {
           font-weight: 700;
         }
 
