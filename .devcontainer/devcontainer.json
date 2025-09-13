@@ -1,4 +1,14 @@
 {
-  "image": "denoland/deno:2.2.3",
-  "forwardPorts": [4321]
+  "name": "Dev",
+  "dockerFile": "Dockerfile",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "denoland.vscode-deno"
+      ]
+    }
+  },
+  "forwardPorts": [
+    4321
+  ]
 }
