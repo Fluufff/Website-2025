@@ -15,7 +15,7 @@ const { icon, name, title, notAFeesh } = Astro.props
 
 const allImages = import.meta.glob<{ default: ImageMetadata }>('/src/assets/images/peeps/*.{jpg,jpeg,png}')
 
-const image: ImageMetadata = icon ? (await allImages[`/src/assets/images/peeps/${icon}`]()).default : placeholder
+const image: ImageMetadata = icon ? (await allImages[`/src/assets/images/peeps/${icon}`]!()).default : placeholder
 ---
 
 <div class="peep" class:list={{ placeholder: !icon }}>
