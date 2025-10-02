@@ -5,6 +5,7 @@
 Open this repository `F1 > Dev Containers: Reopen in Container`.
 
 In a shell, run
+
 ```shell
 $ deno task devhost
 ```
