@@ -1,8 +1,8 @@
-name: Deploy to Testing environment
+name: Deploy to Prod environment
 
 on:
   push:
-    branches: [testing]
+    branches: [main]
   workflow_dispatch:
 
 permissions:
