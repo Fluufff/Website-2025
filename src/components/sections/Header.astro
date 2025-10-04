@@ -2,17 +2,22 @@
 import Logo from '../../assets/logo.svg'
 import Button from '../Button.astro'
 import Countdown from '../countdown.vue'
+import Notification from '../Notification.vue'
+import { Icon } from 'astro-icon/components'
 
 function ariaCurrent(routePattern: string) {
   return Astro.routePattern === routePattern ? 'page' : undefined
 }
 ---
 
-{
-  /*<a class="registration_banner dark" href="https://registration.fluufff.org">
-  <span class="registration_banner_text">Registration is open! <Icon name="mdi:arrow-right" /></span>
-</a>*/
-}
+<Notification client:load>
+  Our hotel rooms are fully booked. You can still get a Convention Ticket (to join an already booked room) or Day
+  Tickets. <br />
+  Need a room or want to exchange tickets? Join our <a href="https://t.me/FluufffRooms" target="_blank"
+    >Room Management group</a
+  >.
+  <Icon slot="close" name="mdi:close" />
+</Notification>
 <nav id="header">
   <a id="header_logo" href="/"><Logo height={48} width="" /></a>
   <nav id="header_links">
