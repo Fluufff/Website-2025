@@ -1,7 +1,7 @@
 <template>
-  <div v-if="visible" class="notification" :class="{ collapsible }">
+  <div class="notification" :class="{ visible, collapsible }">
     <slot />
-    <div v-if="collapsible" @click="close" class="notification__close_icon"><slot name="close" /></div>
+    <div @click="close" class="notification__close_icon"><slot name="close" /></div>
   </div>
 </template>
 
@@ -33,13 +33,23 @@ function close() {
   @include text-styles.paragraphMediumRegular;
   background-color: charter.$primary600;
   color: charter.$neutrals100;
+  display: none;
 
   a {
     color: charter.$neutrals100;
     text-decoration: underline;
   }
 
+  &.visible {
+    display: block;
+  }
+
+  &.collapsible .notification__close_icon {
+    visibility: visible;
+  }
+
   .notification__close_icon {
+    visibility: hidden;
     position: absolute;
     right: 32px;
     font-size: 32px;
