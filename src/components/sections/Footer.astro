@@ -143,7 +143,7 @@ import { Icon } from 'astro-icon/components'
     }
   }
 
-  @media (max-width: 600px) {
+  @media (max-width: 750px) {
     footer {
       position: relative;
       flex-direction: row;
@@ -160,6 +160,21 @@ import { Icon } from 'astro-icon/components'
 
     .footer_legals {
       flex-wrap: wrap;
+    }
+  }
+
+  @media (max-width: 500px) {
+    footer {
+      display: grid;
+      grid-template-columns: auto auto;
+      gap: 32px 16px;
+
+      > .footer__socials {
+        grid-column: 1 / 3;
+      }
+      > .footer__links {
+        padding: 0 16px;
+      }
     }
   }
 </style>

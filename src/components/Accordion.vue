@@ -1,5 +1,5 @@
 <template>
-  <div class="accordion" :class="[{ collapsible, alwaysOpen }, props['class']]" ref="parent">
+  <div class="accordion" :class="[{ collapsible, alwaysOpen, faq }, props['class']]" ref="parent">
     <slot />
   </div>
 </template>
@@ -7,7 +7,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 
-const props = defineProps<{ alwaysOpen?: boolean; class?: string }>()
+const props = defineProps<{ alwaysOpen?: boolean; class?: string; faq?: boolean }>()
 
 const collapsible = ref(false)
 const parent = ref<HTMLElement | null>(null)
@@ -61,53 +61,60 @@ function clicked(q: Element, a: Element) {
 </script>
 
 <style lang="scss">
+@mixin collapsible {
+  .accordion-item__header {
+    cursor: pointer;
+    > [data-icon] {
+      visibility: visible;
+      transform: rotate(45deg);
+      transition:
+        transform 0.3s ease-out,
+        opacity 0.15s ease-in-out;
+    }
+
+    &.active {
+      > [data-icon] {
+        transform: rotate(0deg);
+      }
+    }
+  }
+  .accordion-item__content {
+    display: grid;
+    grid-template-rows: 0fr;
+    opacity: 0;
+    visibility: hidden;
+    transition:
+      grid-template-rows 0.3s ease-out,
+      visibility 0.3s ease-out,
+      opacity 0.3s ease-out;
+
+    &.active {
+      grid-template-rows: 1fr;
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+}
+
 .accordion {
   display: flex;
   flex-direction: column;
 
-  @media (min-width: 900px) {
-    &.collapsible.alwaysOpen .accordion-item__header.active {
-      cursor: default;
+  &.collapsible.alwaysOpen .accordion-item__header.active {
+    cursor: default;
 
-      > [data-icon] {
-        opacity: 0;
-      }
+    > [data-icon] {
+      opacity: 0;
     }
+  }
 
+  &.faq.collapsible {
+    @include collapsible;
+  }
+
+  @media (min-width: 900px) {
     &.collapsible {
-      .accordion-item__header {
-        cursor: pointer;
-        > [data-icon] {
-          visibility: visible;
-          transform: rotate(45deg);
-          transition:
-            transform 0.3s ease-out,
-            opacity 0.15s ease-in-out;
-        }
-
-        &.active {
-          > [data-icon] {
-            transform: rotate(0deg);
-          }
-        }
-      }
-
-      .accordion-item__content {
-        display: grid;
-        grid-template-rows: 0fr;
-        opacity: 0;
-        visibility: hidden;
-        transition:
-          grid-template-rows 0.3s ease-out,
-          visibility 0.3s ease-out,
-          opacity 0.3s ease-out;
-
-        &.active {
-          grid-template-rows: 1fr;
-          opacity: 1;
-          visibility: visible;
-        }
-      }
+      @include collapsible;
     }
   }
 
