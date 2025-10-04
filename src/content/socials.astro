@@ -27,7 +27,6 @@ import Content from '../components/sections/Content.astro'
       flex-direction: row;
       row-gap: 16px;
       column-gap: 35px;
-      flex-wrap: wrap;
       justify-content: flex-end;
 
       a {
@@ -54,6 +53,13 @@ import Content from '../components/sections/Content.astro'
       .socials__list {
         justify-content: center;
       }
+    }
+  }
+
+  @media (max-width: 450px) {
+    .socials__list {
+      max-width: 250px;
+      flex-wrap: wrap;
     }
   }
 </style>
