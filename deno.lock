@@ -18,6 +18,7 @@
     "npm:eslint@9.36.0": "9.36.0",
     "npm:eslint@^9.36.0": "9.36.0",
     "npm:prettier-plugin-astro@~0.14.1": "0.14.1",
+    "npm:prettier@3.6.2": "3.6.2",
     "npm:prettier@^3.6.2": "3.6.2",
     "npm:sass-embedded@^1.93.2": "1.93.2",
     "npm:sharp@~0.34.4": "0.34.4",
