@@ -1,8 +1,8 @@
-name: Deploy to Prod environment
+name: Deploy
 
 on:
   push:
-    branches: [main]
+    branches: [main, testing]
   workflow_dispatch:
 
 permissions:
@@ -22,7 +22,7 @@ jobs:
       - name: Setup Deno
         uses: denoland/setup-deno@v2
         with:
-          deno-version: v2.5.1
+          deno-version: v2.5.3
 
       - name: Install dependencies
         run: deno install --allow-scripts
