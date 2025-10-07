@@ -98,6 +98,7 @@ const { headline, bg, sideImage, right, id } = Astro.props
       > h2 {
         @include text-styles.heading2;
         margin-bottom: 16px;
+        white-space-collapse: preserve-breaks;
       }
 
       > p {
