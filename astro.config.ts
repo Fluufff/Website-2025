@@ -8,7 +8,7 @@ import vue from '@astrojs/vue'
 export default defineConfig({
   site: Deno.env.get('SITE'),
   base: Deno.env.get('SITE_BASE_URL'),
-  integrations: [icon(), vue(), favicons()],
+  integrations: [icon(), vue({ appEntrypoint: '/src/app.ts' }), favicons()],
 
   env: {
     schema: {
