@@ -2,6 +2,15 @@
   {
     "name": "Graphic designer",
     "workmodel": "Pre-con",
-    "department": "Art"
+    "department": "Art",
+    "open": true,
+    "id": "art-graphic-designer"
+  },
+  {
+    "name": "Graphic designer",
+    "workmodel": "Pre-con",
+    "department": "Art",
+    "open": true,
+    "id": "art-graphic-designer"
   }
 ]
