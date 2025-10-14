@@ -19,10 +19,36 @@
       />
       <span>{{ resultsCount }} results</span>
     </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Department</th>
+          <th>Role</th>
+          <th>Work Model</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="role in staffRoles" :key="role.id">
+          <td>{{ role.department }}</td>
+          <td>{{ role.name }}</td>
+          <td>{{ role.workmodel }}</td>
+          <td>
+            <div class="jobs-table__status-container">
+              <span :class="{ open: role.open }">{{
+                role.open ? 'Open for applications' : 'Closed for applications'
+              }}</span>
+              <a href="#"><ChevronRightIcon /></a>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </template>
 <script setup lang="ts">
 import { InputText, MultiSelect } from 'primevue'
+import ChevronRightIcon from '@primevue/icons/chevronright'
 import { useMounted } from '@vueuse/core'
 
 import staffRoles from '../data/hr/staff_roles.json'
@@ -44,10 +70,12 @@ const jsEnabled = useMounted()
 .jobs-table {
   display: flex;
   align-items: stretch;
-  align-self: stretch;
+  align-self: center;
   flex-direction: column;
 
   margin-top: 64px;
+  max-width: 1100px;
+  width: 100%;
 
   &__toolbar {
     display: flex;
@@ -105,6 +133,86 @@ const jsEnabled = useMounted()
       }
     }
   }
+
+  > table {
+    margin-top: 32px;
+    border-radius: 8px;
+    overflow: hidden;
+    border: solid 1px charter.$primary500;
+    border-spacing: 0;
+    table-layout: fixed;
+
+    thead {
+      background: charter.$primary500;
+
+      th {
+        padding: 24px 22px;
+        text-align: left;
+        color: charter.$neutrals100;
+      }
+    }
+
+    tbody {
+      tr {
+        position: relative;
+
+        background: charter.$neutrals100;
+        transition: 0.2s ease-out background-color;
+
+        &:hover {
+          background: charter.$neutrals300;
+        }
+
+        & + tr td {
+          border-top: solid 1px charter.$primary500;
+        }
+
+        a::after {
+          content: '';
+          position: absolute;
+          inset: 0;
+        }
+      }
+      td {
+        padding: 24px 22px;
+        text-align: left;
+
+        &:first-child {
+          @include text-styles.display3SemiBold;
+          width: 200px;
+        }
+
+        &:last-child {
+          width: 200px;
+        }
+
+        &:nth-child(3) {
+          width: 150px;
+        }
+      }
+    }
+    .jobs-table__status-container {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      span {
+        display: inline-block;
+        text-align: center;
+        margin-right: 10px;
+        padding: 5px;
+        width: 182px;
+        border-radius: 3px;
+
+        background: charter.$secondary100;
+        @include text-styles.display2SemiBold;
+
+        &.open {
+          background: charter.$primary100;
+        }
+      }
+    }
+  }
 }
 
 [data-pc-section='list'] {
@@ -129,7 +237,7 @@ const jsEnabled = useMounted()
     @include text-styles.paragraphMediumRegular;
 
     &:hover {
-      background-color: charter.$neutrals200;
+      background-color: charter.$neutrals300;
     }
 
     &[aria-selected='true'] {
