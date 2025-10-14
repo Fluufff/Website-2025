@@ -1,0 +1,56 @@
+﻿---
+import { getCollection, getEntry } from 'astro:content'
+import Base from '../../layouts/Base.astro'
+import Content from '../../components/sections/Content.astro'
+import Button from '../../components/Button.astro'
+
+export async function getStaticPaths() {
+  const roles = await getCollection('staffRoles')
+  console.log(roles)
+  return roles.map((e) => ({ params: { role: e.id } }))
+}
+
+const { role } = Astro.params
+const roleEntry = (await getEntry('staffRoles', role))!.data
+---
+
+<Base>
+  <Content id="staff_role_hero" headline={roleEntry.name}>
+    <span class={roleEntry.open ? 'open' : ''}
+      >{roleEntry.open ? 'Open for applications' : 'Closed for applications'}</span
+    >
+    <Fragment set:html={roleEntry.descriptionRendered} />
+    <Button label="Apply here" go slot="actions" />
+  </Content>
+</Base>
+
+<style is:global lang="scss">
+  @use '../../styles/charter';
+  @use '../../styles/text-styles';
+
+  #staff_role_hero {
+    align-items: flex-start;
+    max-width: 800px;
+    width: 100%;
+    box-sizing: border-box;
+    align-self: center;
+
+    > span {
+      display: inline-block;
+      text-align: center;
+      margin-right: 10px;
+      padding: 5px;
+      width: 182px;
+      border-radius: 3px;
+      margin-top: 8px;
+      margin-bottom: 32px;
+
+      background: charter.$secondary100;
+      @include text-styles.display2SemiBold;
+
+      &.open {
+        background: charter.$primary100;
+      }
+    }
+  }
+</style>

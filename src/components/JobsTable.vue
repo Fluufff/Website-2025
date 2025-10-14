@@ -38,7 +38,7 @@
               <span :class="{ open: role.open }">{{
                 role.open ? 'Open for applications' : 'Closed for applications'
               }}</span>
-              <a href="#"><ChevronRightIcon /></a>
+              <a :href="'/staff-volunteering/' + getPageId(role)"><ChevronRightIcon /></a>
             </div>
           </td>
         </tr>
@@ -52,6 +52,7 @@ import ChevronRightIcon from '@primevue/icons/chevronright'
 import { useMounted } from '@vueuse/core'
 
 import staffRoles from '../data/hr/staff_roles.json'
+import { getPageId } from '../data/hr/staff_roles.ts'
 
 const departments = [...new Set(staffRoles.map((r) => r.department))]
 

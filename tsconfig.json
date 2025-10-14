@@ -1,6 +1,6 @@
 {
-  "extends": ["astro/tsconfigs/base", "@vue/tsconfig/tsconfig.json"],
-  "include": [".astro/types.d.ts", "**/*"],
+  "extends": ["astro/tsconfigs/strictest", "@vue/tsconfig/tsconfig.json"],
+  "include": [".astro/types.d.ts", ".astro/content.d.ts", "**/*"],
   "exclude": ["dist"],
   "compilerOptions": {
     "target": "es2016",

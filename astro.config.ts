@@ -6,8 +6,8 @@ import vue from '@astrojs/vue'
 
 // https://astro.build/config
 export default defineConfig({
-  site: Deno.env.get('SITE'),
-  base: Deno.env.get('SITE_BASE_URL'),
+  site: Deno.env.get('SITE')!,
+  base: Deno.env.get('SITE_BASE_URL')!,
   integrations: [icon(), vue({ appEntrypoint: '/src/app.ts' }), favicons()],
 
   env: {
