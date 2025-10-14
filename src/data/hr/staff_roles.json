@@ -4,13 +4,15 @@
     "workmodel": "Pre-con",
     "department": "Art",
     "open": true,
-    "id": "art-graphic-designer"
+    "id": "art-graphic-designer",
+    "description": "Hi! Hello!"
   },
   {
-    "name": "Graphic designer",
+    "name": "Graphic designer 2",
     "workmodel": "Pre-con",
     "department": "Art",
     "open": true,
-    "id": "art-graphic-designer"
+    "id": "art-graphic-designer2",
+    "description": "Hi! Hello! Boop!"
   }
 ]

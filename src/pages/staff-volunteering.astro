@@ -8,6 +8,10 @@ import Button from '../components/Button.astro'
 import Content from '../components/sections/Content.astro'
 import JobsTable from '../components/JobsTable.vue'
 import { Icon } from 'astro-icon/components'
+
+import volunteerFormImage from '../assets/images/volunteer-form.jpg'
+import Faq from '../content/Faq.astro'
+import FaqItem from '../content/FaqItem.astro'
 ---
 
 <Base>
@@ -31,5 +35,61 @@ import { Icon } from 'astro-icon/components'
     </p>
     <JobsTable client:load><Icon name="mdi:search" slot="searchIcon" /></JobsTable>
   </Content>
+  <Content headline="Volunteer at Flüüfff" sideImage={volunteerFormImage}>
+    <p>
+      Want to lend a paw during the convention? Whether you’re helping set up the stage, taking a shift at the bar, or
+      supporting attendees, volunteers are a vital part of the Flüüfff experience.
+    </p>
+    <p>
+      No long-term commitment required — just your time, your presence, and your support before or during the event.
+    </p>
+  </Content>
   <Socials />
+  <Faq>
+    <FaqItem question="Do I need experience to apply?">
+      <p>
+        No. If you purchase a <strong>residential ticket</strong>, your hotel stay is included. Only
+        <strong>day tickets</strong> do not include accommodation. No additional booking with the hotel is required — we’ll
+        take care of that for you.
+      </p>
+    </FaqItem>
+    <FaqItem question="Can I apply for more than one position?">
+      <p>
+        Yes, you’re welcome to apply for multiple roles if they interest you. Just be mindful of the time commitment
+        listed for each position — especially around the event dates — so you don’t overextend yourself.
+      </p>
+    </FaqItem>
+    <FaqItem question="I'm not sure what role suits me best. Can I still apply?">
+      <p>Check-in at the Bedford Hotel is from 16:00 on your arrival day.</p>
+      <p>Check-out is at 12:00 on your departure day.</p>
+      <p>You’ll be able to store your luggage with the hotel if you arrive early or leave later.</p>
+    </FaqItem>
+    <FaqItem question="Are these positions paid?">
+      <p>
+        Yes! <strong>Early Arrival (4/11)</strong> and <strong>Late Departure</strong> (10/11) can be added to your booking
+        during registration.
+      </p>
+      <p>These are optional and give you more time to settle in or wind down.</p>
+    </FaqItem>
+    <FaqItem question="Do I need to live in Belgium / attend the event?">
+      <p>
+        Not at all. Flüüfff is open to anyone curious about the fandom or just looking for a creative, welcoming space.
+        You don’t need to be a furry — or have a fursuit — to enjoy the convention.
+      </p>
+    </FaqItem>
+    <FaqItem question="Is there a minimum age to volunteer or join the staff?">
+      <p>
+        Yes! You can purchase a <strong>Day Ticket</strong> to join for one or more days.<br />
+        This ticket gives you full access to the convention area and events on your selected day(s).<br />
+        Accommodation is not included in this ticket.<br />
+      </p>
+    </FaqItem>
+    <FaqItem question="What happens after I apply?">
+      <p>
+        Yes! You can purchase a <strong>Day Ticket</strong> to join for one or more days.<br />
+        This ticket gives you full access to the convention area and events on your selected day(s).<br />
+        Accommodation is not included in this ticket.<br />
+      </p>
+    </FaqItem>
+  </Faq>
 </Base>
