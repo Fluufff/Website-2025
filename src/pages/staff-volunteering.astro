@@ -7,6 +7,7 @@ import Socials from '../content/socials.astro'
 import Button from '../components/Button.astro'
 import Content from '../components/sections/Content.astro'
 import JobsTable from '../components/JobsTable.vue'
+import Testimonials from '../content/Testimonials.vue'
 import { Icon } from 'astro-icon/components'
 
 import volunteerFormImage from '../assets/images/volunteer-form.jpg'
@@ -44,6 +45,7 @@ import FaqItem from '../content/FaqItem.astro'
       No long-term commitment required — just your time, your presence, and your support before or during the event.
     </p>
   </Content>
+  <Testimonials client:visible />
   <Socials />
   <Faq>
     <FaqItem question="Do I need experience to apply?">
