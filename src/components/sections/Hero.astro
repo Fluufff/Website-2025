@@ -65,11 +65,11 @@ const { headline, image, alignImageLeft } = Astro.props
       overflow: hidden;
     }
 
-    .content {
+    > .content {
       padding: 80px 104px;
     }
 
-    .content__container {
+    > .content > .content__container {
       align-items: flex-start;
       justify-content: center;
       > h2 {
@@ -98,7 +98,7 @@ const { headline, image, alignImageLeft } = Astro.props
         top: 0;
       }
 
-      .content {
+      > .content {
         position: relative;
         margin-top: -20vh;
         width: 100%;
