@@ -8,7 +8,7 @@ export default defineConfig(
   ts.configs.recommended,
   astro.configs.recommended,
   {
-    ignores: ['.astro']
+    ignores: ['.astro', 'dist']
   },
   {
     rules: {
