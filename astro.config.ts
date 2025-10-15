@@ -21,7 +21,6 @@ export default defineConfig({
   },
 
   experimental: {
-    csp: { styleDirective: { resources: ["'self'", "'unsafe-inline'", "'unsafe-hashes'"] } },
     fonts: [
       {
         name: 'Inter',
