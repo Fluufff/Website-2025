@@ -1,8 +1,8 @@
 ﻿<template>
   <div class="jobs-table">
-    <div v-if="jsEnabled" class="jobs-table__toolbar">
+    <div class="jobs-table__toolbar" :class="{ jsEnabled }">
       <div class="search-input">
-        <InputText placeholder="Search..." />
+        <InputText placeholder="Search..." v-model.trim="search" />
         <slot name="searchIcon" />
       </div>
       <MultiSelect
@@ -17,7 +17,7 @@
         placeholder="All work models"
         :show-toggle-all="false"
       />
-      <span>{{ resultsCount }} results</span>
+      <span>{{ searchResults.length }} results</span>
     </div>
     <table>
       <thead>
@@ -29,7 +29,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="role in staffRoles" :key="role.id">
+        <tr v-for="role in searchResults" :key="role.id">
           <td>{{ role.department }}</td>
           <td>{{ role.name }}</td>
           <td>{{ role.workmodel }}</td>
@@ -42,6 +42,9 @@
             </div>
           </td>
         </tr>
+        <tr v-if="searchResults.length === 0">
+          <td colspan="4" class="empty">No results</td>
+        </tr>
       </tbody>
     </table>
   </div>
@@ -53,13 +56,36 @@ import { useMounted } from '@vueuse/core'
 
 import staffRoles from '../data/hr/staff_roles.json'
 import { getPageId } from '../data/hr/staff_roles.ts'
+import { ref, computed } from 'vue'
 
 const departments = [...new Set(staffRoles.map((r) => r.department))]
 
-const selectedWorkmodels = defineModel<string[]>('workModels')
-const selectedDepartments = defineModel<string[]>('departments')
+const selectedWorkmodels = ref<string[]>([])
+const selectedDepartments = ref<string[]>([])
+const search = ref('')
 
-const resultsCount = staffRoles.length
+const searchResults = computed(() => {
+  let results = staffRoles
+  if (search.value) {
+    const searchItems = search.value.toLowerCase().split(' ')
+    results = results.filter((r) =>
+      searchItems.every(
+        (s) =>
+          r.department.toLowerCase().includes(s) ||
+          r.name.toLowerCase().includes(s) ||
+          r.workmodel.toLowerCase().includes(s)
+      )
+    )
+  }
+
+  if (selectedWorkmodels.value.length > 0) {
+    results = results.filter((r) => selectedWorkmodels.value.includes(r.workmodel))
+  }
+  if (selectedDepartments.value.length > 0) {
+    results = results.filter((r) => selectedDepartments.value.includes(r.department))
+  }
+  return results
+})
 
 const jsEnabled = useMounted()
 </script>
@@ -83,6 +109,12 @@ const jsEnabled = useMounted()
     flex-direction: row;
     gap: 40px;
     color: charter.$neutrals600;
+    visibility: hidden;
+    height: 60px;
+
+    &.jsEnabled {
+      visibility: visible;
+    }
 
     > * {
       flex: 1;
@@ -150,6 +182,18 @@ const jsEnabled = useMounted()
         padding: 24px 22px;
         text-align: left;
         color: charter.$neutrals100;
+
+        &:first-child {
+          width: 200px;
+        }
+
+        &:last-child {
+          width: 200px;
+        }
+
+        &:nth-child(3) {
+          width: 150px;
+        }
       }
     }
 
@@ -180,15 +224,12 @@ const jsEnabled = useMounted()
 
         &:first-child {
           @include text-styles.display3SemiBold;
-          width: 200px;
         }
 
-        &:last-child {
-          width: 200px;
-        }
-
-        &:nth-child(3) {
-          width: 150px;
+        &.empty {
+          text-align: center;
+          color: charter.$neutrals600;
+          background: charter.$neutrals300;
         }
       }
     }
