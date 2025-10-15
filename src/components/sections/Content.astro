@@ -2,47 +2,51 @@
 import { Picture } from 'astro:assets'
 import type { ImageMetadata } from 'astro'
 interface Props {
-  headline?: string
-  sideImage?: ImageMetadata
-  right?: boolean
-  id?: string
-  bg?: 'darker' | 'primary' | 'primary-light'
-  class?: string
+  headline?: string | undefined
+  sideImage?: ImageMetadata | undefined
+  right?: boolean | undefined
+  wider?: boolean | undefined
+  id?: string | undefined
+  bg?: 'darker' | 'primary' | 'primary-light' | undefined
+  class?: string | undefined
+  alignContent?: 'start' | 'end'
 }
 
-const { headline, bg, sideImage, right, id } = Astro.props
+const { headline, bg, sideImage, right, id, wider, alignContent } = Astro.props
 ---
 
-<section class="content" class:list={[bg, { withSide: !!sideImage, right }, Astro.props.class]} id={id}>
-  {
-    !sideImage && (
-      <>
-        {headline && <h2>{headline}</h2>}
-        <slot />
-        {Astro.slots.has('actions') && (
-          <div class="content__actions">
-            <slot name="actions" />
-          </div>
-        )}
-      </>
-    )
-  }
-  {
-    !!sideImage && (
-      <>
-        <Picture src={sideImage} formats={['avif', 'webp']} fallbackFormat="jpg" alt="" widths={[400, 800, 1200]} />
-        <div class="content__side_container">
-          <h2>{headline}</h2>
+<section class="content" class:list={[bg, { withSide: !!sideImage, right, wider }, alignContent]} id={id}>
+  <div class="content__container" class:list={Astro.props.class}>
+    {
+      !sideImage && (
+        <>
+          {headline && <h2>{headline}</h2>}
           <slot />
           {Astro.slots.has('actions') && (
             <div class="content__actions">
               <slot name="actions" />
             </div>
           )}
-        </div>
-      </>
-    )
-  }
+        </>
+      )
+    }
+    {
+      !!sideImage && (
+        <>
+          <Picture src={sideImage} formats={['avif', 'webp']} fallbackFormat="jpg" alt="" widths={[400, 800, 1200]} />
+          <div class="content__side_container">
+            <h2>{headline}</h2>
+            <slot />
+            {Astro.slots.has('actions') && (
+              <div class="content__actions">
+                <slot name="actions" />
+              </div>
+            )}
+          </div>
+        </>
+      )
+    }
+  </div>
 </section>
 
 <style lang="scss" is:global>
@@ -50,17 +54,24 @@ const { headline, bg, sideImage, right, id } = Astro.props
   @use '../../styles/charter';
 
   .content {
-    padding: 80px 104px;
+    padding: 80px 60px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     color: charter.$neutrals700;
     background: charter.$neutrals100;
+    position: relative;
 
-    &.withSide {
+    &.start > .content__container {
+      align-items: flex-start;
+    }
+
+    &.withSide > .content__container {
       flex-direction: row;
       gap: 92px;
+      max-width: 1100px;
+      align-items: center;
 
       &,
       .content__side_container {
@@ -74,50 +85,63 @@ const { headline, bg, sideImage, right, id } = Astro.props
       }
     }
 
-    .content__side_container {
-      flex: 1;
+    &.wider > .content__container {
+      max-width: 1200px;
     }
 
-    > picture {
-      flex: 1;
+    > .content__container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      max-width: 800px;
+      width: 100%;
 
-      > img {
-        height: 100%;
-        width: 100%;
-        object-fit: cover;
-        object-position: center;
-        border-radius: 8px;
-      }
-      pointer-events: none;
-      position: relative;
-      width: 50%;
-    }
-
-    &,
-    .content__side_container {
-      > h2 {
-        @include text-styles.heading2;
-        margin-bottom: 16px;
-        white-space-collapse: preserve-breaks;
+      .content__side_container {
+        flex: 1;
       }
 
-      > p {
-        @include text-styles.paragraphMediumRegular;
-        text-align: center;
-        color: charter.$neutrals600;
-        max-width: 700px;
+      > picture {
+        flex: 1;
 
-        & + p {
-          margin-top: 32px;
+        > img {
+          height: 100%;
+          width: 100%;
+          object-fit: cover;
+          object-position: center;
+          border-radius: 8px;
         }
+        pointer-events: none;
+        position: relative;
+        width: 50%;
       }
 
-      .content__actions {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        margin-top: 32px;
-        gap: 16px;
+      &,
+      .content__side_container {
+        > h2 {
+          @include text-styles.heading2;
+          margin-bottom: 16px;
+          white-space-collapse: preserve-breaks;
+        }
+
+        > p {
+          @include text-styles.paragraphMediumRegular;
+          text-align: center;
+          color: charter.$neutrals600;
+          max-width: 700px;
+
+          & + p {
+            margin-top: 32px;
+          }
+        }
+
+        .content__actions {
+          display: flex;
+          flex-direction: row;
+          flex-wrap: wrap;
+          margin-top: 32px;
+          gap: 16px;
+        }
       }
     }
 
@@ -149,11 +173,11 @@ const { headline, bg, sideImage, right, id } = Astro.props
     .content {
       padding: 20px 16px;
 
-      > picture {
+      .content__container > picture {
         display: none;
       }
 
-      &,
+      .content__container,
       .content__side_container {
         > h2 {
           font-size: 24px;

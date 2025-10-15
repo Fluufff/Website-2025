@@ -28,13 +28,13 @@ import FaqItem from '../content/FaqItem.astro'
       <Button label="Volunteer at Flüüfff" outline to="#volunteer_form" />
     </Fragment>
   </Hero>
-  <Content bg="primary-light" headline="Open staff roles">
+  <Content bg="primary-light" headline="Open staff roles" wider>
     <p>Some of our roles are open for applications — check below for what’s currently available.</p>
     <p>
       Don’t see the right fit? You’re also welcome to send a spontaneous application to
       <a href="mailto:hr@fluufff.org">hr@fluufff.org</a> and tell us how you’d like to contribute.
     </p>
-    <JobsTable client:load><Icon name="mdi:search" slot="searchIcon" /></JobsTable>
+    <JobsTable client:visible><Icon name="mdi:search" slot="searchIcon" /></JobsTable>
   </Content>
   <Content headline="Volunteer at Flüüfff" sideImage={volunteerFormImage}>
     <p>
@@ -44,6 +44,7 @@ import FaqItem from '../content/FaqItem.astro'
     <p>
       No long-term commitment required — just your time, your presence, and your support before or during the event.
     </p>
+    <Button slot="actions" label="Join us as a volunteer" go to="#staff_roles" outline />
   </Content>
   <Testimonials client:visible />
   <Socials />
