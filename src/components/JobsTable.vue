@@ -99,10 +99,9 @@ const jsEnabled = useMounted()
   align-items: stretch;
   align-self: center;
   flex-direction: column;
+  width: 100%;
 
   margin-top: 64px;
-  max-width: 1100px;
-  width: 100%;
 
   &__toolbar {
     display: flex;
@@ -111,9 +110,12 @@ const jsEnabled = useMounted()
     color: charter.$neutrals600;
     visibility: hidden;
     height: 60px;
+    opacity: 0;
+    transition: opacity 0.5s ease-out;
 
     &.jsEnabled {
       visibility: visible;
+      opacity: 1;
     }
 
     > * {

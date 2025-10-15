@@ -4,6 +4,8 @@ import Base from '../../layouts/Base.astro'
 import Content from '../../components/sections/Content.astro'
 import Button from '../../components/Button.astro'
 
+import readyImage from '../../assets/images/ready_to_apply.jpg'
+
 export async function getStaticPaths() {
   const roles = await getCollection('staffRoles')
   return roles.map((e) => ({ params: { role: e.id } }))
@@ -14,12 +16,37 @@ const roleEntry = (await getEntry('staffRoles', role))!.data
 ---
 
 <Base>
-  <Content id="staff_role_hero" headline={roleEntry.name}>
-    <span class={roleEntry.open ? 'open' : ''}
+  <Content
+    id="staff_role_hero"
+    headline={roleEntry.name + ' - ' + roleEntry.department + ' department'}
+    alignContent="start"
+  >
+    <span class="role_status" class:list={{ open: roleEntry.open }}
       >{roleEntry.open ? 'Open for applications' : 'Closed for applications'}</span
     >
     <Fragment set:html={roleEntry.descriptionRendered} />
     <Button label="Apply here" go slot="actions" />
+  </Content>
+  <Content id="staff_role_desc" bg="darker" alignContent="start">
+    <h2>Your role in the team</h2>
+    <Fragment set:html={roleEntry.descriptionRendered} />
+    <h2>You might be a good fit if</h2>
+    <Fragment set:html={roleEntry.descriptionRendered} />
+  </Content>
+  <Content bg="primary-light" headline="Ready to apply?" alignContent="start" sideImage={readyImage}>
+    <p>Got a GitHub full of haunted projects or just excited to help out? We’d love to hear from you.</p>
+    <p>Click the button, fill out the form, and tell us what makes you tick.</p>
+    <Button label="Apply now" go slot="actions" />
+  </Content>
+  <Content headline="What happens after you apply">
+    <p>
+      We try to respond within a couple weeks — if we're slow, it's not you, it's us (we’re probably rebooting
+      something).
+    </p>
+  </Content>
+  <Content bg="primary-light" headline="Not quite what you're looking for?">
+    <p>We have more openings across the convention departments.</p>
+    <Button label="See all positions" go to="/staff-volunteering" slot="actions" outline />
   </Content>
 </Base>
 
@@ -28,13 +55,11 @@ const roleEntry = (await getEntry('staffRoles', role))!.data
   @use '../../styles/text-styles';
 
   #staff_role_hero {
-    align-items: flex-start;
-    max-width: 800px;
-    width: 100%;
-    box-sizing: border-box;
-    align-self: center;
+    h2 {
+      @include text-styles.heading1;
+    }
 
-    > span {
+    span.role_status {
       display: inline-block;
       text-align: center;
       margin-right: 10px;
@@ -50,6 +75,12 @@ const roleEntry = (await getEntry('staffRoles', role))!.data
       &.open {
         background: charter.$primary100;
       }
+    }
+  }
+
+  #staff_role_desc {
+    h2:not(:first-child) {
+      margin-top: 32px;
     }
   }
 </style>

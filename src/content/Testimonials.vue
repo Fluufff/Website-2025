@@ -5,7 +5,7 @@
         <h2>Love for Flüüfff</h2>
         <p>Some kind words from our staff and volunteers. 💚</p>
       </div>
-      <div v-if="jsEnabled" class="staff_testimonials__buttons">
+      <div class="staff_testimonials__buttons" :class="{ jsEnabled }">
         <button class="button" @click="switchTestimonial(-1)"><IconLeft /></button>
         <button class="button" @click="switchTestimonial(1)"><IconRight /></button>
       </div>
@@ -86,6 +86,14 @@ function switchTestimonial(direction: number) {
     flex-direction: row;
     gap: 16px;
     align-self: flex-end;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.5s ease-out;
+
+    &.jsEnabled {
+      visibility: visible;
+      opacity: 1;
+    }
   }
 
   &__content {

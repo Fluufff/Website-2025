@@ -66,6 +66,10 @@ const { headline, image, alignImageLeft } = Astro.props
     }
 
     .content {
+      padding: 80px 104px;
+    }
+
+    .content__container {
       align-items: flex-start;
       justify-content: center;
       > h2 {
@@ -105,6 +109,11 @@ const { headline, image, alignImageLeft } = Astro.props
 
   @media (max-width: 600px) {
     .hero .content {
+      align-items: stretch;
+      padding: 20px 16px;
+    }
+
+    .hero .content__container {
       align-items: stretch;
     }
     .hero .content > h2 {
