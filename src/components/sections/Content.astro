@@ -65,6 +65,10 @@ const { headline, bg, sideImage, right, id, wider, alignContent } = Astro.props
 
     &.start > .content__container {
       align-items: flex-start;
+
+      > p {
+        text-align: left;
+      }
     }
 
     &.withSide > .content__container {

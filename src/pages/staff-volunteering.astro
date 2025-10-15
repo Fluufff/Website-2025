@@ -24,11 +24,11 @@ import FaqItem from '../content/FaqItem.astro'
     </p>
 
     <Fragment slot="actions">
-      <Button label="See staff roles" go to="#staff_roles" />
+      <Button label="See staff roles" go to="#open_roles" />
       <Button label="Volunteer at Flüüfff" outline to="#volunteer_form" />
     </Fragment>
   </Hero>
-  <Content bg="primary-light" headline="Open staff roles" wider>
+  <Content bg="primary-light" headline="Open staff roles" wider id="open_roles">
     <p>Some of our roles are open for applications — check below for what’s currently available.</p>
     <p>
       Don’t see the right fit? You’re also welcome to send a spontaneous application to
@@ -36,7 +36,7 @@ import FaqItem from '../content/FaqItem.astro'
     </p>
     <JobsTable client:visible><Icon name="mdi:search" slot="searchIcon" /></JobsTable>
   </Content>
-  <Content headline="Volunteer at Flüüfff" sideImage={volunteerFormImage}>
+  <Content headline="Volunteer at Flüüfff" sideImage={volunteerFormImage} id="volunteer_form">
     <p>
       Want to lend a paw during the convention? Whether you’re helping set up the stage, taking a shift at the bar, or
       supporting attendees, volunteers are a vital part of the Flüüfff experience.

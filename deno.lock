@@ -11,6 +11,7 @@
     "npm:@types/deno@^2.5.0": "2.5.0",
     "npm:@typescript-eslint/parser@^8.45.0": "8.46.0_eslint@9.37.0_typescript@5.9.3",
     "npm:@vue/tsconfig@~0.8.1": "0.8.1_typescript@5.9.3_vue@3.5.22__typescript@5.9.3",
+    "npm:@vueuse/components@^13.9.0": "13.9.0_vue@3.5.22__typescript@5.9.3_typescript@5.9.3",
     "npm:@vueuse/core@^13.9.0": "13.9.0_vue@3.5.22__typescript@5.9.3_typescript@5.9.3",
     "npm:astro-favicons@^3.1.5": "3.1.5_astro@5.14.4__typescript@5.9.3__sass-embedded@1.93.2__vite@6.3.6___sass-embedded@1.93.2___picomatch@4.0.3__zod@3.25.76_typescript@5.9.3_sass-embedded@1.93.2",
     "npm:astro-icon@^1.1.5": "1.1.5",
@@ -1691,6 +1692,14 @@
       ],
       "optionalPeers": [
         "typescript",
+        "vue"
+      ]
+    },
+    "@vueuse/components@13.9.0_vue@3.5.22__typescript@5.9.3_typescript@5.9.3": {
+      "integrity": "sha512-0DDFpjG3hEEK+3YgSzE/OzOGqpo/KmxcXWzW2YdmgahZvaoUdegn68GmbdcHRJE7CH55dDj13Cz47iN8QoI3jQ==",
+      "dependencies": [
+        "@vueuse/core",
+        "@vueuse/shared",
         "vue"
       ]
     },
@@ -5199,6 +5208,7 @@
         "npm:@iconify-json/mdi@^1.2.3",
         "npm:@iconify-json/ri@^1.2.5",
         "npm:@primevue/icons@^4.4.1",
+        "npm:@vueuse/components@^13.9.0",
         "npm:@vueuse/core@^13.9.0",
         "npm:astro-favicons@^3.1.5",
         "npm:primevue@^4.4.1"

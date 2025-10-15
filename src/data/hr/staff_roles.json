@@ -1,18 +1,74 @@
 ﻿[
   {
-    "name": "Graphic designer",
+    "name": "Full-Stack Web Developer",
     "workmodel": "Pre-con",
-    "department": "Art",
+    "department": "Information Technology (IT)",
     "open": true,
-    "id": "art-graphic-designer",
-    "description": "Hi! Hello!"
+    "id": "it-fullstack-webdev",
+    "description": "Maintain, and contribute to the future direction of, the convention website and its systems.\nWork with design-minded team members to ensure the site approachability, accessibility, and theming.\nImplement updates in the months leading up to the con, and help with bug fixes during the con should they arise.\nCollaborate with other team and staff members to keep things running smoothly.\n",
+    "apply_form_url": "https://docs.google.com/forms/d/e/1FAIpQLSdmFv94741BPYP6QuCyhclzJF6CLZxJOEhKw22C0bJH02LsyA/viewform?usp=dialog"
   },
   {
-    "name": "Graphic designer 2",
-    "workmodel": "Pre-con",
-    "department": "Art",
+    "name": "Infrastructure Engineer\n",
+    "workmodel": "Hybrid",
+    "department": "Information Technology (IT)",
     "open": true,
-    "id": "art-graphic-designer2",
-    "description": "Hi! Hello! Boop!"
+    "id": "it-infra-engineer",
+    "description": "Maintain the cloud and non-cloud infrastructure that powers the convention.\nMonitor systems for uptime and performance, especially during registration and con days.\nTroubleshoot issues as they arise.\nWork in a team of peers in a IaC and documentation-first approach.",
+    "apply_form_url": "https://docs.google.com/forms/d/e/1FAIpQLSdmFv94741BPYP6QuCyhclzJF6CLZxJOEhKw22C0bJH02LsyA/viewform?usp=dialog"
+  },
+  {
+    "name": "HR Officer",
+    "workmodel": "Hybrid",
+    "department": "Human Resources (HR)",
+    "open": true,
+    "id": "hr-officer",
+    "description": "You will be supporting the HR department with both the administrative and the people-focused side of recruitment and staff support. You will also set up and streamline HR processes (recruitment, onboarding, check-ins, exit), maintaining documentation, and being a warm and reliable point of contact for staff members via email, chat, and video calls.\n",
+    "apply_form_url": "https://docs.google.com/forms/d/e/1FAIpQLSdmFv94741BPYP6QuCyhclzJF6CLZxJOEhKw22C0bJH02LsyA/viewform?usp=dialog"
+  },
+  {
+    "name": "Decoration Head",
+    "workmodel": "Hybrid",
+    "department": "Theming",
+    "open": true,
+    "id": "theming-decoration-head",
+    "description": "This person will help with leading anything related to decorations, from coming up to ideas to getting all the decorations to the location.\n",
+    "apply_form_url": "https://docs.google.com/forms/d/e/1FAIpQLSdmFv94741BPYP6QuCyhclzJF6CLZxJOEhKw22C0bJH02LsyA/viewform?usp=dialog"
+  },
+  {
+    "name": "Steward",
+    "workmodel": "On-site",
+    "department": "Stewards & Safety",
+    "open": true,
+    "id": "stewards-safety-steward",
+    "description": "During the convention you will work closely with other stewards, including the head and deputy. We are active the whole convention and split our time in shifts. Our main tasks are:\n\n- Badge control at the entrance.\n\n- Answering attendee questions and needs: information about the convention, first aid needs, struggles with distress or conflicts.\n\n- Keeping the convention space safe by monitoring the entrance of the Fursuit Lounge, the Dealer’s Den and some key events.\n\n- Responding to incidents and other unexpected events.\n\n- Helping other departments during setup and teardown and whenever they need extra hands.\n",
+    "apply_form_url": "https://docs.google.com/forms/d/e/1FAIpQLSdmFv94741BPYP6QuCyhclzJF6CLZxJOEhKw22C0bJH02LsyA/viewform?usp=dialog"
+  },
+  {
+    "name": "Multimedia Designer",
+    "workmodel": "Pre-Con",
+    "department": "Public Relations (PR)",
+    "open": true,
+    "id": "pr-multimedia-designer",
+    "description": "Design & edit visuals for multimedia posts & announcements. \n",
+    "apply_form_url": "https://docs.google.com/forms/d/e/1FAIpQLSdmFv94741BPYP6QuCyhclzJF6CLZxJOEhKw22C0bJH02LsyA/viewform?usp=dialog"
+  },
+  {
+    "name": "Stewards & Safety Head",
+    "workmodel": "Pre-Con",
+    "department": "Stewards & Safety",
+    "open": true,
+    "id": "stewards-safety-head",
+    "description": "Provide a Safe environment for events and attendees. \nProvide help to attendees who ask questions.\nReact quick and smooth in emergencies",
+    "apply_form_url": "https://docs.google.com/forms/d/e/1FAIpQLSdmFv94741BPYP6QuCyhclzJF6CLZxJOEhKw22C0bJH02LsyA/viewform?usp=dialog"
+  },
+  {
+    "name": "Money runner",
+    "workmodel": "On-Site",
+    "department": "Accounting",
+    "open": true,
+    "id": "accounting-money-runner",
+    "description": "Dedicate time during the convention to provide the bar with money if needed, and take away money from the bar if it exceeds a certain amount. These runs happen on specific timestamps \n",
+    "apply_form_url": "https://docs.google.com/forms/d/e/1FAIpQLSdmFv94741BPYP6QuCyhclzJF6CLZxJOEhKw22C0bJH02LsyA/viewform?usp=dialog"
   }
 ]

@@ -3,7 +3,7 @@ import { type Loader, type LoaderContext } from 'astro/loaders'
 
 import { existsSync, promises as fs } from 'node:fs'
 import { fileURLToPath } from 'node:url'
-import { getPageId, type StaffRole } from './data/hr/staff_roles.ts'
+import { type StaffRole } from './data/hr/staff_roles.ts'
 
 function staffRoleLoader(): Loader {
   const fileName = './src/data/hr/staff_roles.json'
@@ -14,11 +14,10 @@ function staffRoleLoader(): Loader {
     context.store.clear()
     for (const item of parsed) {
       context.store.set({
-        id: getPageId(item),
+        id: item.id,
 
         data: {
           ...item,
-          id: getPageId(item),
           descriptionRendered: (await context.renderMarkdown(item.description)).html
         }
       })
@@ -55,6 +54,8 @@ const staffRoles = defineCollection({
     description: z.string(),
     descriptionRendered: z.string(),
     name: z.string(),
+    id: z.string(),
+    apply_form_url: z.string(),
     open: z.boolean()
   })
 })

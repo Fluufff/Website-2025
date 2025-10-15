@@ -5,7 +5,7 @@
         <h2>Love for Flüüfff</h2>
         <p>Some kind words from our staff and volunteers. 💚</p>
       </div>
-      <div class="staff_testimonials__buttons" :class="{ jsEnabled }">
+      <div class="staff_testimonials__buttons" :class="{ jsEnabled }" v-element-hover="updateButtonHovered">
         <button class="button" @click="switchTestimonial(-1)"><IconLeft /></button>
         <button class="button" @click="switchTestimonial(1)"><IconRight /></button>
       </div>
@@ -25,7 +25,8 @@
 </template>
 
 <script setup lang="ts">
-import { useMounted } from '@vueuse/core'
+import { useIntervalFn, useMounted } from '@vueuse/core'
+import { vElementHover } from '@vueuse/components'
 import testimonials from '../data/hr/testimonials.json'
 import { computed, ref } from 'vue'
 import IconLeft from '@primevue/icons/chevronleft'
@@ -37,9 +38,24 @@ const currentTestimonialIndex = ref(0)
 const currentTestimonial = computed(() => testimonials[currentTestimonialIndex.value]!)
 const switchingRight = ref(true)
 
+const autoScroller = useIntervalFn(() => switchTestimonial(1), 10_000)
+
+function updateButtonHovered(hovered: boolean) {
+  if (hovered) {
+    autoScroller.pause()
+  } else {
+    autoScroller.resume()
+  }
+}
+
 function switchTestimonial(direction: number) {
   switchingRight.value = direction > 0
   currentRenderIndex.value = currentRenderIndex.value + 1
+
+  if (autoScroller.isActive.value) {
+    autoScroller.pause()
+    autoScroller.resume()
+  }
 
   const newIndex = currentTestimonialIndex.value + direction
   if (newIndex < 0) {

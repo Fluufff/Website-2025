@@ -5,6 +5,7 @@ import Content from '../../components/sections/Content.astro'
 import Button from '../../components/Button.astro'
 
 import readyImage from '../../assets/images/ready_to_apply.jpg'
+import Socials from '../../content/socials.astro'
 
 export async function getStaticPaths() {
   const roles = await getCollection('staffRoles')
@@ -25,18 +26,12 @@ const roleEntry = (await getEntry('staffRoles', role))!.data
       >{roleEntry.open ? 'Open for applications' : 'Closed for applications'}</span
     >
     <Fragment set:html={roleEntry.descriptionRendered} />
-    <Button label="Apply here" go slot="actions" />
-  </Content>
-  <Content id="staff_role_desc" bg="darker" alignContent="start">
-    <h2>Your role in the team</h2>
-    <Fragment set:html={roleEntry.descriptionRendered} />
-    <h2>You might be a good fit if</h2>
-    <Fragment set:html={roleEntry.descriptionRendered} />
+    <Button label="Apply here" go slot="actions" to={roleEntry.apply_form_url} newTab />
   </Content>
   <Content bg="primary-light" headline="Ready to apply?" alignContent="start" sideImage={readyImage}>
     <p>Got a GitHub full of haunted projects or just excited to help out? We’d love to hear from you.</p>
     <p>Click the button, fill out the form, and tell us what makes you tick.</p>
-    <Button label="Apply now" go slot="actions" />
+    <Button label="Apply now" go slot="actions" to={roleEntry.apply_form_url} newTab />
   </Content>
   <Content headline="What happens after you apply">
     <p>
@@ -46,8 +41,9 @@ const roleEntry = (await getEntry('staffRoles', role))!.data
   </Content>
   <Content bg="primary-light" headline="Not quite what you're looking for?">
     <p>We have more openings across the convention departments.</p>
-    <Button label="See all positions" go to="/staff-volunteering" slot="actions" outline />
+    <Button label="See all positions" go to="/staff-volunteering#open_roles" slot="actions" outline />
   </Content>
+  <Socials />
 </Base>
 
 <style is:global lang="scss">
