@@ -12,7 +12,7 @@ function staffRoleLoader(): Loader {
     const parsed: StaffRole[] = JSON.parse(raw.trim())
 
     context.store.clear()
-    for (let item of parsed) {
+    for (const item of parsed) {
       context.store.set({
         id: getPageId(item),
 
