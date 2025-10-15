@@ -16,7 +16,7 @@ const { headline, bg, sideImage, right, id, wider, alignContent } = Astro.props
 ---
 
 <section class="content" class:list={[bg, { withSide: !!sideImage, right, wider }, alignContent]} id={id}>
-  <div class="content__container" class:list={Astro.props.class}>
+  <div class={'content__container' + (Astro.props.class ? ' ' + Astro.props.class : '')}>
     {
       !sideImage && (
         <>
