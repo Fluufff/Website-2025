@@ -1,5 +1,5 @@
 ﻿---
-import { getCollection, getEntry } from 'astro:content'
+import { type CollectionEntry, getCollection, type RenderedContent } from 'astro:content'
 import Base from '../../layouts/Base.astro'
 import Content from '../../components/sections/Content.astro'
 import Button from '../../components/Button.astro'
@@ -9,29 +9,53 @@ import Socials from '../../content/socials.astro'
 
 export async function getStaticPaths() {
   const roles = await getCollection('staffRoles')
-  return roles.map((e) => ({ params: { role: e.id } }))
+  return roles.map((e) => ({ params: { role: e.data.slug }, props: { roleEntry: e } }))
 }
 
-const { role } = Astro.params
-const roleEntry = (await getEntry('staffRoles', role))!.data
+interface Props {
+  roleEntry: CollectionEntry<'staffRoles'> & {
+    data: {
+      introduction_rendered: RenderedContent
+      extra_description_rendered?: RenderedContent
+      call_to_action_rendered?: RenderedContent
+    }
+  }
+}
+
+const role = Astro.props.roleEntry.data
 ---
 
 <Base>
   <Content
     id="staff_role_hero"
-    headline={roleEntry.name + ' - ' + roleEntry.department + ' department'}
+    headline={role.title + ' - ' + role.department_name + ' department'}
     alignContent="start"
   >
-    <span class="role_status" class:list={{ open: roleEntry.open }}
-      >{roleEntry.open ? 'Open for applications' : 'Closed for applications'}</span
+    <span class="role_status" class:list={{ open: role.open_for_applications }}
+      >{role.open_for_applications ? 'Open for applications' : 'Closed for applications'}</span
     >
-    <Fragment set:html={roleEntry.descriptionRendered} />
-    <Button label="Apply here" go slot="actions" to={roleEntry.apply_form_url} newTab />
+    <Fragment set:html={role.introduction_rendered.html} />
+    <Button label="Apply here" go slot="actions" to={role.apply_form_url} newTab />
   </Content>
+  {
+    role.extra_description_rendered && (
+      <Content bg="darker">
+        <Fragment set:html={role.extra_description_rendered.html} />
+      </Content>
+    )
+  }
   <Content bg="primary-light" headline="Ready to apply?" alignContent="start" sideImage={readyImage}>
-    <p>Got a GitHub full of haunted projects or just excited to help out? We’d love to hear from you.</p>
-    <p>Click the button, fill out the form, and tell us what makes you tick.</p>
-    <Button label="Apply now" go slot="actions" to={roleEntry.apply_form_url} newTab />
+    {
+      role.call_to_action_rendered ? (
+        <Fragment set:html={role.call_to_action_rendered.html} />
+      ) : (
+        <>
+          <p>Got a GitHub full of haunted projects or just excited to help out? We’d love to hear from you.</p>
+          <p>Click the button, fill out the form, and tell us what makes you tick.</p>
+        </>
+      )
+    }
+    <Button label="Apply now" go slot="actions" to={role.apply_form_url} newTab />
   </Content>
   <Content headline="What happens after you apply">
     <p>

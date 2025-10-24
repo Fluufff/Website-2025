@@ -29,16 +29,16 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="role in searchResults" :key="role.id">
-          <td>{{ role.department }}</td>
-          <td>{{ role.name }}</td>
-          <td>{{ role.workmodel }}</td>
+        <tr v-for="role in searchResults" :key="role.slug">
+          <td>{{ role.department_name }}</td>
+          <td>{{ role.title }}</td>
+          <td>{{ role.work_model }}</td>
           <td>
             <div class="jobs-table__status-container">
-              <span :class="{ open: role.open }">{{
-                role.open ? 'Open for applications' : 'Closed for applications'
+              <span :class="{ open: role.open_for_applications }">{{
+                role.open_for_applications ? 'Open for applications' : 'Closed for applications'
               }}</span>
-              <a :href="'/staff-volunteering/' + role.id"><ChevronRightIcon /></a>
+              <a :href="'/staff-volunteering/' + role.slug"><ChevronRightIcon /></a>
             </div>
           </td>
         </tr>
@@ -54,10 +54,17 @@ import { InputText, MultiSelect } from 'primevue'
 import ChevronRightIcon from '@primevue/icons/chevronright'
 import { useMounted } from '@vueuse/core'
 
-import staffRoles from '../data/hr/staff_roles.json'
 import { ref, computed } from 'vue'
+import type { CollectionEntry } from 'astro:content'
 
-const departments = [...new Set(staffRoles.map((r) => r.department))]
+export type StaffRole = Pick<
+  CollectionEntry<'staffRoles'>['data'],
+  'slug' | 'title' | 'department_name' | 'work_model' | 'open_for_applications'
+>
+const props = defineProps<{ staffRoles: StaffRole[] }>()
+const staffRoles = props.staffRoles
+
+const departments = [...new Set(staffRoles.map((r) => r.department_name))]
 
 const selectedWorkmodels = ref<string[]>([])
 const selectedDepartments = ref<string[]>([])
@@ -70,18 +77,18 @@ const searchResults = computed(() => {
     results = results.filter((r) =>
       searchItems.every(
         (s) =>
-          r.department.toLowerCase().includes(s) ||
-          r.name.toLowerCase().includes(s) ||
-          r.workmodel.toLowerCase().includes(s)
+          r.department_name.toLowerCase().includes(s) ||
+          r.title.toLowerCase().includes(s) ||
+          r.work_model.toLowerCase().includes(s)
       )
     )
   }
 
   if (selectedWorkmodels.value.length > 0) {
-    results = results.filter((r) => selectedWorkmodels.value.includes(r.workmodel))
+    results = results.filter((r) => selectedWorkmodels.value.includes(r.work_model))
   }
   if (selectedDepartments.value.length > 0) {
-    results = results.filter((r) => selectedDepartments.value.includes(r.department))
+    results = results.filter((r) => selectedDepartments.value.includes(r.department_name))
   }
   return results
 })

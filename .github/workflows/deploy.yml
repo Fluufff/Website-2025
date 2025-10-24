@@ -14,6 +14,11 @@ jobs:
   test:
     name: Tests & Lints
     runs-on: ubuntu-latest
+    env:
+      SITE: ${{ vars.SITE }}
+      SITE_BASE_URL: ${{ vars.SITE_BASE_URL }}
+      STRAPI_TOKEN: ${{ secrets.STRAPI_TOKEN }}
+      STRAPI_URI: https://cms.fluufff.org/api/
 
     steps:
       - name: Checkout repo
@@ -46,6 +51,8 @@ jobs:
     env:
       SITE: ${{ vars.SITE }}
       SITE_BASE_URL: ${{ vars.SITE_BASE_URL }}
+      STRAPI_TOKEN: ${{ secrets.STRAPI_TOKEN }}
+      STRAPI_URI: https://cms.fluufff.org/api/
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
