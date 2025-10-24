@@ -27,9 +27,6 @@ jobs:
       - name: Install dependencies
         run: deno install --allow-scripts
 
-      - name: Astro & Typescript checks
-        run: deno task check
-
       - name: Deno linter
         run: deno lint
 
@@ -38,6 +35,14 @@ jobs:
 
       - name: Check formatting
         run: deno task format:check
+
+      - name: Astro & Typescript checks
+        env:
+          SITE: ${{ vars.SITE }}
+          SITE_BASE_URL: ${{ vars.SITE_BASE_URL }}
+          STRAPI_TOKEN: ${{ secrets.STRAPI_TOKEN }}
+          STRAPI_URI: https://cms.fluufff.org/api/
+        run: deno task check
 
       - name: Build Website
         env:
