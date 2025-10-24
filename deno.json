@@ -29,7 +29,8 @@
     "sharp": "npm:sharp@^0.34.4",
     "typescript": "npm:typescript@^5.9.3",
     "typescript-eslint": "npm:typescript-eslint@^8.45.0",
-    "vue": "npm:vue@^3.5.22"
+    "vue": "npm:vue@^3.5.22",
+    "vite": "npm:vite"
   },
   "exclude": ["./.astro", "/dist"],
   "fmt": {
