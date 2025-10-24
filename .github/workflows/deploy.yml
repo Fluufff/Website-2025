@@ -11,15 +11,10 @@ permissions:
   id-token: write
 
 jobs:
-  test:
-    name: Tests & Lints
+  build:
+    name: Build
     runs-on: ubuntu-latest
-    env:
-      SITE: ${{ vars.SITE }}
-      SITE_BASE_URL: ${{ vars.SITE_BASE_URL }}
-      STRAPI_TOKEN: ${{ secrets.STRAPI_TOKEN }}
-      STRAPI_URI: https://cms.fluufff.org/api/
-
+    environment: github-pages
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
@@ -44,28 +39,12 @@ jobs:
       - name: Check formatting
         run: deno task format:check
 
-  build:
-    needs: test
-    runs-on: ubuntu-latest
-    environment: github-pages
-    env:
-      SITE: ${{ vars.SITE }}
-      SITE_BASE_URL: ${{ vars.SITE_BASE_URL }}
-      STRAPI_TOKEN: ${{ secrets.STRAPI_TOKEN }}
-      STRAPI_URI: https://cms.fluufff.org/api/
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
-
-      - name: Setup Deno
-        uses: denoland/setup-deno@v2
-        with:
-          deno-version: v2.5.3
-
-      - name: Install dependencies
-        run: deno install --allow-scripts
-
       - name: Build Website
+        env:
+          SITE: ${{ vars.SITE }}
+          SITE_BASE_URL: ${{ vars.SITE_BASE_URL }}
+          STRAPI_TOKEN: ${{ secrets.STRAPI_TOKEN }}
+          STRAPI_URI: https://cms.fluufff.org/api/
         run: deno task build
 
       - name: Upload Pages Artifact
