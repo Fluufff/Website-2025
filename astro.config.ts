@@ -2,6 +2,10 @@ import { defineConfig, envField, fontProviders } from 'astro/config'
 import icon from 'astro-icon'
 import favicons from 'astro-favicons'
 import vue from '@astrojs/vue'
+import Icons from 'unplugin-icons/vite'
+
+import brix from './utils/brix-icon-loader.ts'
+
 /// <reference types="deno" />
 
 // https://astro.build/config
@@ -18,6 +22,10 @@ export default defineConfig({
         endsWith: '/'
       })
     }
+  },
+
+  vite: {
+    plugins: [Icons({ compiler: 'vue3', customCollections: { brix } })]
   },
 
   experimental: {

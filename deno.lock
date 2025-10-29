@@ -7,6 +7,9 @@
     "npm:@iconify-json/cib@^1.2.3": "1.2.3",
     "npm:@iconify-json/mdi@^1.2.3": "1.2.3",
     "npm:@iconify-json/ri@^1.2.5": "1.2.6",
+    "npm:@iconify/tools@*": "4.1.4",
+    "npm:@iconify/tools@^4.1.4": "4.1.4",
+    "npm:@iconify/utils@^3.0.2": "3.0.2",
     "npm:@primevue/icons@^4.4.1": "4.4.1_vue@3.5.22__typescript@5.9.3_typescript@5.9.3",
     "npm:@types/deno@^2.5.0": "2.5.0",
     "npm:@types/qs@^6.14.0": "6.14.0",
@@ -30,6 +33,7 @@
     "npm:sharp@~0.34.4": "0.34.4",
     "npm:typescript-eslint@^8.45.0": "8.46.0_eslint@9.37.0_typescript@5.9.3_@typescript-eslint+parser@8.46.0__eslint@9.37.0__typescript@5.9.3",
     "npm:typescript@^5.9.3": "5.9.3",
+    "npm:unplugin-icons@^22.5.0": "22.5.0",
     "npm:vite@*": "6.3.6_sass-embedded@1.93.2_picomatch@4.0.3",
     "npm:vue@^3.5.22": "3.5.22_typescript@5.9.3"
   },
@@ -46,6 +50,9 @@
     },
     "@antfu/utils@8.1.1": {
       "integrity": "sha512-Mex9nXf9vR6AhcXmMrlz/HVgYYZpVGJ6YlPgwl7UnaFpnshXs6EK/oa5Gpf3CzENMjkvEx2tQtntGnb7UtSTOQ=="
+    },
+    "@antfu/utils@9.3.0": {
+      "integrity": "sha512-9hFT4RauhcUzqOE4f1+frMKLZrgNog5b06I7VmZQV1BkvwvqrbC8EBZf3L1eEL2AKb6rNKjER0sEvJiSP1FXEA=="
     },
     "@astrojs/check@0.9.4_typescript@5.9.3_prettier@3.6.2_prettier-plugin-astro@0.14.1": {
       "integrity": "sha512-IOheHwCtpUfvogHHsvu0AbeRZEnjJg3MopdLddkJE70mULItS/Vh37BHcI00mcOJcH1vhD3odbpvWokpxam7xA==",
@@ -656,7 +663,7 @@
       "integrity": "sha512-s6BcNUcCxQ3S6cvhlsoWzOuBt8qKXdVyXB9rT57uSJ/ARHD7dVM43+5ERBWn3tmkMWXeJ/s9DPVc3dUasayzeA==",
       "dependencies": [
         "@iconify/types",
-        "@iconify/utils",
+        "@iconify/utils@2.3.0",
         "@types/tar",
         "axios",
         "cheerio",
@@ -676,6 +683,19 @@
       "dependencies": [
         "@antfu/install-pkg",
         "@antfu/utils@8.1.1",
+        "@iconify/types",
+        "debug",
+        "globals@15.15.0",
+        "kolorist",
+        "local-pkg@1.1.2",
+        "mlly"
+      ]
+    },
+    "@iconify/utils@3.0.2": {
+      "integrity": "sha512-EfJS0rLfVuRuJRn4psJHtK2A9TqVnkxPpHY6lYHiB9+8eSuudsxbwMiavocG45ujOo6FJ+CIRlRnlOGinzkaGQ==",
+      "dependencies": [
+        "@antfu/install-pkg",
+        "@antfu/utils@9.3.0",
         "@iconify/types",
         "debug",
         "globals@15.15.0",
@@ -1822,7 +1842,7 @@
       "dependencies": [
         "@iconify/tools",
         "@iconify/types",
-        "@iconify/utils"
+        "@iconify/utils@2.3.0"
       ]
     },
     "astro@5.14.4_typescript@5.9.3_sass-embedded@1.93.2_vite@6.3.6__sass-embedded@1.93.2__picomatch@4.0.3_zod@3.25.76": {
@@ -4769,6 +4789,25 @@
     "universalify@2.0.1": {
       "integrity": "sha512-gptHNQghINnc/vTGIk0SOFGFNXw7JVrlRUtConJRlvaw6DuX0wO5Jeko9sWrMBhh+PsYAZ7oXAiOnf/UKogyiw=="
     },
+    "unplugin-icons@22.5.0": {
+      "integrity": "sha512-MBlMtT5RuMYZy4TZgqUL2OTtOdTUVsS1Mhj6G1pEzMlFJlEnq6mhUfoIt45gBWxHcsOdXJDWLg3pRZ+YmvAVWQ==",
+      "dependencies": [
+        "@antfu/install-pkg",
+        "@iconify/utils@3.0.2",
+        "debug",
+        "local-pkg@1.1.2",
+        "unplugin"
+      ]
+    },
+    "unplugin@2.3.10": {
+      "integrity": "sha512-6NCPkv1ClwH+/BGE9QeoTIl09nuiAt0gS28nn1PvYXsGKRwM2TCbFA2QiilmehPDTXIe684k4rZI1yl3A1PCUw==",
+      "dependencies": [
+        "@jridgewell/remapping",
+        "acorn",
+        "picomatch@4.0.3",
+        "webpack-virtual-modules"
+      ]
+    },
     "unstorage@1.17.1": {
       "integrity": "sha512-KKGwRTT0iVBCErKemkJCLs7JdxNVfqTPc/85ae1XES0+bsHbc/sFBfVi5kJp156cc51BHinIH2l3k0EZ24vOBQ==",
       "dependencies": [
@@ -5080,6 +5119,9 @@
     "web-namespaces@2.0.1": {
       "integrity": "sha512-bKr1DkiNa2krS7qxNtdrtHAmzuYGFQLiQ13TsorsdT6ULTkPLKuu5+GsFpDlg6JFjUTwX2DyhMPG2be8uPrqsQ=="
     },
+    "webpack-virtual-modules@0.6.2": {
+      "integrity": "sha512-66/V2i5hQanC51vBQKPH4aI8NMAcBW59FVBs+rC7eGHupMyfn34q7rZIE+ETlJ+XTevqfUhVVBgSUNSW2flEUQ=="
+    },
     "whatwg-encoding@3.1.1": {
       "integrity": "sha512-6qN4hJdMwfYBtE3YBTTHhoeuUrDBPZmbQaxWAqSALV/MeEnR5z1xd8UKud2RAkFoPkmB+hli1TZSnyi84xz1vQ==",
       "dependencies": [
@@ -5266,13 +5308,16 @@
         "npm:@iconify-json/cib@^1.2.3",
         "npm:@iconify-json/mdi@^1.2.3",
         "npm:@iconify-json/ri@^1.2.5",
+        "npm:@iconify/tools@^4.1.4",
+        "npm:@iconify/utils@^3.0.2",
         "npm:@primevue/icons@^4.4.1",
         "npm:@types/qs@^6.14.0",
         "npm:@vueuse/components@^13.9.0",
         "npm:@vueuse/core@^13.9.0",
         "npm:astro-favicons@^3.1.5",
         "npm:primevue@^4.4.1",
-        "npm:qs@^6.14.0"
+        "npm:qs@^6.14.0",
+        "npm:unplugin-icons@^22.5.0"
       ]
     }
   }
