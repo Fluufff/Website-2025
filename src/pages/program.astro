@@ -7,6 +7,7 @@ import Content from '../components/sections/Content.astro'
 import Socials from '../content/socials.astro'
 import Faq from '../content/Faq.astro'
 import FaqItem from '../content/FaqItem.astro'
+import Schedule from '../content/Schedule.vue'
 ---
 
 <Base>
@@ -34,6 +35,9 @@ import FaqItem from '../content/FaqItem.astro'
       <dt>🚪 Open door event</dt>
       <dd>Can be joined and left at any point during its duration.</dd>
     </dl>
+  </Content>
+  <Content bg="darker">
+    <Schedule />
   </Content>
   <Socials />
   <Faq>
