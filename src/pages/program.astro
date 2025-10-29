@@ -3,9 +3,7 @@ import Base from '../layouts/Base.astro'
 import Hero from '../components/sections/Hero.astro'
 
 import heroImage from '../assets/images/hero/program.png'
-import Program_preview from '../content/program_preview.astro'
 import Content from '../components/sections/Content.astro'
-import Button from '../components/Button.astro'
 import Socials from '../content/socials.astro'
 import Faq from '../content/Faq.astro'
 import FaqItem from '../content/FaqItem.astro'
@@ -18,21 +16,7 @@ import FaqItem from '../content/FaqItem.astro'
       canopy…
     </p>
   </Hero>
-  <Program_preview bg="darker" id="program_preview" />
-  <Content headline="Host your own event" bg="primary" id="host_your_own">
-    <p>Bring your own passion to the forest.</p>
-    <p>
-      You can host your own event at Flüüfff — about something you love or something you know a lot about. You can
-      suggest a panel or a meet-up through our Event Proposal form.
-    </p>
-    <Button
-      slot="actions"
-      label="Submit your Event proposal"
-      go
-      newTab
-      to="https://docs.google.com/forms/d/e/1FAIpQLSczO0qpWnzzL_B2frDOpYZfpuqQAjf41eO6tvjPiDxNQunPTg/viewform?usp=dialog"
-    />
-  </Content>
+
   <Content headline="Event labels explained">
     <p>Look out for these icons during the convention. They help you find events that match your vibe.</p>
     <dl id="event_labels">
@@ -47,12 +31,6 @@ import FaqItem from '../content/FaqItem.astro'
         Elements or themes related to fetishes or related topics.<br />
         However, this event is strictly non-sexual so no nudity is shown.
       </dd>
-      <dt>💡 Flashing lights</dt>
-      <dd>This event will feature flashing lights.</dd>
-      <dt>🏃 Sporty</dt>
-      <dd>Requires a certain level of movement. Bring comfy clothes, water, and a towel.</dd>
-      <dt>❤️ Charity</dt>
-      <dd>Event is organized in cooperation with our chosen charity.</dd>
       <dt>🚪 Open door event</dt>
       <dd>Can be joined and left at any point during its duration.</dd>
     </dl>
