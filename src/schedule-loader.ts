@@ -93,7 +93,8 @@ export function scheduleEventLoader({ uri, token }: Options): Loader {
       ctx.store.clear()
 
       const items = await loadStrapi(uri, token, 'schedule-events', {
-        populate: { schedule_location: { fields: ['id'] }, schedule_tags: { fields: ['id'] } }
+        populate: { schedule_location: { fields: ['id'] }, schedule_tags: { fields: ['id'] } },
+        pagination: { pageSize: 50 }
       })
 
       for (const item of items) {
@@ -102,7 +103,7 @@ export function scheduleEventLoader({ uri, token }: Options): Loader {
           data: { ...item }
         })
 
-        ctx.store.set({ id: item.id.toString(), data })
+        ctx.store.set({ id: item.id.toString(), data, rendered: await ctx.renderMarkdown(data.description) })
       }
     },
     schema: z.object({
