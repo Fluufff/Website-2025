@@ -2,8 +2,10 @@
   <div class="schedule__day__event" :key="event.title">
     <div class="schedule__day__event__time"><IconClock /> {{ displayTime(event.time) }}</div>
     <h3>{{ event.title }}</h3>
-    <div v-if="event.location !== null" class="schedule__day__event__time">
-      <IconPin /> {{ displayLocation(event.location) }}
+    <div v-if="event.host" class="schedule__day__event__deets">
+      <div v-if="event.location !== null"><IconPin /> {{ displayLocation(event.location) }}</div>
+
+      <div class="host" v-if="event.host"><IconUser /> {{ event.host }}</div>
     </div>
     <button v-if="jsEnabled" :class="{ toggled: descriptionToggled }" @click="descriptionToggled = !descriptionToggled">
       {{ descriptionToggled ? 'Hide' : 'Show' }} full event description <IconArrow />
@@ -16,7 +18,6 @@
         <span>{{ displayTagEmoji(tag) }}</span
         >{{ displayTag(tag) }}
       </li>
-      <li class="host" v-if="event.host">by {{ event.host }}</li>
     </ul>
   </div>
 </template>
@@ -27,6 +28,7 @@ import { ref } from 'vue'
 import IconPin from '~icons/brix/pin'
 import IconClock from '~icons/brix/clock'
 import IconArrow from '~icons/brix/arrow-down-1'
+import IconUser from '~icons/brix/user'
 
 import type { EventInfo, OpenTime, DayInfo, TagInfo } from './Schedule.vue'
 
@@ -60,6 +62,7 @@ function pad(num: number): string {
   border-radius: 8px;
   border: solid 1px charter.$primary200;
   background: charter.$neutrals100;
+  box-shadow: 0 1px 4px 0 rgba(25, 33, 61, 0.08);
 
   h3 {
     @include text-styles.heading3;
@@ -74,6 +77,22 @@ function pad(num: number): string {
     flex-direction: row;
     align-items: center;
     gap: 8px;
+  }
+
+  &__deets {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 16px 32px;
+    align-items: center;
+    justify-content: space-between;
+
+    > div {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 8px;
+    }
   }
 
   &__tags {

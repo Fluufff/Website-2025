@@ -2,7 +2,11 @@
   <div class="schedule__day" :class="{ jsEnabled }">
     <h2>{{ dayInfo.name }}, {{ dayInfo.short }}</h2>
     <div class="schedule__day__open_locations">
-      <div class="schedule__day__open_location" v-for="loc in locationsOfTheDay">
+      <div
+        v-for="loc in locationsOfTheDay"
+        class="schedule__day__open_location"
+        :class="{ closed: loc.times.length === 0 }"
+      >
         <IconPin class="pin" />
         <h3>{{ loc.name }}</h3>
         <IconClock />
@@ -79,7 +83,7 @@ function pad(num: number): string {
     flex-direction: column;
     gap: 16px;
 
-    @media (min-width: 600px) {
+    @media (min-width: 750px) {
       display: grid;
       grid-template-columns: 1fr 1fr;
     }
@@ -110,6 +114,11 @@ function pad(num: number): string {
     border: solid 1px charter.$neutrals400;
     padding: 24px;
     gap: 8px;
+    box-shadow: 0 1px 4px 0 rgba(25, 33, 61, 0.08);
+
+    &.closed {
+      color: charter.$neutrals400;
+    }
 
     @media (max-width: 600px) {
       padding: 16px;
