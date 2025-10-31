@@ -6,8 +6,6 @@ import Icons from 'unplugin-icons/vite'
 
 import brix from './utils/brix-icon-loader.ts'
 
-/// <reference types="deno" />
-
 // https://astro.build/config
 export default defineConfig({
   site: Deno.env.get('SITE')!,
