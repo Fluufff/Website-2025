@@ -13,17 +13,16 @@
     <div v-if="event.description" class="schedule__day__event__description" :class="{ visible: descriptionToggled }">
       <div class="schedule__day__event__description__inner" v-html="event.description"></div>
     </div>
-    <ul class="schedule__day__event__tags" v-if="event.tags.length > 0 || event.host">
-      <li v-for="tag in event.tags">
+    <div class="schedule__day__event__tags" v-if="event.tags.length > 0">
+      <a href="#event_labels" v-for="tag in event.tags">
         <span>{{ displayTagEmoji(tag) }}</span
         >{{ displayTag(tag) }}
-      </li>
-    </ul>
+      </a>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { useMounted } from '@vueuse/core'
 import { ref } from 'vue'
 import IconPin from '~icons/brix/pin'
 import IconClock from '~icons/brix/clock'
@@ -32,10 +31,15 @@ import IconUser from '~icons/brix/user'
 
 import type { EventInfo, OpenTime, DayInfo, TagInfo } from './Schedule.vue'
 
-const jsEnabled = useMounted()
 const descriptionToggled = ref(false)
 
-const props = defineProps<{ event: EventInfo; days: DayInfo[]; tags: TagInfo[]; locations: string[] }>()
+const props = defineProps<{
+  event: EventInfo
+  days: DayInfo[]
+  tags: TagInfo[]
+  locations: string[]
+  jsEnabled: boolean
+}>()
 
 function displayTime(time: OpenTime): string {
   return `${pad(time[1])}:${pad(time[2])} - ${pad(time[3])}:${pad(time[4])}`
@@ -99,13 +103,11 @@ function pad(num: number): string {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    list-style: none;
-    margin-left: 0 !important;
     gap: 8px;
     border-top: solid 1px charter.$primary200;
     padding-top: 24px;
 
-    li {
+    a {
       display: flex;
       flex-shrink: 0;
       align-items: center;
@@ -114,18 +116,10 @@ function pad(num: number): string {
       background: charter.$primary100;
       gap: 4px;
       padding: 10px;
+      text-decoration: none !important;
 
       @include text-styles.display2SemiBold;
       line-height: 10px;
-
-      &.host {
-        margin-left: auto;
-        background: 0;
-        border: 0;
-        @include text-styles.display2Regular;
-        font-style: italic;
-        line-height: 10px;
-      }
     }
   }
 

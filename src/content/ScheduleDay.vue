@@ -1,6 +1,6 @@
 <template>
   <div class="schedule__day" :class="{ jsEnabled }">
-    <h2>{{ dayInfo.name }}, {{ dayInfo.short }}</h2>
+    <h2 v-if="!jsEnabled">{{ dayInfo.name }}, {{ dayInfo.short }}</h2>
     <div class="schedule__day__open_locations">
       <div
         v-for="loc in locationsOfTheDay"
@@ -24,6 +24,7 @@
         :tags="tags"
         :locations="locations"
         :days="days"
+        :js-enabled="jsEnabled"
       />
     </div>
   </div>
@@ -35,7 +36,6 @@ import IconPin from '~icons/brix/pin'
 import IconClock from '~icons/brix/clock'
 import { computed } from 'vue'
 import ScheduleEvent from './ScheduleEvent.vue'
-import { useMounted } from '@vueuse/core'
 
 const props = defineProps<{
   day: number
@@ -44,9 +44,8 @@ const props = defineProps<{
   events: EventInfo[]
   locations: string[]
   openLocations: OpenLocation[]
+  jsEnabled: boolean
 }>()
-
-const jsEnabled = useMounted()
 
 const dayInfo = computed(() => props.days[props.day]!)
 const locationsOfTheDay = computed<OpenLocation[]>(() =>

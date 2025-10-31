@@ -4,6 +4,7 @@ import Content from '../components/sections/Content.astro'
 import Socials from '../content/socials.astro'
 import Faq from '../content/Faq.astro'
 import FaqItem from '../content/FaqItem.astro'
+import ProgramPreview from '../content/program_preview.astro'
 import Schedule, { type DayInfo, type EventInfo, type OpenLocation, type TagInfo } from '../content/Schedule.vue'
 
 import { type CollectionEntry, getCollection } from 'astro:content'
@@ -76,7 +77,7 @@ const eventsParsed: EventInfo[] = events.map(({ data, rendered }) => {
       client:load
     />
   </Content>
-  <Content headline="Event labels explained">
+  <Content headline="Event labels explained" id="event_labels">
     <p>Look out for these icons during the convention. They help you find events that match your vibe.</p>
     <dl id="event_labels">
       <dt>🧠 Educational</dt>
@@ -94,6 +95,7 @@ const eventsParsed: EventInfo[] = events.map(({ data, rendered }) => {
       <dd>Can be joined and left at any point during its duration.</dd>
     </dl>
   </Content>
+  <ProgramPreview />
   <Socials />
   <Faq>
     <FaqItem question="Do I need to sign up for events in advance?">
