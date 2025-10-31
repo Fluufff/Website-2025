@@ -13,7 +13,7 @@
 
 <script setup lang="ts">
 import type { DayInfo, OpenLocation, OpenTime } from './Schedule.vue'
-import IconPin from '~icons/brix/tag'
+import IconPin from '~icons/brix/pin'
 import { computed } from 'vue'
 
 const props = defineProps<{
