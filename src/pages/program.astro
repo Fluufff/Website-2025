@@ -1,15 +1,12 @@
 ---
 import Base from '../layouts/Base.astro'
-import Hero from '../components/sections/Hero.astro'
-
-import heroImage from '../assets/images/hero/program.png'
 import Content from '../components/sections/Content.astro'
 import Socials from '../content/socials.astro'
 import Faq from '../content/Faq.astro'
 import FaqItem from '../content/FaqItem.astro'
-import Schedule, { type DayInfo, type OpenLocation } from '../content/Schedule.vue'
+import Schedule, { type DayInfo, type EventInfo, type OpenLocation, type TagInfo } from '../content/Schedule.vue'
 
-import { getCollection } from 'astro:content'
+import { type CollectionEntry, getCollection } from 'astro:content'
 import { DateTime } from 'luxon'
 
 function shortenTime(time: string): [number, number] {
@@ -40,19 +37,44 @@ const openLocationsParsed: OpenLocation[] = openLocations.map((l) => ({
     return [dayIndex, ...shortenTime(t.start_time), ...shortenTime(t.end_time)]
   })
 }))
+
+const tags = await getCollection('scheduleTags')
+const tagsParsed: TagInfo[] = tags.map((t) => ({ name: t.data.name, emoji: t.data.emoji }))
+const locations = await getCollection('scheduleLocations')
+const locationsParsed: string[] = locations.map((l) => l.data.name)
+
+const events = await getCollection('scheduleEvents')
+const startDate = (e: CollectionEntry<'scheduleEvents'>) =>
+  DateTime.fromISO(`${e.data.day}T${e.data.start_time}`).toUnixInteger()
+events.sort((a, b) => startDate(a) - startDate(b))
+
+const eventsParsed: EventInfo[] = events.map(({ data, rendered }) => {
+  const dayIndex = days.findIndex((d) => d.day === data.day)
+  const locationIndex = data.schedule_location
+    ? locations.findIndex((l) => l.data.id === data.schedule_location.id)
+    : null
+  const tagsIndexes = data.schedule_tags.map((t) => tags.findIndex((t2) => t2.data.id === t.id))
+  return {
+    title: data.title,
+    host: data.host_name,
+    description: rendered!.html,
+    location: locationIndex,
+    tags: tagsIndexes,
+    time: [dayIndex, ...shortenTime(data.start_time), ...shortenTime(data.end_time)]
+  }
+})
 ---
 
 <Base>
-  <Hero headline="Discover the heart of the forest" image={heroImage}>
-    <p>
-      When the forest awakens, it invites you to dance, share, learn, and create. Here's what’s waiting beneath the
-      canopy…
-    </p>
-  </Hero>
-
-  {JSON.stringify(days)}
   <Content bg="darker" headline="Schedule" wider>
-    <Schedule openLocations={openLocationsParsed} days={daysParsed} client:load />
+    <Schedule
+      openLocations={openLocationsParsed}
+      locations={locationsParsed}
+      days={daysParsed}
+      tags={tagsParsed}
+      events={eventsParsed}
+      client:load
+    />
   </Content>
   <Content headline="Event labels explained">
     <p>Look out for these icons during the convention. They help you find events that match your vibe.</p>
