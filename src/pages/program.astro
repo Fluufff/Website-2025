@@ -7,7 +7,36 @@ import Content from '../components/sections/Content.astro'
 import Socials from '../content/socials.astro'
 import Faq from '../content/Faq.astro'
 import FaqItem from '../content/FaqItem.astro'
-import Schedule from '../content/Schedule.vue'
+import Schedule, { type DayInfo, type OpenLocation } from '../content/Schedule.vue'
+
+import { getCollection } from 'astro:content'
+import { DateTime } from 'luxon'
+
+function shortenTime(time: string): [number, number] {
+  const date = DateTime.fromISO(time)
+  return [date.hour, date.minute]
+}
+
+// Prepare & localize as much as possible on the server-side
+
+const openLocations = await getCollection('scheduleOpenLocations')
+const days = [...new Set(openLocations.flatMap((l) => l.data.opening_times).map((t) => t.day))].sort().map((day) => {
+  const date = DateTime.fromISO(day).setLocale('en-US')
+  return {
+    day,
+    name: date.toLocaleString({ weekday: 'long' }),
+    short: date.toLocaleString({ day: 'numeric', month: 'short' })
+  }
+})
+
+const daysParsed: DayInfo[] = days.map(({ name, short }) => ({ name, short }))
+const openLocationsParsed: OpenLocation[] = openLocations.map((l) => ({
+  name: l.data.name,
+  times: l.data.opening_times.map((t) => {
+    const dayIndex = days.findIndex((d) => d.day === t.day)
+    return [dayIndex, ...shortenTime(t.start_time), ...shortenTime(t.end_time)]
+  })
+}))
 ---
 
 <Base>
@@ -18,6 +47,10 @@ import Schedule from '../content/Schedule.vue'
     </p>
   </Hero>
 
+  {JSON.stringify(days)}
+  <Content bg="darker" headline="Schedule" wider>
+    <Schedule openLocations={openLocationsParsed} days={daysParsed} client:load />
+  </Content>
   <Content headline="Event labels explained">
     <p>Look out for these icons during the convention. They help you find events that match your vibe.</p>
     <dl id="event_labels">
@@ -36,9 +69,6 @@ import Schedule from '../content/Schedule.vue'
       <dd>Can be joined and left at any point during its duration.</dd>
     </dl>
   </Content>
-  <Content bg="darker">
-    <Schedule />
-  </Content>
   <Socials />
   <Faq>
     <FaqItem question="Do I need to sign up for events in advance?">
@@ -46,21 +76,11 @@ import Schedule from '../content/Schedule.vue'
       will be clearly indicated in the program.
     </FaqItem>
     <FaqItem question="Do I need to be a performer to attend the Flüüfff Finale?">
-      No, everyone is welcome to enjoy the show. If you want to perform, just submit an Act Proposal.
+      No, everyone is welcome to enjoy the show.
     </FaqItem>
     <FaqItem question="Will there be things for me to do if I don’t dance or perform?">
       Absolutely! There are panels, workshops, casual meetups, art spaces, and plenty of chill corners to explore and
       enjoy.
-    </FaqItem>
-    <FaqItem question="Is there a schedule available?">
-      The full program schedule will be published closer to the event. We’ll announce it on the website and via social
-      media when it’s ready.
-    </FaqItem>
-    <FaqItem question="Can I host my own panel or meet?">
-      Yes! You’re welcome to suggest a panel, activity, or meet-up via the <a
-        href="https://docs.google.com/forms/d/e/1FAIpQLSczO0qpWnzzL_B2frDOpYZfpuqQAjf41eO6tvjPiDxNQunPTg/viewform?usp=dialog"
-        target="_blank">Panel Proposal Form</a
-      >.
     </FaqItem>
   </Faq>
 </Base>
