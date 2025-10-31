@@ -20,6 +20,9 @@ function shortenTime(time: string): [number, number] {
 // Prepare & localize as much as possible on the server-side
 
 const openLocations = await getCollection('scheduleOpenLocations')
+const order = ['Bar', 'Fursuit Lounge', 'Photoshoot', "Dealer's Den"]
+openLocations.sort((a, b) => order.indexOf(a.data.name) - order.indexOf(b.data.name))
+
 const days = [...new Set(openLocations.flatMap((l) => l.data.opening_times).map((t) => t.day))].sort().map((day) => {
   const date = DateTime.fromISO(day).setLocale('en-US')
   return {

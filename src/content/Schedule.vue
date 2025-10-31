@@ -25,4 +25,11 @@ defineProps<{
 }>()
 </script>
 
-<style scoped lang="scss"></style>
+<style lang="scss">
+.schedule {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  align-self: stretch;
+}
+</style>
