@@ -7,6 +7,15 @@
   line-height: 20px; /* 142.857% */
 }
 
+@mixin display2Regular {
+  /* Display/2/Regular */
+  font-family: var(--font-inter), sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px; /* 142.857% */
+}
+
 @mixin display3Regular {
   /* Display/3/Regular */
   font-family: var(--font-inter), sans-serif;
