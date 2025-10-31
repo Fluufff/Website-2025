@@ -1,10 +1,14 @@
 <template>
-  <div class="schedule">
-    <ul v-if="jsEnabled" class="schedule__nav">
-      <li v-for="(_, i) in days" :key="i" :class="{ active: i === currentDay }" @click="switchToDay(i)">
-        <span>{{ days[i]!.name }},</span> {{ days[i]!.short }}
-      </li>
-    </ul>
+  <div class="schedule" id="schedule">
+    <div v-if="jsEnabled" class="schedule__nav" ref="scheduleNav">
+      <button @click="scrollToLeft()"><IconChevronLeft /></button>
+      <ul>
+        <li v-for="(_, i) in days" :key="i" :class="{ active: i === currentDay }" @click="switchToDay(i)">
+          <span>{{ days[i]!.name }},</span> {{ days[i]!.short }}
+        </li>
+      </ul>
+      <button @click="scrollToRight()"><IconChevronRight /></button>
+    </div>
     <div v-if="jsEnabled" class="schedule__container">
       <Transition :name="switchingRight ? 'slide-right' : 'slide-left'">
         <ScheduleDay
@@ -36,8 +40,10 @@
 
 <script setup lang="ts">
 import ScheduleDay from './ScheduleDay.vue'
+import IconChevronLeft from '~icons/brix/chevron-left'
+import IconChevronRight from '~icons/brix/chevron-right'
 import { useMounted } from '@vueuse/core'
-import { ref } from 'vue'
+import { ref, useTemplateRef } from 'vue'
 
 export interface DayInfo {
   name: string
@@ -69,6 +75,8 @@ defineProps<{
   openLocations: OpenLocation[]
 }>()
 
+const scheduleNav = useTemplateRef<HTMLUListElement>('scheduleNav')
+
 const currentDay = ref(0)
 const currentRenderIndex = ref(0)
 const switchingRight = ref(true)
@@ -80,7 +88,11 @@ function switchToDay(day: number) {
   switchingRight.value = day > currentDay.value
   currentRenderIndex.value = currentRenderIndex.value + 1
   currentDay.value = day
+  document.getElementById('schedule')?.scrollIntoView()
 }
+
+const scrollToLeft = () => scheduleNav.value?.scrollTo({ left: 0, behavior: 'smooth' })
+const scrollToRight = () => scheduleNav.value?.scrollTo({ left: 1000, behavior: 'smooth' })
 </script>
 
 <style lang="scss">
@@ -97,23 +109,86 @@ function switchToDay(day: number) {
   &__nav {
     display: flex;
     flex-direction: row;
-    align-self: stretch;
-    gap: 16px;
-    list-style: none;
     align-items: center;
-    justify-content: center;
+    align-self: stretch;
     user-select: none;
     position: sticky;
     top: 0;
-    z-index: 2;
+    z-index: 10;
     background: charter.$neutrals300;
     margin: -16px !important;
     padding: 16px;
+    scroll-behavior: smooth;
 
-    @media (max-width: 400px) {
-      flex-wrap: wrap;
-      padding: 8px;
-      gap: 8px 16px;
+    ul {
+      display: flex;
+      position: relative;
+      gap: 16px;
+      flex-direction: row;
+      list-style: none;
+      margin: 0 !important;
+      align-items: center;
+      justify-content: center;
+      flex: 1;
+    }
+
+    @media (max-width: 450px) {
+      padding: 8px 0;
+      gap: 8px;
+      overflow-x: auto;
+
+      ul {
+        justify-content: flex-start;
+      }
+
+      button {
+        display: flex !important;
+      }
+    }
+
+    button {
+      display: none;
+      position: sticky;
+      align-items: center;
+      justify-content: center;
+      border: 0;
+      font-size: 32px;
+      cursor: pointer;
+      top: 0;
+      z-index: 10;
+      background: 0;
+
+      svg {
+        height: 40px;
+        background: charter.$neutrals300;
+        color: charter.$secondary500;
+      }
+
+      &:after {
+        content: '';
+        display: block;
+        width: 8px;
+        height: 40px;
+        position: absolute;
+      }
+
+      &:first-child {
+        left: 0;
+
+        &:after {
+          left: 100%;
+          background: linear-gradient(to right, charter.$neutrals300, transparent);
+        }
+      }
+
+      &:last-child {
+        right: 0;
+
+        &:after {
+          right: 100%;
+          background: linear-gradient(to left, charter.$neutrals300, transparent);
+        }
+      }
     }
 
     li {
@@ -172,6 +247,15 @@ function switchToDay(day: number) {
     &:after {
       right: 0;
       background: linear-gradient(to left, charter.$neutrals300, transparent);
+    }
+
+    @media (max-width: 600px) {
+      margin: 0 -16px;
+      padding: 0 16px;
+      &:before,
+      &:after {
+        width: 16px !important;
+      }
     }
   }
 
