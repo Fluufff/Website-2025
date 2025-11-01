@@ -36,6 +36,12 @@ jobs:
       - name: Check formatting
         run: deno task format:check
 
+      - name: Restore cache
+        uses: actions/cache/restore@v4
+        with:
+          path: ./node_modules/.astro
+          key: astro-build-cache
+
       - name: Astro & Typescript checks
         env:
           SITE: ${{ vars.SITE }}
@@ -51,6 +57,12 @@ jobs:
           STRAPI_TOKEN: ${{ secrets.STRAPI_TOKEN }}
           STRAPI_URI: https://cms.fluufff.org/api/
         run: deno task build
+
+      - name: Save cache
+        uses: actions/cache/save@v4
+        with:
+          path: ./node_modules/.astro
+          key: astro-build-cache
 
       - name: Upload Pages Artifact
         uses: actions/upload-pages-artifact@v3
