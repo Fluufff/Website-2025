@@ -48,6 +48,7 @@ import { ref, useTemplateRef } from 'vue'
 export interface DayInfo {
   name: string
   short: string
+  day: string
 }
 export interface TagInfo {
   name: string

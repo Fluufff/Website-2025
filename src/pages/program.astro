@@ -30,7 +30,7 @@ const days = [...new Set(openLocations.flatMap((l) => l.data.opening_times).map(
   }
 })
 
-const daysParsed: DayInfo[] = days.map(({ name, short }) => ({ name, short }))
+const daysParsed: DayInfo[] = days.map(({ name, short, day }) => ({ name, short, day }))
 const openLocationsParsed: OpenLocation[] = openLocations.map((l) => ({
   name: l.data.name,
   times: l.data.opening_times.map((t) => {

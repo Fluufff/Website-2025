@@ -1,6 +1,11 @@
 <template>
   <div class="schedule__day__event" :key="event.title">
-    <div class="schedule__day__event__time"><IconClock /> {{ displayTime(event.time) }}</div>
+    <div v-if="jsEnabled" class="schedule__day__event__deets">
+      <div class="schedule__day__event__time"><IconClock /> {{ displayTime(event.time) }}</div>
+      <div v-if="status" class="schedule__day__event__status" :class="[status]">{{ displayStatus(status) }}</div>
+    </div>
+    <div v-else class="schedule__day__event__time"><IconClock /> {{ displayTime(event.time) }}</div>
+
     <h3>{{ event.title }}</h3>
     <div v-if="event.host" class="schedule__day__event__deets">
       <div v-if="event.location !== null"><IconPin /> {{ displayLocation(event.location) }}</div>
@@ -23,13 +28,15 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { computed, ref, shallowRef } from 'vue'
 import IconPin from '~icons/brix/pin'
 import IconClock from '~icons/brix/clock'
 import IconArrow from '~icons/brix/arrow-down-1'
 import IconUser from '~icons/brix/user'
 
 import type { EventInfo, OpenTime, DayInfo, TagInfo } from './Schedule.vue'
+import { DateTime } from 'luxon'
+import { useIntervalFn } from '@vueuse/core'
 
 const descriptionToggled = ref(false)
 
@@ -41,6 +48,35 @@ const props = defineProps<{
   jsEnabled: boolean
 }>()
 
+type Status = 'past' | 'ongoing' | 'comingup'
+const parsedTimes = computed(() => parseTimes(props.event.time))
+
+const currentTime = shallowRef(DateTime.now())
+//const currentTime = shallowRef(DateTime.fromISO('2025-11-07T01:22'))
+
+useIntervalFn(() => {
+  currentTime.value = DateTime.now()
+}, 42_000)
+
+const status = computed((): Status | null => {
+  const [startTime, endTime] = parsedTimes.value
+  if (endTime < currentTime.value) return 'past'
+  if (startTime < currentTime.value) return 'ongoing'
+  if (!startTime.hasSame(currentTime.value, 'day')) return null
+  return 'comingup'
+})
+
+const displayStatus = (s: Status) => {
+  switch (s) {
+    case 'comingup':
+      return 'Coming up'
+    case 'ongoing':
+      return 'Happening now'
+    case 'past':
+      return 'Past'
+  }
+}
+
 function displayTime(time: OpenTime): string {
   return `${pad(time[1])}:${pad(time[2])} - ${pad(time[3])}:${pad(time[4])}`
 }
@@ -51,6 +87,14 @@ const displayTagEmoji = (i: number) => props.tags[i]!.emoji
 
 function pad(num: number): string {
   return num.toString().padStart(2, '0')
+}
+
+function parseTimes(time: OpenTime): [DateTime, DateTime] {
+  const day = DateTime.fromISO(props.days[time[0]!]!.day)
+  const startDay = time[1] < 5 ? day.plus({ day: 1 }) : day
+  const endDay = time[3] < 5 ? day.plus({ day: 1 }) : day
+
+  return [startDay.set({ hour: time[1], minute: time[2] }), endDay.set({ hour: time[3], minute: time[4] })]
 }
 </script>
 
@@ -81,6 +125,49 @@ function pad(num: number): string {
     flex-direction: row;
     align-items: center;
     gap: 8px;
+  }
+
+  &__status {
+    display: flex;
+    flex-direction: row;
+    @include text-styles.display2Regular;
+    border-radius: 20px;
+    padding: 2px 8px;
+    gap: 8px;
+
+    &:before {
+      content: '';
+      width: 7px;
+      height: 7px;
+      border-radius: 100%;
+    }
+
+    &.ongoing {
+      background: charter.$primary100;
+      color: charter.$accent700;
+
+      &:before {
+        background: charter.$accent600;
+      }
+    }
+
+    &.comingup {
+      background: charter.$secondary100;
+      color: charter.$secondary700;
+
+      &:before {
+        background: charter.$secondary400;
+      }
+    }
+
+    &.past {
+      background: charter.$neutrals300;
+      color: charter.$neutrals700;
+
+      &:before {
+        background: charter.$neutrals400;
+      }
+    }
   }
 
   &__deets {
