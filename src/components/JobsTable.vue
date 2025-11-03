@@ -312,7 +312,7 @@ const jsEnabled = useMounted()
       box-shadow: 0 1px 4px 0 rgba(25, 33, 61, 0.08);
     }
 
-    > table tbody tr td {
+    > table tbody tr td:not(.empty) {
       padding: 0 12px 0 0;
       border: 0 !important;
 
