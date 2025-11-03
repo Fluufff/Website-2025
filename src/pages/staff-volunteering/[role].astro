@@ -44,12 +44,13 @@ const role = Astro.props.roleEntry.data
       </Content>
     )
   }
-  <Content bg="primary-light" headline="Ready to apply?" alignContent="start" sideImage={readyImage}>
+  <Content bg="primary-light" markdown={!!role.call_to_action_rendered} alignContent="start" sideImage={readyImage}>
     {
       role.call_to_action_rendered ? (
         <Fragment set:html={role.call_to_action_rendered.html} />
       ) : (
         <>
+          <h2>Ready to apply?</h2>
           <p>Got a GitHub full of haunted projects or just excited to help out? We’d love to hear from you.</p>
           <p>Click the button, fill out the form, and tell us what makes you tick.</p>
         </>
