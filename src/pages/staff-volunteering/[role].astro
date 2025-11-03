@@ -39,7 +39,7 @@ const role = Astro.props.roleEntry.data
   </Content>
   {
     role.extra_description_rendered && (
-      <Content bg="darker">
+      <Content bg="darker" alignContent="start" markdown>
         <Fragment set:html={role.extra_description_rendered.html} />
       </Content>
     )

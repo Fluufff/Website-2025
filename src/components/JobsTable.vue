@@ -192,7 +192,7 @@ const jsEnabled = useMounted()
         color: charter.$neutrals100;
 
         &:first-child {
-          width: 200px;
+          width: 250px;
         }
 
         &:last-child {

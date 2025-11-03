@@ -5,6 +5,7 @@ interface Props {
   headline?: string | undefined
   sideImage?: ImageMetadata | undefined
   right?: boolean | undefined
+  markdown?: boolean | undefined
   wider?: boolean | undefined
   id?: string | undefined
   bg?: 'darker' | 'primary' | 'primary-light' | undefined
@@ -12,10 +13,10 @@ interface Props {
   alignContent?: 'start' | 'end'
 }
 
-const { headline, bg, sideImage, right, id, wider, alignContent } = Astro.props
+const { headline, markdown, bg, sideImage, right, id, wider, alignContent } = Astro.props
 ---
 
-<section class="content" class:list={[bg, { withSide: !!sideImage, right, wider }, alignContent]} id={id}>
+<section class="content" class:list={[bg, { withSide: !!sideImage, right, wider, markdown }, alignContent]} id={id}>
   <div class={'content__container' + (Astro.props.class ? ' ' + Astro.props.class : '')}>
     {
       !sideImage && (
@@ -169,6 +170,18 @@ const { headline, bg, sideImage, right, id, wider, alignContent } = Astro.props
         background: charter.$neutrals100;
         border-color: charter.$neutrals100;
         color: charter.$primary500;
+      }
+    }
+
+    &.markdown {
+      h1 {
+        @include text-styles.heading2;
+        margin-bottom: 16px;
+        text-align: left;
+      }
+
+      p + h1 {
+        margin-top: 50px;
       }
     }
   }
