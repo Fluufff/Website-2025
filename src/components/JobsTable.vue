@@ -2,7 +2,7 @@
   <div class="jobs-table">
     <div class="jobs-table__toolbar" :class="{ jsEnabled }">
       <div class="search-input">
-        <InputText placeholder="Search..." v-model.trim="search" />
+        <InputText placeholder="Search roles..." v-model.trim="search" />
         <slot name="searchIcon" />
       </div>
       <MultiSelect
@@ -259,6 +259,110 @@ const jsEnabled = useMounted()
 
         &.open {
           background: charter.$primary100;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 720px) {
+    position: relative;
+    margin-top: 24px;
+    gap: 16px;
+
+    &__toolbar {
+      flex-direction: column;
+      height: auto;
+      gap: 10px;
+      padding: 0 12px;
+
+      [data-pc-name='multiselect'],
+      span {
+        display: none;
+      }
+    }
+
+    > table {
+      display: flex;
+      flex-direction: column;
+      margin-top: 0;
+      border: 0;
+      border-radius: 0;
+      overflow: visible;
+    }
+
+    tbody {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    thead {
+      display: none;
+    }
+
+    > table tbody tr {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      border: solid 1px charter.$neutrals300;
+      border-radius: 8px;
+      padding: 24px;
+
+      /* Neutral/Shadow 02 */
+      box-shadow: 0 1px 4px 0 rgba(25, 33, 61, 0.08);
+    }
+
+    > table tbody tr td {
+      padding: 0 12px 0 0;
+      border: 0 !important;
+
+      a {
+        position: absolute;
+        inset: 0;
+
+        svg {
+          position: absolute;
+          top: 28px;
+          right: 24px;
+        }
+
+        &:after {
+          display: none;
+        }
+      }
+
+      &:first-child {
+        @include text-styles.display2Regular;
+        margin-bottom: 10px;
+        &:before {
+          content: 'Department: ';
+        }
+      }
+
+      &:nth-child(2) {
+        @include text-styles.heading4;
+        margin-bottom: 24px;
+        order: -1;
+      }
+
+      &:nth-child(3) {
+        @include text-styles.display2Regular;
+        margin-bottom: 24px;
+        &:before {
+          content: 'Workmodel: ';
+        }
+      }
+
+      &:last-child {
+        padding: 0;
+      }
+
+      .jobs-table__status-container {
+        align-items: stretch;
+
+        > span {
+          flex: 1;
+          margin: 0;
         }
       }
     }
