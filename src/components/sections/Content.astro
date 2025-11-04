@@ -10,17 +10,35 @@ interface Props {
   id?: string | undefined
   bg?: 'darker' | 'primary' | 'primary-light' | undefined
   class?: string | undefined
-  alignContent?: 'start' | 'end'
+  alignContent?: 'start' | 'end' | undefined
 }
 
 const { headline, markdown, bg, sideImage, right, id, wider, alignContent } = Astro.props
 ---
 
-<section class="content" class:list={[bg, { withSide: !!sideImage, right, wider, markdown }, alignContent]} id={id}>
-  <div class={'content__container' + (Astro.props.class ? ' ' + Astro.props.class : '')}>
-    {
-      !sideImage && (
-        <>
+<section
+  class="content"
+  class:list={[bg, { withSide: !!sideImage, right, wider, markdown }, alignContent, Astro.props.class]}
+  id={id}
+>
+  {
+    !sideImage && (
+      <>
+        {headline && <h2>{headline}</h2>}
+        <slot />
+        {Astro.slots.has('actions') && (
+          <div class="content__actions">
+            <slot name="actions" />
+          </div>
+        )}
+      </>
+    )
+  }
+  {
+    !!sideImage && (
+      <>
+        <Picture src={sideImage} formats={['avif', 'webp']} fallbackFormat="jpg" alt="" widths={[400, 800, 1200]} />
+        <div class="content__side_container">
           {headline && <h2>{headline}</h2>}
           <slot />
           {Astro.slots.has('actions') && (
@@ -28,29 +46,14 @@ const { headline, markdown, bg, sideImage, right, id, wider, alignContent } = As
               <slot name="actions" />
             </div>
           )}
-        </>
-      )
-    }
-    {
-      !!sideImage && (
-        <>
-          <Picture src={sideImage} formats={['avif', 'webp']} fallbackFormat="jpg" alt="" widths={[400, 800, 1200]} />
-          <div class="content__side_container">
-            <h2>{headline}</h2>
-            <slot />
-            {Astro.slots.has('actions') && (
-              <div class="content__actions">
-                <slot name="actions" />
-              </div>
-            )}
-          </div>
-        </>
-      )
-    }
-  </div>
+        </div>
+      </>
+    )
+  }
 </section>
 
 <style lang="scss" is:global>
+  @use 'sass:math';
   @use '../../styles/text-styles';
   @use '../../styles/charter';
 
@@ -64,91 +67,135 @@ const { headline, markdown, bg, sideImage, right, id, wider, alignContent } = As
     background: charter.$neutrals100;
     position: relative;
 
-    &.start > .content__container {
-      align-items: flex-start;
+    @media (max-width: 600px) {
+      padding: 20px 16px;
+    }
 
-      > p {
-        text-align: left;
+    > astro-island {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .content__actions {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 32px;
+      gap: 16px;
+
+      @media (max-width: 600px) {
+        flex-direction: column;
+        align-items: stretch;
+        align-self: stretch;
       }
     }
 
-    &.withSide > .content__container {
+    // Side image stuff
+
+    &.withSide {
       flex-direction: row;
       gap: 92px;
-      max-width: 1100px;
-      align-items: center;
 
-      &,
-      .content__side_container {
-        > p {
-          text-align: left;
-        }
+      > * {
+        max-width: math.div(1100px - 92px, 2);
       }
 
       &.right {
         flex-direction: row-reverse;
       }
+
+      @media (max-width: 600px) {
+        > picture {
+          display: none;
+        }
+      }
     }
 
-    &.wider > .content__container {
+    // Alignment stuff
+
+    &:not(.withSide),
+    & > .content__side_container {
+      > p,
+      > h2 {
+        text-align: center;
+      }
+    }
+
+    &.start,
+    &.withSide {
+      &:not(.withSide),
+      & > .content__side_container {
+        > p,
+        > h2 {
+          text-align: left;
+        }
+      }
+
+      .content__actions {
+        justify-content: flex-start;
+      }
+    }
+
+    @media (max-width: 600px) {
+      &,
+      & > .content__side_container {
+        > h2 {
+          font-size: 24px !important;
+          text-align: center !important;
+        }
+      }
+    }
+
+    > * {
+      max-width: 800px;
+      width: 100%;
+    }
+
+    &.wider > * {
       max-width: 1200px;
     }
 
-    > .content__container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      max-width: 800px;
-      width: 100%;
+    > .content__side_container {
+      flex: 1;
+    }
 
-      .content__side_container {
-        flex: 1;
+    > picture {
+      flex: 1;
+
+      > img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        object-position: center;
+        border-radius: 8px;
+      }
+      pointer-events: none;
+      position: relative;
+      width: 50%;
+    }
+
+    &,
+    & > .content__side_container {
+      > h2 {
+        @include text-styles.heading2;
+        margin-bottom: 16px;
+        white-space-collapse: preserve-breaks;
       }
 
-      > picture {
-        flex: 1;
+      > p {
+        @include text-styles.paragraphMediumRegular;
+        text-align: center;
+        color: charter.$neutrals600;
 
-        > img {
-          height: 100%;
-          width: 100%;
-          object-fit: cover;
-          object-position: center;
-          border-radius: 8px;
-        }
-        pointer-events: none;
-        position: relative;
-        width: 50%;
-      }
-
-      &,
-      .content__side_container {
-        > h2 {
-          @include text-styles.heading2;
-          margin-bottom: 16px;
-          white-space-collapse: preserve-breaks;
-        }
-
-        > p {
-          @include text-styles.paragraphMediumRegular;
-          text-align: center;
-          color: charter.$neutrals600;
-          max-width: 700px;
-
-          & + p {
-            margin-top: 32px;
-          }
-        }
-
-        .content__actions {
-          display: flex;
-          flex-direction: row;
-          flex-wrap: wrap;
+        & + p {
           margin-top: 32px;
-          gap: 16px;
         }
       }
     }
+
+    // Colors
 
     &.darker {
       background: charter.$neutrals300;
@@ -183,28 +230,6 @@ const { headline, markdown, bg, sideImage, right, id, wider, alignContent } = As
 
       * + h1 {
         margin-top: 50px;
-      }
-    }
-  }
-
-  @media (max-width: 600px) {
-    .content {
-      padding: 20px 16px;
-
-      .content__container > picture {
-        display: none;
-      }
-
-      .content__container,
-      .content__side_container {
-        > h2 {
-          font-size: 24px;
-          text-align: center;
-        }
-      }
-      .content__actions {
-        flex-direction: column;
-        justify-content: center;
       }
     }
   }

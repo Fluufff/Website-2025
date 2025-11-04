@@ -6,6 +6,7 @@ import Button from '../../components/Button.astro'
 
 import readyImage from '../../assets/images/ready_to_apply.jpg'
 import Socials from '../../content/socials.astro'
+import Hero from '../../components/sections/Hero.astro'
 
 export async function getStaticPaths() {
   const roles = await getCollection('staffRoles')
@@ -26,17 +27,13 @@ const role = Astro.props.roleEntry.data
 ---
 
 <Base>
-  <Content
-    id="staff_role_hero"
-    headline={role.title + ' - ' + role.department_name + ' department'}
-    alignContent="start"
-  >
+  <Hero id="staff_role_hero" headline={role.title + ' - ' + role.department_name + ' department'} alignContent="start">
     <span class="role_status" class:list={{ open: role.open_for_applications }}
       >{role.open_for_applications ? 'Open for applications' : 'Closed for applications'}</span
     >
     <Fragment set:html={role.introduction_rendered.html} />
     <Button label="Apply here" go slot="actions" to={role.apply_form_url} newTab />
-  </Content>
+  </Hero>
   {
     role.extra_description_rendered && (
       <Content bg="darker" alignContent="start" markdown>
@@ -76,10 +73,6 @@ const role = Astro.props.roleEntry.data
   @use '../../styles/text-styles';
 
   #staff_role_hero {
-    h2 {
-      @include text-styles.heading1;
-    }
-
     span.role_status {
       display: inline-block;
       text-align: center;
@@ -96,12 +89,6 @@ const role = Astro.props.roleEntry.data
       &.open {
         background: charter.$primary100;
       }
-    }
-  }
-
-  #staff_role_desc {
-    h2:not(:first-child) {
-      margin-top: 32px;
     }
   }
 </style>

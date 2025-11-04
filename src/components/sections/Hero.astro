@@ -7,14 +7,16 @@ interface Props {
   headline: string
   image?: ImageMetadata
   alignImageLeft?: boolean
+  id?: string
+  alignContent?: 'start' | 'end' | undefined
 }
 
-const { headline, image, alignImageLeft } = Astro.props
+const { headline, image, alignImageLeft, id } = Astro.props
 ---
 
-<div class="hero">
-  {
-    !!image && (
+{
+  image ? (
+    <div id={id} class="hero">
       <Picture
         class:list={{ alignImageLeft }}
         src={image}
@@ -24,20 +26,52 @@ const { headline, image, alignImageLeft } = Astro.props
         height={612}
         widths={[400, 800, 1200, 1600]}
       />
-    )
-  }
-  <Content headline={headline}>
-    <slot />
-    {Astro.slots.has('actions') && <slot name="actions" slot={Astro.slots.has('actions') ? 'actions' : ''} />}
-  </Content>
-</div>
+      <Content headline={headline} alignContent={Astro.props.alignContent}>
+        <slot />
+        {Astro.slots.has('actions') && <slot name="actions" slot={Astro.slots.has('actions') ? 'actions' : ''} />}
+      </Content>
+    </div>
+  ) : (
+    <Content headline={headline} id={id} class="hero">
+      <slot />
+      {Astro.slots.has('actions') && <slot name="actions" slot={Astro.slots.has('actions') ? 'actions' : ''} />}
+    </Content>
+  )
+}
 
 <style lang="scss" is:global>
   @use '../../styles/text-styles';
   @use '../../styles/charter';
   @use 'sass:color';
 
-  .hero {
+  .hero > .content,
+  .hero.content {
+    align-items: flex-start;
+    justify-content: center;
+
+    > h2 {
+      text-align: left;
+    }
+
+    > p {
+      text-align: left;
+    }
+
+    .content__actions {
+      margin-top: 64px;
+      justify-content: flex-start;
+    }
+
+    @media (min-width: 900px) {
+      padding: 80px 104px;
+
+      > h2 {
+        @include text-styles.heading1;
+      }
+    }
+  }
+
+  .hero:not(.content) {
     display: flex;
     flex-direction: row;
     position: relative;
@@ -57,35 +91,16 @@ const { headline, image, alignImageLeft } = Astro.props
         }
       }
     }
-
     > picture,
     > .content {
       width: 50%;
       box-sizing: border-box;
       overflow: hidden;
     }
-
-    > .content {
-      padding: 80px 104px;
-    }
-
-    > .content > .content__container {
-      align-items: flex-start;
-      justify-content: center;
-      > h2 {
-        @include text-styles.heading1;
-      }
-      > p {
-        text-align: left;
-      }
-      > .content__actions {
-        margin-top: 64px;
-      }
-    }
   }
 
   @media (max-width: 900px) {
-    .hero {
+    .hero:not(.content) {
       position: relative;
       flex-direction: column;
       width: 100%;
