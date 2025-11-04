@@ -26,13 +26,13 @@ const { headline, image, alignImageLeft, id } = Astro.props
         height={612}
         widths={[400, 800, 1200, 1600]}
       />
-      <Content headline={headline} alignContent={Astro.props.alignContent}>
+      <Content headline={headline} alignContent={Astro.props.alignContent || 'start'}>
         <slot />
         {Astro.slots.has('actions') && <slot name="actions" slot={Astro.slots.has('actions') ? 'actions' : ''} />}
       </Content>
     </div>
   ) : (
-    <Content headline={headline} id={id} class="hero">
+    <Content headline={headline} id={id} class="hero" alignContent={Astro.props.alignContent}>
       <slot />
       {Astro.slots.has('actions') && <slot name="actions" slot={Astro.slots.has('actions') ? 'actions' : ''} />}
     </Content>
@@ -44,24 +44,13 @@ const { headline, image, alignImageLeft, id } = Astro.props
   @use '../../styles/charter';
   @use 'sass:color';
 
+  .hero .content__actions {
+    margin-top: 64px;
+    //justify-content: flex-start;
+  }
+
   .hero > .content,
   .hero.content {
-    align-items: flex-start;
-    justify-content: center;
-
-    > h2 {
-      text-align: left;
-    }
-
-    > p {
-      text-align: left;
-    }
-
-    .content__actions {
-      margin-top: 64px;
-      justify-content: flex-start;
-    }
-
     @media (min-width: 900px) {
       padding: 80px 104px;
 
