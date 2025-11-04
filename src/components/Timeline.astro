@@ -1,0 +1,82 @@
+---
+interface Props {
+  items: string[]
+}
+---
+
+<ol class="timeline">
+  {Astro.props.items.map((item) => <li>{item}</li>)}
+</ol>
+
+<style lang="scss" is:global>
+  @use '../styles/charter';
+  @use '../styles/text-styles';
+
+  ol.timeline {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    padding: 0;
+    margin: 32px 0 0 0;
+    max-width: 330px;
+
+    gap: 80px;
+
+    counter-reset: timeline;
+
+    @media (max-width: 400px) {
+      gap: 48px;
+    }
+
+    &:before {
+      display: block;
+      position: absolute;
+      content: '';
+      width: 4px;
+      height: 100%;
+      margin: 0 auto;
+      background: charter.$primary100;
+      left: 50%;
+      left: calc(50% - 2px);
+    }
+
+    li {
+      display: flex;
+      flex-direction: column;
+      counter-increment: timeline;
+      align-items: center;
+      text-align: center;
+      z-index: 1;
+      gap: 22px;
+      padding: 22px 0;
+      background: charter.$neutrals100;
+      @include text-styles.heading4;
+
+      @media (max-width: 400px) {
+        padding: 12px 0;
+      }
+
+      &:before {
+        display: flex;
+        align-items: center;
+        text-align: center;
+        vertical-align: middle;
+        justify-content: center;
+        content: counter(timeline);
+        @include text-styles.heading3;
+        color: charter.$neutrals100;
+        background: charter.$accent600;
+        border-radius: 100%;
+        width: 64px;
+        height: 64px;
+
+        @media (max-width: 400px) {
+          width: 48px;
+          height: 48px;
+          @include text-styles.heading4;
+        }
+      }
+    }
+  }
+</style>

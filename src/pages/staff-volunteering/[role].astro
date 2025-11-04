@@ -7,6 +7,7 @@ import Button from '../../components/Button.astro'
 import readyImage from '../../assets/images/ready_to_apply.jpg'
 import Socials from '../../content/socials.astro'
 import Hero from '../../components/sections/Hero.astro'
+import Timeline from '../../components/Timeline.astro'
 
 export async function getStaticPaths() {
   const roles = await getCollection('staffRoles')
@@ -60,6 +61,14 @@ const role = Astro.props.roleEntry.data
       We try to respond within a couple weeks — if we're slow, it's not you, it's us (we’re probably rebooting
       something).
     </p>
+    <Timeline
+      items={[
+        'You fill out the form and tell us a bit about yourself',
+        "We check if there's a match and forward it to the team",
+        "If we're interested, we’ll reach out for a follow-up",
+        "If it's a go, we’ll get you all set up and onboarded"
+      ]}
+    />
   </Content>
   <Content bg="primary-light" headline="Not quite what you're looking for?">
     <p>We have more openings across the convention departments.</p>

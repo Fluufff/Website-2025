@@ -22,16 +22,16 @@
     <table>
       <thead>
         <tr>
-          <th>Department</th>
           <th>Role</th>
+          <th>Department</th>
           <th>Work Model</th>
           <th>Status</th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="role in searchResults" :key="role.slug">
-          <td>{{ role.department_name }}</td>
           <td>{{ role.title }}</td>
+          <td>{{ role.department_name }}</td>
           <td>{{ role.work_model }}</td>
           <td>
             <div class="jobs-table__status-container">
@@ -191,7 +191,7 @@ const jsEnabled = useMounted()
         text-align: left;
         color: charter.$neutrals100;
 
-        &:first-child {
+        &:nth-child(2) {
           width: 250px;
         }
 
@@ -332,17 +332,16 @@ const jsEnabled = useMounted()
       }
 
       &:first-child {
+        @include text-styles.heading4;
+        margin-bottom: 24px;
+      }
+
+      &:nth-child(2) {
         @include text-styles.display2Regular;
         margin-bottom: 10px;
         &:before {
           content: 'Department: ';
         }
-      }
-
-      &:nth-child(2) {
-        @include text-styles.heading4;
-        margin-bottom: 24px;
-        order: -1;
       }
 
       &:nth-child(3) {
