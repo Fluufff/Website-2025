@@ -1,6 +1,5 @@
 ---
 import Logo from '../../assets/logo.svg'
-import Button from '../Button.astro'
 
 function ariaCurrent(routePattern: string) {
   return Astro.routePattern === routePattern ? 'page' : undefined
@@ -11,12 +10,9 @@ function ariaCurrent(routePattern: string) {
   <a id="header_logo" href="/"><Logo height={48} width="" /></a>
   <nav id="header_links">
     <a href="/" aria-current={ariaCurrent('/')}>Home</a>
-    <a href="/attend" aria-current={ariaCurrent('/attend')}>Attend</a>
-    <a href="/program" aria-current={ariaCurrent('/program')}>Program</a>
     <a href="/about" aria-current={ariaCurrent('/about')}>About</a>
     <a href="/staff-volunteering" aria-current={ariaCurrent('/staff-volunteering')}>Staff & Volunteering</a>
     <a href="/contact" aria-current={ariaCurrent('/contact')}>Contact</a>
-    <Button label="Register" to="https://registration.fluufff.org" />
   </nav>
 </nav>
 {
@@ -24,9 +20,9 @@ function ariaCurrent(routePattern: string) {
 <div class="registration_banner">
   <div class="registration_banner_text">Flüüfff starts in…</div>
   <Countdown targetDate="2025-11-05T08:00:00Z" client:load />
-</div>*/
+</div>
+*/
 }
-
 <style is:global lang="scss">
   @use '../../styles/charter';
   @use '../../styles/text-styles';
@@ -38,7 +34,7 @@ function ariaCurrent(routePattern: string) {
     justify-content: center;
     align-items: center;
     gap: 20px;
-    background: charter.$accent700;
+    background: charter.$accent1-600;
 
     &.dark {
       padding: 20px;
@@ -64,7 +60,7 @@ function ariaCurrent(routePattern: string) {
     }
 
     #registration_banner_countdown .label {
-      color: charter.$accent300;
+      color: charter.$accent1-300;
       font-family: var(--font-inter), sans-serif;
       font-size: 12px;
       font-style: normal;
@@ -76,7 +72,7 @@ function ariaCurrent(routePattern: string) {
     .registration_banner_text,
     #registration_banner_countdown {
       color: charter.$neutrals100;
-      font-family: var(--font-gatsby), sans-serif;
+      font-family: var(--font-atari), sans-serif;
       font-size: 32px;
       font-style: normal;
       font-weight: 400;

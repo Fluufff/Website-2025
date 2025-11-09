@@ -144,10 +144,10 @@ function parseTimes(time: OpenTime): [DateTime, DateTime] {
 
     &.ongoing {
       background: charter.$primary100;
-      color: charter.$accent700;
+      color: charter.$accent1-700;
 
       &:before {
-        background: charter.$accent600;
+        background: charter.$accent1-600;
       }
     }
 

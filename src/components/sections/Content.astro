@@ -8,7 +8,7 @@ interface Props {
   markdown?: boolean | undefined
   wider?: boolean | undefined
   id?: string | undefined
-  bg?: 'darker' | 'primary' | 'primary-light' | undefined
+  bg?: 'primary' | 'secondary' | undefined
   class?: string | undefined
   alignContent?: 'start' | 'end' | undefined
 }
@@ -63,7 +63,7 @@ const { headline, markdown, bg, sideImage, right, id, wider, alignContent } = As
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    color: charter.$neutrals700;
+    color: charter.$primary800;
     background: charter.$neutrals100;
     position: relative;
 
@@ -187,7 +187,7 @@ const { headline, markdown, bg, sideImage, right, id, wider, alignContent } = As
       > p {
         @include text-styles.paragraphMediumRegular;
         text-align: center;
-        color: charter.$neutrals600;
+        color: charter.$primary800;
 
         & + p {
           margin-top: 32px;
@@ -197,26 +197,22 @@ const { headline, markdown, bg, sideImage, right, id, wider, alignContent } = As
 
     // Colors
 
-    &.darker {
-      background: charter.$neutrals300;
-    }
-
-    &.primary-light {
-      background: charter.$primary100;
+    &.secondary {
+      background: charter.$secondary50;
     }
 
     &.primary {
-      background: charter.$primary500;
-      color: charter.$neutrals100;
-
-      p {
-        color: charter.$neutrals100;
-      }
+      background: charter.$primary50;
 
       .button {
-        background: charter.$neutrals100;
-        border-color: charter.$neutrals100;
-        color: charter.$primary500;
+        color: charter.$neutrals100;
+        background: charter.$primary500;
+        border-color: charter.$primary500;
+
+        &.outline {
+          background: charter.$neutrals100;
+          color: charter.$primary500;
+        }
       }
     }
 

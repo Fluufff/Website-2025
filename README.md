@@ -1,4 +1,4 @@
-# Fluufff website 2025
+# Flüüfff website 2025
 
 ## Quick start
 

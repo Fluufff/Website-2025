@@ -1,29 +1,61 @@
 ---
 import { Icon } from 'astro-icon/components'
-import Content from '../components/sections/Content.astro'
 ---
 
-<Content headline="Join the Flüüfff community!" bg="primary" class="socials">
-  <div class="socials__list">
-    <a href="https://t.me/fluufff_announcements" target="_blank" rel="noreferrer"><Icon name="cib:telegram-plane" /></a>
-    <a href="https://www.facebook.com/fluufff/" target="_blank" rel="noreferrer"><Icon name="mdi:facebook" /></a>
-    <a href="https://twitter.com/FluufffCon" target="_blank" rel="noreferrer"><Icon name="mdi:twitter" /></a>
-    <a href="https://bsky.app/profile/fluufffcon.bsky.social" target="_blank" rel="noreferrer"
-      ><Icon name="ri:bluesky-fill" /></a
-    >
-    <a href="https://youtube.com/@fluufff" target="_blank" rel="noreferrer"><Icon name="ri:youtube-fill" /></a>
+<div class="socials">
+  <div class="socials__container">
+    <h2>Join the Flüüfff community!</h2>
+    <div class="socials__list">
+      <a href="https://t.me/fluufff_announcements" target="_blank" rel="noreferrer"
+        ><Icon name="cib:telegram-plane" /></a
+      >
+      <a href="https://www.facebook.com/fluufff/" target="_blank" rel="noreferrer"><Icon name="mdi:facebook" /></a>
+      <a href="https://twitter.com/FluufffCon" target="_blank" rel="noreferrer"><Icon name="mdi:twitter" /></a>
+      <a href="https://bsky.app/profile/fluufffcon.bsky.social" target="_blank" rel="noreferrer"
+        ><Icon name="ri:bluesky-fill" /></a
+      >
+      <a href="https://youtube.com/@fluufff" target="_blank" rel="noreferrer"><Icon name="ri:youtube-fill" /></a>
+    </div>
   </div>
-</Content>
+</div>
 <style lang="scss" is:global>
   @use '../styles/charter';
   @use '../styles/text-styles';
 
-  .content.socials {
-    flex-direction: row;
-    justify-content: space-between;
+  .socials {
+    padding: 80px 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @media (max-width: 600px) {
+      padding: 20px 16px;
+    }
+
+    &__container {
+      display: flex;
+      max-width: 1400px;
+      width: 100%;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+    }
+
+    background: charter.$accent1-500;
 
     h2 {
+      @include text-styles.heading2;
       margin: 0;
+      font-size: 24px;
+      line-height: 32px;
+      color: charter.$neutrals100;
+      text-align: center;
+
+      @media (max-width: 600px) {
+        font-size: 20px;
+        line-height: 28px;
+      }
     }
 
     .socials__list {
@@ -44,16 +76,19 @@ import Content from '../components/sections/Content.astro'
 
         [data-icon] {
           font-size: 24px;
-          color: charter.$primary500;
+          color: charter.$accent1-500;
         }
       }
     }
   }
 
-  @media (max-width: 900px) {
+  @media (max-width: 800px) {
     .socials {
-      gap: 16px;
-      flex-direction: column;
+      .socials__container {
+        gap: 16px;
+        flex-direction: column;
+      }
+
       .socials__list {
         justify-content: center;
       }

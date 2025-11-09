@@ -50,6 +50,21 @@ export default defineConfig({
             ]
           }
         ]
+      },
+      {
+        name: 'Atari',
+        provider: 'local',
+        cssVariable: '--font-atari',
+        variants: [
+          {
+            weight: 400,
+            style: 'normal',
+            src: [
+              './src/assets/fonts/atari/AtariFontFullVersion.woff2',
+              './src/assets/fonts/atari/AtariFontFullVersion.woff'
+            ]
+          }
+        ]
       }
     ]
   }

@@ -33,44 +33,47 @@ const role = Astro.props.roleEntry.data
       >{role.open_for_applications ? 'Open for applications' : 'Closed for applications'}</span
     >
     <Fragment set:html={role.introduction_rendered.html} />
-    <Button label="Apply here" go slot="actions" to={role.apply_form_url} newTab />
+    {role.open_for_applications && <Button label="Apply here" go slot="actions" to={role.apply_form_url} newTab />}
   </Hero>
   {
     role.extra_description_rendered && (
-      <Content bg="darker" alignContent="start" markdown>
+      <Content bg="secondary" alignContent="start" markdown>
         <Fragment set:html={role.extra_description_rendered.html} />
       </Content>
     )
+  }{
+    role.open_for_applications && (
+      <>
+        <Content bg="primary" markdown={!!role.call_to_action_rendered} alignContent="start" sideImage={readyImage}>
+          {role.call_to_action_rendered ? (
+            <Fragment set:html={role.call_to_action_rendered.html} />
+          ) : (
+            <>
+              <h2>Ready to apply?</h2>
+              <p>Got a GitHub full of haunted projects or just excited to help out? We’d love to hear from you.</p>
+              <p>Click the button, fill out the form, and tell us what makes you tick.</p>
+            </>
+          )}
+          <Button label="Apply now" go slot="actions" to={role.apply_form_url} newTab />
+        </Content>
+        <Content headline="What happens after you apply">
+          <p>
+            We try to respond within a couple weeks — if we're slow, it's not you, it's us (we’re probably rebooting
+            something).
+          </p>
+          <Timeline
+            items={[
+              'You fill out the form and tell us a bit about yourself',
+              "We check if there's a match and forward it to the team",
+              "If we're interested, we’ll reach out for a follow-up",
+              "If it's a go, we’ll get you all set up and onboarded"
+            ]}
+          />
+        </Content>
+      </>
+    )
   }
-  <Content bg="primary-light" markdown={!!role.call_to_action_rendered} alignContent="start" sideImage={readyImage}>
-    {
-      role.call_to_action_rendered ? (
-        <Fragment set:html={role.call_to_action_rendered.html} />
-      ) : (
-        <>
-          <h2>Ready to apply?</h2>
-          <p>Got a GitHub full of haunted projects or just excited to help out? We’d love to hear from you.</p>
-          <p>Click the button, fill out the form, and tell us what makes you tick.</p>
-        </>
-      )
-    }
-    <Button label="Apply now" go slot="actions" to={role.apply_form_url} newTab />
-  </Content>
-  <Content headline="What happens after you apply">
-    <p>
-      We try to respond within a couple weeks — if we're slow, it's not you, it's us (we’re probably rebooting
-      something).
-    </p>
-    <Timeline
-      items={[
-        'You fill out the form and tell us a bit about yourself',
-        "We check if there's a match and forward it to the team",
-        "If we're interested, we’ll reach out for a follow-up",
-        "If it's a go, we’ll get you all set up and onboarded"
-      ]}
-    />
-  </Content>
-  <Content bg="primary-light" headline="Not quite what you're looking for?">
+  <Content bg="primary" headline="Not quite what you're looking for?">
     <p>We have more openings across the convention departments.</p>
     <Button label="See all positions" go to="/staff-volunteering#open_roles" slot="actions" outline />
   </Content>

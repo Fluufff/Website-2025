@@ -14,26 +14,30 @@ import FaqItem from '../content/FaqItem.astro'
 ---
 
 <Base>
-  <Hero headline="About Flüüfff – where memories take root" image={heroImage}>
-    <p>Flüüfff is a place where creatures gather, friendships grow, and creativity runs wild.</p>
-    <p>Here’s everything you need to know about our little corner of the forest.</p>
-  </Hero>
-  <Content headline="What is Flüüfff?" bg="darker">
+  <Hero headline="Enter the Flüüfffverse" image={heroImage}>
     <p>
-      Flüüfff 2025 is the 7th edition of the Flüüfff convention.<br />
-      It is all about bringing furries together in one place to share friendship, fun, and creativity — values our community
-      can be proud of. You don’t have to be a furry to join the celebration!
+      Where creatures connect, stories unfold, and imagination goes full pixel mode. Here’s everything you need before
+      you press start.
+    </p>
+  </Hero>
+  <Content headline="What is Flüüfff?" bg="secondary">
+    <p>Flüüfff 2026 is the 8th edition of the Flüüfff convention.</p>
+
+    <p>
+      It is an annual nonprofit gathering of furries from across Belgium (and far beyond!) — for fun, for creativity,
+      for self-expression, and for joy. From late-night dances to cozy panels, from chaotic karaoke to quiet corners,
+      Flüüfff is what you make of it.
     </p>
 
     <p>
-      The convention lasts 5 days and can be enjoyed in many ways:<br /> Dance like a party animal, lounge with friends,
-      play board-games, attend panels or participate in one of the many activities.
+      As a project hosted and run by volunteers through a nonprofit organization (ASBL/VZW), we depend on the amazing
+      people who give their time, energy and heart to make this event happen.
     </p>
   </Content>
   <Content headline="Our mission" sideImage={missionImage} right id="mission">
     <p>
       Flüüfff is Belgium’s premier furry convention—a vibrant, five-day celebration of anthropomorphic creativity,
-      community, and joy. Held annually in Brussels, Flüüfff brings together furries and friends from across Europe and
+      community, and joy. Held annually in Belgium, Flüüfff brings together furries and friends from across Europe and
       beyond to share in a spirit of inclusivity, imagination, and fun.
     </p>
 
@@ -51,7 +55,7 @@ import FaqItem from '../content/FaqItem.astro'
     </p>
 
     <p>
-      As a registered non-profit organization (ASBL), we reinvest all proceeds into enhancing future events or
+      As a registered non-profit organisation (ASBL/VZW), we reinvest all proceeds into enhancing future events or
       supporting charitable causes, reflecting our dedication to giving back to the community that makes Flüüfff
       possible.
     </p>
@@ -63,22 +67,22 @@ import FaqItem from '../content/FaqItem.astro'
       The furry fandom is a community inspired by anthropomorphic animals (animals with human traits).<br />
       People who are part of the fandom are called furries.
     </p>
-    <p>You can compare it to other fan communities like Star Wars, anime, or fantasy fairs.</p>
     <p>
-      The furry fandom is mainly about creativity and is also known as a very social community. Most furries create
-      their own character (also called a fursona), based on a certain animal, real or otherwise.
+      You can compare it to other fan communities like Star Wars, anime, or fantasy fairs.<br />
+      The furry fandom is mainly about creativity and is also known as a very social community. Most furries create their
+      own character (also called a fursona), based on a certain animal, real or otherwise.
     </p>
     <p>
       There are regular animals, hybrids, mythical creatures, and some even invent their own species. If there’s a
       meetup or convention, you’ll likely find people wearing fursuits — costumes based on their fursona.
     </p>
     <p>
-      At conventions and within the community, it’s all about creating art, writing stories, roleplaying, socializing,
+      At conventions and within the community, it’s all about creating art, writing stories, roleplaying, socialising,
       and making and wearing fursuits.
     </p>
     <p>Most furry conventions and several furry groups also raise funds and organize panels for various charities.</p>
   </Content>
-  <Content headline="Meet the Dream Team" bg="primary-light" id="dreamteam">
+  <Content headline="Meet the Dream Team" bg="primary" id="dreamteam">
     <p>
       Flüüfff wouldn’t happen without the amazing crew working behind the scenes.<br />
       From handling the big picture to sorting out the smallest details, our team of staff and volunteers makes sure everything
@@ -86,32 +90,28 @@ import FaqItem from '../content/FaqItem.astro'
     </p>
     <p>They’re the ones making sure the con feels like home — year after year.</p>
     <div id="dream_team_peeps">
-      <Peep name="Jawbreaker" title={['Chairdragon', 'Head of Hotel Relations']} icon="Jawbreaker.png" />
-      <Peep name="Faelan" title={['Secretary', 'Head of Registration']} icon="Faelan.png" />
-      <Peep name="Vrydi" title={['Treasurer', 'Head of Accounting', 'Deputy of Conbook']} icon="Vrydi.jpg" />
-      <Peep name="Aelkan" title={['Vice-President', 'Head of HR', 'Head of PR']} icon="Aelkan.jpg" />
-      <Peep name="Kazuma" title="Head of Art" />
-      <Peep name="Vhydra" title="Deputy of Art" />
+      <Peep name="Jawbreaker" title={['Chairman', 'Head of HR', 'Head of Logistics']} icon="Jawbreaker.png" />
+      <Peep name="Faelan" title={['Head of Registration & Venue']} icon="Faelan.png" />
+      <Peep name="Vrydi" title={['Head of Accounting', 'Deputy of Theming']} icon="Vrydi.jpg" />
       <Peep name="Niki" title="Head of Bar" icon="Niki.png" />
       <Peep name="Amaroq" title="Deputy of Bar" />
       <Peep name="DD" title="Deputy of Bar" />
-      <Peep name="Goomuin" title="Head of Conbook" icon="Goomuin.jpg" />
       <Peep name="Azana" title="Head of Dealer's Den" icon="Azana.png" />
       <Peep name="Alex Dax" title="Deputy of Dealer's Den" />
-      <Peep name="Larixe" title={['Deputy of Decorations', 'Deputy of HR']} />
       <Peep name="Nimalen" title="Head of Entertainment" />
+      <Peep name="Dacia" title="Head of Entertainment" icon="Dacia.png" />
+      <Peep name="Bleats" title={['Head of Feedback', 'Deputy of Stewards & Safety']} icon="Bleats.png" />
       <Peep name="Jenky" title="Head of Fursuit Affairs" />
-      <Peep name="Alexis" title="Deputy of Hotel Relations" icon="Alexis.jpg" />
+      <Peep name="Lilyheart Panda" title="Deputy of HR" icon="Lilyheart.png" />
       <Peep name="Juravenator" title="Head of IT" icon="Jura.png" />
       <Peep name="Proko" title="Deputy of IT" icon="Proko.jpg" />
-      <Peep name="Cyber" title="Deputy of PR" icon="Cyber.png" />
-      <Peep name="Akylian" title="Deputy of Registration" icon="Akylian.png" />
+      <Peep name="Cyber" title="Head of PR" icon="Cyber.png" />
+      <Peep name="Akylian" title="Deputy of Registration & Venue" icon="Akylian.png" />
       <Peep name="Kanso" title="Head of Stage" />
       <Peep name="Thinder" title="Deputy of Stage" icon="Thinder.png" />
       <Peep name="Narf" title="Head of Stewards & Safety" icon="Narf.jpg" />
       <Peep name="Milo" title="Deputy of Stewards & Safety" icon="Milo.png" />
-      <Peep name="Bleats" title="Deputy of Stewards & Safety" icon="Bleats.png" />
-      <Peep name="Choob" title="Head of Feedback" icon="Choob.jpg" />
+      <Peep name="Goomuin" title="Head of Theming" icon="Goomuin.jpg" />
     </div>
   </Content>
   <Socials />
@@ -120,20 +120,13 @@ import FaqItem from '../content/FaqItem.astro'
       <p>Of course! You can contact us through the contact form and we’ll look into it.</p>
       <p>But the best way to support Flüüfff is simply by attending and spreading the word.</p>
     </FaqItem>
-    {
-      /*<FaqItem question="Are there rules during the convention?" />
-    <FaqItem question="Where can I find the websites of previous editions?" /> */
-    }
+    <FaqItem question="What are the rules during the convention?">
+      You can find the full Code of Conduct and Convention Rules <a href="/terms">here</a>.
+    </FaqItem>
     <FaqItem question="Do I need to be 18 or older to attend?">
-      <p>Yes. Flüüfff is an 18+ event, even if some parts are family-friendly in nature.</p>
+      <p>Yes. Flüüfff is an <strong>18+ event</strong>, even if some parts are family-friendly in nature.</p>
       <p>This is for legal, insurance, and community safety reasons.</p>
       <p>All attendees must be 18 or older at the start of the convention — no exceptions.</p>
-    </FaqItem>
-    <FaqItem question="What if I don't know anyone?">
-      <p>
-        That’s completely okay. Flüüfff is full of friendly faces, quiet corners, and fun things to do. Many people come
-        solo and leave with new connections.
-      </p>
     </FaqItem>
     <FaqItem question="How do I find out what's happening during the convention?">
       <p>
@@ -141,6 +134,12 @@ import FaqItem from '../content/FaqItem.astro'
         website when it is published!
       </p>
       <p>Our team will also post updates on site and via our Telegram channels.</p>
+    </FaqItem>
+    <FaqItem question="What if I don't know anyone?">
+      <p>
+        That’s completely okay. Flüüfff is full of friendly faces, quiet corners, and fun things to do. Many people come
+        solo and leave with new connections.
+      </p>
     </FaqItem>
   </Faq>
 </Base>

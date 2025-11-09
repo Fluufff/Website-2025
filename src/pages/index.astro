@@ -6,7 +6,6 @@ import Button from '../components/Button.astro'
 
 import heroImage from '../assets/images/hero/welcome.png'
 import attend from '../assets/images/attend.jpg'
-import hotel from '../assets/images/hotel_rooftop.png'
 
 import Program_preview from '../content/program_preview.astro'
 import Fun_facts from '../content/fun_facts.astro'
@@ -17,74 +16,40 @@ import FaqItem from '../content/FaqItem.astro'
 ---
 
 <Base>
-  <Hero headline="Enter the forest" image={heroImage} alignImageLeft>
+  <Hero headline="Press start!" image={heroImage} alignImageLeft>
     <p>
-      This year, when the veil between worlds grows thin, a hidden forest stirs. Creatures of every shape and stripe
-      gather under lush, green branches. Flüüfff returns for its 7th edition—this time, as a Forest Fantasy nestled in
-      the heart of Brussels.
+      This year, when the console boots and the pixels light up, a new world invites you in. Furry heroes, paws at the
+      ready, gear up for a colourful adventure where every level is both familiar and fresh. Flüüfff 2026 launches into
+      its next edition; this time, in full retro-arcade style.
     </p>
-    <Fragment slot="actions">
-      <Button label="Join the fantasy" go to="https://registration.fluufff.org" />
-      <Button label="Explore the program" outline to="/program" />
-    </Fragment>
   </Hero>
-  <Content headline="Welcome to Flüüfff!" bg="darker">
+  <Content headline="Welcome to Flüüfff!" bg="secondary">
     <p>
-      Flüüfff is a Belgian furry convention right in the heart of Brussels!<br />
-      It’s a 5-day celebration of everything furry — a place where fans of anthropomorphic characters, their friends, and
-      curious visitors come together to connect, celebrate, and have fun.
+      Five days. Infinite side-quests. One massive co-op party.<br />
+      Grab your controller (or tail), choose your avatar, and spawn into a world full of colour, laughter, and creative chaos.
+      Whether you’re grinding for badges, exploring new maps, or just here for the vibes, every player adds something unique
+      to the game. So plug in, <strong>press Start</strong> and let’s play!
     </p>
-    <p>
-      This year, Flüüfff takes place from <strong>November 5th to 9th, 2025</strong>, at the <strong
-        >Bedford Hotel & Congress Center</strong
-      >.
-    </p>
-    <Button slot="actions" label="Learn more about Flüüfff" outline to="/about" />
+    <p>This year, Flüüfff takes place in Belgium from the 11th to the 15th of November 2026.</p>
+    <Button slot="actions" label="Learn more about Flüüfff" outline to="/about" go />
   </Content>
   <Program_preview />
-  <Content headline="Why Attend Flüüfff?" sideImage={attend} bg="darker">
+  <Content headline="Why attend Flüüfff?" sideImage={attend} bg="primary">
     <p>
       Flüüfff is one of the oldest furry conventions in Belgium, small enough to be cozy and big enough to be fun. It’s
-      a place where you can express yourself freely, meet kindred spirits, and celebrate what makes you come alive —
+      a place where you can express yourself freely, meet kindred spirits, and celebrate what makes you come alive,
       whether that’s in fur, feathers, or something all your own. No suit required. No experience needed. Just curiosity
       and an open mind.
     </p>
     <Fragment slot="actions">
-      <Button label="Register" go to="https://registration.fluufff.org" />
+      <Button label="Contact us" go to="/contact" />
       <Button label="Learn more" outline to="/about" />
     </Fragment>
   </Content>
   <Fun_facts />
   <Highlights />
-  <Content headline="About the location" bg="darker" sideImage={hotel}>
-    <p>
-      Located just steps from Brussels' historic heart, the
-      <strong>Bedford Hotel & Congress Center</strong>
-      offers everything you need for a comfortable and hassle-free convention stay.
-    </p>
-    <p>
-      With spacious rooms, a cozy on-site breakfast restaurant, and easy access to public transport, it’s the ideal base
-      to relax, connect, and explore the city between Flüüfff activities.
-    </p>
-    <Button slot="actions" label="Learn more about attending" outline to="/attend#hotel" />
-  </Content>
   <Socials />
   <Faq>
-    <FaqItem question="How can I pay for food and drinks at the hotel?">
-      You can pay directly at the hotel bar. They accept most common payment methods including debit cards. Prices are
-      reasonable, and breakfast is included if you have a residential ticket.
-    </FaqItem>
-    <FaqItem question="Does the hotel have a car park?">
-      No, but there is one nearby at Parking Panorama — Flüüfff attendees pay €13/day (ask for discount at the hotel
-      reception).
-    </FaqItem>
-    <FaqItem question="I have a food allergy/intolerance. What should I do?">
-      Please inform the hotel staff directly if you have food allergies. The breakfast restaurant at the Bedford Hotel
-      offers a varied buffet and à la carte options, and they are usually able to accommodate dietary needs.
-    </FaqItem>
-    <FaqItem question="Does the hotel have Wifi?">
-      Yes, the Bedford Hotel offers free WiFi in both rooms and public areas.
-    </FaqItem>
     <FaqItem question="Can I pay in installments?">
       Installment payment is not officially offered. Tickets must be paid in full at registration unless a specific
       arrangement has been made.

@@ -13,7 +13,7 @@
       />
       <MultiSelect
         v-model="selectedWorkmodels"
-        :options="['Pre-con', 'On-site', 'Hybrid']"
+        :options="['Pre-Con', 'On-site', 'Hybrid']"
         placeholder="All work models"
         :show-toggle-all="false"
       />
@@ -38,7 +38,7 @@
               <span :class="{ open: role.open_for_applications }">{{
                 role.open_for_applications ? 'Open for applications' : 'Closed for applications'
               }}</span>
-              <a :href="'/staff-volunteering/' + role.slug"><ChevronRightIcon /></a>
+              <a v-if="role.open_for_applications" :href="'/staff-volunteering/' + role.slug"><ChevronRightIcon /></a>
             </div>
           </td>
         </tr>
@@ -138,7 +138,7 @@ const jsEnabled = useMounted()
       display: flex;
       cursor: pointer;
       align-items: center;
-      border-bottom: solid 1px charter.$primary400;
+      border-bottom: solid 1px charter.$secondary400;
       user-select: none;
 
       [data-pc-section='labelcontainer'] {
@@ -162,7 +162,7 @@ const jsEnabled = useMounted()
         padding: 16px 32px 16px 0;
         outline: 0;
 
-        border-bottom: solid 1px charter.$primary400;
+        border-bottom: solid 1px charter.$secondary400;
       }
 
       svg {
@@ -179,12 +179,12 @@ const jsEnabled = useMounted()
     margin-top: 32px;
     border-radius: 8px;
     overflow: hidden;
-    border: solid 1px charter.$primary500;
+    border: solid 1px charter.$secondary500;
     border-spacing: 0;
     table-layout: fixed;
 
     thead {
-      background: charter.$primary500;
+      background: charter.$secondary500;
 
       th {
         padding: 24px 22px;
@@ -213,11 +213,11 @@ const jsEnabled = useMounted()
         transition: 0.2s ease-out background-color;
 
         &:hover {
-          background: charter.$neutrals300;
+          background: charter.$secondary50;
         }
 
         & + tr td {
-          border-top: solid 1px charter.$primary500;
+          border-top: solid 1px charter.$secondary500;
         }
 
         a::after {
@@ -237,7 +237,7 @@ const jsEnabled = useMounted()
         &.empty {
           text-align: center;
           color: charter.$neutrals600;
-          background: charter.$neutrals300;
+          background: charter.$neutrals100;
         }
       }
     }
@@ -258,7 +258,7 @@ const jsEnabled = useMounted()
         @include text-styles.display2SemiBold;
 
         &.open {
-          background: charter.$primary100;
+          background: charter.$accent1-100;
         }
       }
     }
@@ -304,7 +304,7 @@ const jsEnabled = useMounted()
       display: flex;
       flex-direction: column;
       align-items: stretch;
-      border: solid 1px charter.$neutrals300;
+      border: solid 1px charter.$neutrals400;
       border-radius: 8px;
       padding: 24px;
 
@@ -390,12 +390,12 @@ const jsEnabled = useMounted()
     @include text-styles.paragraphMediumRegular;
 
     &:hover {
-      background-color: charter.$neutrals300;
+      background-color: charter.$secondary50;
     }
 
     &[aria-selected='true'] {
-      background-color: charter.$primary100;
-      color: charter.$primary500;
+      background-color: charter.$secondary100;
+      color: charter.$secondary500;
     }
 
     [data-pc-name='pcoptioncheckbox'] {

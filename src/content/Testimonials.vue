@@ -1,5 +1,5 @@
 ﻿<template>
-  <div class="staff_testimonials content primary-light">
+  <div class="staff_testimonials content primary">
     <div class="staff_testimonials__header">
       <div class="staff_testimonials__title">
         <h2>Love for Flüüfff</h2>

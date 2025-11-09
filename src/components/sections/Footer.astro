@@ -24,28 +24,12 @@ import { Icon } from 'astro-icon/components'
     <a href="/about#dreamteam">Dream Team</a>
   </div>
   <div class="footer__links">
-    <h4><a href="/attend">Attend</a></h4>
-    <a href="/attend#tickets">Tickets</a>
-    <a href="/attend#hotel">Hotel + Rooms</a>
-    <a href="/attend#our_favorite_restaurants">Food and drinks</a>
-    <a href="/attend#getting_there">Practical info</a>
-    <a href="/terms">Terms and Rules</a>
-  </div>
-  <div class="footer__links">
-    <h4><a href="/program">Program</a></h4>
-    <a href="/program#program_preview">Dances</a>
-    <a href="/program#program_preview">Dealer's den</a>
-    <a href="/program#program_preview">Panels</a>
-    <a href="/program#program_preview">Flüüfff Finale</a>
-    <a href="/program#host_your_own">Host your own</a>
-  </div>
-  <div class="footer__links">
     <h4><a href="/contact">Contact us</a></h4>
     <a href="/contact">Get in touch</a>
   </div>
 </footer>
 <div class="footer_legals">
-  <span>Copyright © 2025 Flüüfff</span>
+  <span>Copyright © 2026 Flüüfff</span>
   <span>All Rights Reserved</span>
   <a href="/terms">Terms and Conditions</a>
   <a href="/privacy">Privacy Policy</a>
@@ -69,7 +53,7 @@ import { Icon } from 'astro-icon/components'
       gap: 32px;
 
       > .footer__socials__logo {
-        fill: charter.$neutrals600;
+        fill: charter.$primary700;
       }
 
       > .socials__list {
@@ -83,7 +67,7 @@ import { Icon } from 'astro-icon/components'
           justify-content: center;
           height: 24px;
           width: 24px;
-          background: charter.$secondary500;
+          background: charter.$accent1-500;
           border-radius: 5px;
 
           [data-icon] {
@@ -103,12 +87,11 @@ import { Icon } from 'astro-icon/components'
       h4 a {
         @include text-styles.display3SemiBold;
         margin-bottom: 8px;
-        color: charter.$neutrals700;
       }
 
       a {
         @include text-styles.display3Regular;
-        color: charter.$neutrals600;
+        color: charter.$primary500;
         padding: 4px 0;
 
         &:hover {
@@ -125,7 +108,7 @@ import { Icon } from 'astro-icon/components'
     align-items: center;
     padding: 24px;
     @include text-styles.display3Regular;
-    border-top: solid 1px charter.$neutrals300;
+    border-top: solid 1px charter.$accent2-200;
 
     > * {
       display: block;
@@ -140,6 +123,7 @@ import { Icon } from 'astro-icon/components'
 
     > a {
       text-decoration: underline;
+      color: charter.$primary500;
     }
   }
 
