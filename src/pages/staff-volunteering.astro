@@ -15,13 +15,19 @@ import FaqItem from '../content/FaqItem.astro'
 import { getCollection } from 'astro:content'
 
 const rolesData = await getCollection('staffRoles')
-const rolesList = rolesData.map((role) => ({
-  title: role.data.title,
-  slug: role.data.slug,
-  work_model: role.data.work_model,
-  open_for_applications: role.data.open_for_applications,
-  department_name: role.data.department_name
-}))
+const rolesList = rolesData
+  .map((role) => ({
+    title: role.data.title,
+    slug: role.data.slug,
+    work_model: role.data.work_model,
+    open_for_applications: role.data.open_for_applications,
+    department_name: role.data.department_name
+  }))
+  .sort((a, b) =>
+    a.department_name === b.department_name
+      ? a.title.localeCompare(b.title)
+      : a.department_name.localeCompare(b.department_name)
+  )
 ---
 
 <Base>
