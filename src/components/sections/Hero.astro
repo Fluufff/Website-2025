@@ -6,19 +6,19 @@ import Content from './Content.astro'
 interface Props {
   headline: string
   image?: ImageMetadata
-  alignImageLeft?: boolean
+  alignImage?: 'left' | 'right' | undefined
   id?: string
   alignContent?: 'start' | 'end' | undefined
 }
 
-const { headline, image, alignImageLeft, id } = Astro.props
+const { headline, image, alignImage, id } = Astro.props
 ---
 
 {
   image ? (
     <div id={id} class="hero">
       <Picture
-        class:list={{ alignImageLeft }}
+        class:list={alignImage ? `align-${alignImage}` : ''}
         src={image}
         formats={['avif', 'webp']}
         fallbackFormat="jpg"
@@ -74,8 +74,11 @@ const { headline, image, alignImageLeft, id } = Astro.props
         height: 100%;
         object-fit: cover;
         object-position: center;
-        &.alignImageLeft {
+        &.align-left {
           object-position: left center;
+        }
+        &.align-right {
+          object-position: right center;
         }
       }
     }
