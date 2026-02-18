@@ -1,19 +1,14 @@
 import type { Loader, LoaderContext } from 'astro/loaders'
 import { z } from 'astro:content'
-import qs from 'qs'
+import type { Strapi } from './strapi.ts'
 
-export interface Options {
-  uri: string
-  token: string
-}
-
-export function scheduleOpenLocationLoader({ uri, token }: Options): Loader {
+export function scheduleOpenLocationLoader(strapi: Strapi): Loader {
   return {
     name: 'schedule-open-locations-loader',
     async load(ctx: LoaderContext) {
       ctx.store.clear()
 
-      const items = await loadStrapi(uri, token, 'schedule-open-locations', { populate: 'opening_times' })
+      const items = await strapi.fetchItems('schedule-open-locations', { populate: 'opening_times' })
 
       for (const item of items) {
         const data = await ctx.parseData({
@@ -37,13 +32,13 @@ export function scheduleOpenLocationLoader({ uri, token }: Options): Loader {
   }
 }
 
-export function scheduleTagLoader({ uri, token }: Options): Loader {
+export function scheduleTagLoader(strapi: Strapi): Loader {
   return {
     name: 'schedule-tag-loader',
     async load(ctx: LoaderContext) {
       ctx.store.clear()
 
-      const items = await loadStrapi(uri, token, 'schedule-tags')
+      const items = await strapi.fetchItems('schedule-tags')
 
       for (const item of items) {
         const data = await ctx.parseData({
@@ -62,13 +57,13 @@ export function scheduleTagLoader({ uri, token }: Options): Loader {
   }
 }
 
-export function scheduleLocationLoader({ uri, token }: Options): Loader {
+export function scheduleLocationLoader(strapi: Strapi): Loader {
   return {
     name: 'schedule-location-loader',
     async load(ctx: LoaderContext) {
       ctx.store.clear()
 
-      const items = await loadStrapi(uri, token, 'schedule-locations')
+      const items = await strapi.fetchItems('schedule-locations')
 
       for (const item of items) {
         const data = await ctx.parseData({
@@ -86,13 +81,13 @@ export function scheduleLocationLoader({ uri, token }: Options): Loader {
   }
 }
 
-export function scheduleEventLoader({ uri, token }: Options): Loader {
+export function scheduleEventLoader(strapi: Strapi): Loader {
   return {
     name: 'schedule-event-loader',
     async load(ctx: LoaderContext) {
       ctx.store.clear()
 
-      const items = await loadStrapi(uri, token, 'schedule-events', {
+      const items = await strapi.fetchItems('schedule-events', {
         populate: { schedule_location: { fields: ['id'] }, schedule_tags: { fields: ['id'] } },
         pagination: { pageSize: 50 }
       })
@@ -117,12 +112,4 @@ export function scheduleEventLoader({ uri, token }: Options): Loader {
       schedule_tags: z.array(z.object({ id: z.number() }))
     })
   }
-}
-
-async function loadStrapi(uri: string, token: string, item: string, options?: object) {
-  const url = new URL(item, uri)
-  if (options) url.search = qs.stringify(options)
-  const response = await fetch(url, { headers: { Authorization: `Bearer ${token}` } })
-  if (!response.ok) throw new Error(`Fetch failed (${response.statusText}): ${await response.text()}`)
-  return (await response.json()).data
 }

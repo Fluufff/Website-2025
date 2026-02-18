@@ -1,27 +1,19 @@
 import type { Loader, LoaderContext } from 'astro/loaders'
 import { z } from 'astro:content'
-import qs from 'qs'
+import type { Strapi } from './strapi.ts'
 
 export interface Options {
   uri: string
   token: string
 }
 
-export function rolesLoader({ uri, token }: Options): Loader {
+export function rolesLoader(strapi: Strapi): Loader {
   return {
     name: 'hr-roles-loader',
     async load(ctx: LoaderContext) {
       ctx.store.clear()
 
-      const url = new URL('hr-roles', uri)
-      url.search = qs.stringify({ populate: 'hr_department' })
-      const response = await fetch(url, {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      })
-      if (!response.ok) throw new Error(`Fetch failed (${response.statusText}): ${await response.text()}`)
-      const items = (await response.json()).data
+      const items = await strapi.fetchItems('hr-roles', { populate: 'hr_department' })
 
       for (const item of items) {
         const slug = item.hr_department.slug + '-' + item.slug
