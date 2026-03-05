@@ -1,0 +1,115 @@
+---
+import { Picture } from 'astro:assets'
+import Checklist from './Checklist.astro'
+import ChecklistItem from './ChecklistItem.astro'
+
+interface Props {
+  image?: ImageMetadata | Promise<{ default: ImageMetadata }>
+  title: string
+  price: string
+  pricePer?: string
+  description?: string
+  checklist?: string[]
+  extra?: string
+  color?: 'primary' | 'dark'
+}
+
+const image = Astro.props.image
+---
+
+<div class="pricing-card">
+  {
+    image && (
+      <Picture src={image} formats={['avif', 'webp']} fallbackFormat="jpg" alt="" height={148} widths={[300, 600]} />
+    )
+  }
+  <h3>{Astro.props.title}</h3>
+  <div class="pricing-card__price">
+    <span class="price"
+      >€{Astro.props.price}{Astro.props.pricePer && <span class="per">{Astro.props.pricePer}</span>}</span
+    >
+    <span class="vat">incl. VAT</span>
+  </div>
+  {Astro.props.description && <p class="description">{Astro.props.description}</p>}
+  {
+    Astro.props.checklist && (
+      <Checklist>
+        {Astro.props.checklist.map((item) => (
+          <ChecklistItem>{item}</ChecklistItem>
+        ))}
+      </Checklist>
+    )
+  }
+  {Astro.props.extra && <p class="pricing-card__extra">{Astro.props.extra}</p>}
+</div>
+
+<style lang="scss" is:global>
+  @use '../styles/text-styles';
+  @use '../styles/charter';
+
+  .pricing-card {
+    display: flex;
+    flex-direction: column;
+    background: charter.$neutrals100;
+    padding: 32px 24px;
+    border-radius: 8px;
+    border: solid 1px charter.$primary300;
+    width: 274px;
+    gap: 24px;
+    box-shadow: 0 1px 4px 0 rgba(25, 33, 61, 0.08);
+
+    > h3 {
+      @include text-styles.heading4;
+      color: charter.$primary800;
+    }
+
+    .vat {
+      @include text-styles.display2SemiBold;
+      line-height: 18px;
+      color: charter.$primary800;
+    }
+
+    > .pricing-card__price {
+      display: flex;
+      gap: 16px;
+      flex-direction: column;
+
+      .price {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 8px;
+        @include text-styles.display8SemiBold;
+        line-height: 24px;
+      }
+
+      .per {
+        @include text-styles.display1SemiBold;
+        color: charter.$primary500;
+      }
+    }
+
+    > .pricing-card__extra {
+      @include text-styles.display2SemiBold;
+      color: charter.$primary500;
+    }
+
+    > .description {
+      @include text-styles.paragraphDefaultRegular;
+      color: charter.$primary800;
+    }
+
+    picture img {
+      object-fit: cover;
+      height: 148px !important;
+      object-position: center;
+      width: 100%;
+    }
+
+    .checklist {
+      margin: 0;
+      border-top: solid 1px charter.$primary100;
+      padding-top: 24px;
+    }
+  }
+</style>

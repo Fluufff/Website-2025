@@ -1,6 +1,7 @@
 ---
 interface Props {
   columns?: boolean
+  primary?: boolean
 }
 
 const isColumns = Astro.props.columns ?? false
@@ -8,13 +9,13 @@ const isColumns = Astro.props.columns ?? false
 
 {
   isColumns ? (
-    <div class="checklist columns">
+    <div class="checklist columns" class:list={{ primary: Astro.props.primary }}>
       <ul class="">
         <slot />
       </ul>
     </div>
   ) : (
-    <ul class="checklist">
+    <ul class="checklist" class:list={{ primary: Astro.props.primary }}>
       <slot />
     </ul>
   )
@@ -27,8 +28,9 @@ const isColumns = Astro.props.columns ?? false
   .checklist {
     margin-top: 48px;
     margin-bottom: 48px;
-    li {
-      max-width: 270px;
+
+    &.primary li svg {
+      color: charter.$primary500;
     }
   }
 
@@ -50,7 +52,9 @@ const isColumns = Astro.props.columns ?? false
     justify-content: center;
 
     > ul {
-      column-count: 2;
+      display: grid;
+      grid-template-columns: 270px 270px;
+      gap: 24px 14px;
     }
   }
 </style>

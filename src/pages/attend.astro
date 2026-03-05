@@ -4,19 +4,77 @@ import Hero from '../components/sections/Hero.astro'
 import Content from '../components/sections/Content.astro'
 import Checklist from '../components/Checklist.astro'
 import ChecklistItem from '../components/ChecklistItem.astro'
+import PricingCard from '../components/PricingCard.astro'
 ---
 
 <Base>
   <Hero headline="Prepare your quest">
     <p>Discover ticket options, accomodation packages, and ways to support Flüüff.</p>
   </Hero>
-  <Content headline="Residential tickets" bg="primary">
+  <Content headline="Residential tickets" bg="primary" wider>
     <p>Full convention access + hotel stay (Wednesday through Sunday, 4 nights)</p>
-    <Checklist columns>
+    <Checklist columns primary>
       <ChecklistItem>Full access to all convention events, programming</ChecklistItem>
-      <ChecklistItem>Personal badge with lanyard</ChecklistItem>
       <ChecklistItem>Hotel stay for the duration of the convention</ChecklistItem>
+      <ChecklistItem>Personal badge with lanyard</ChecklistItem>
       <ChecklistItem>Access to general amenities</ChecklistItem>
     </Checklist>
+    <div class="pricing">
+      <PricingCard
+        image={import('../assets/images/venue/bedroom_single.jpg')}
+        title="Single"
+        price="001"
+        pricePer="per room"
+        description="Your own private room with a single bed"
+        checklist={['Price includes convention fee (€00) and full-room 4 nights stay (€000)']}
+        extra="Extra night: €00 incl. VAT"
+      />
+      <PricingCard
+        image={import('../assets/images/venue/bedroom_twin.jpg')}
+        title="Twin"
+        price="002"
+        pricePer="per room"
+        description="Shared room with two single beds"
+        checklist={['Price includes convention fee (€00) and full-room 4 nights stay (€000)']}
+        extra="Extra night: €00 incl. VAT"
+      />
+      <PricingCard
+        image={import('../assets/images/venue/bedroom_double.jpg')}
+        title="Double"
+        price="003"
+        pricePer="per room"
+        description="Shared room with a kingsize double bed"
+        checklist={['Price includes convention fee (€00) and full-room 4 nights stay (€000)']}
+        extra="Extra night: €00 incl. VAT"
+      />
+      <PricingCard
+        image={import('../assets/images/venue/bedroom_triple.jpg')}
+        title="Triple"
+        price="004"
+        pricePer="per room"
+        description="Shared room with a double bed and pull-out sofa"
+        checklist={['Price includes convention fee (€00) and full-room 4 nights stay (€000)']}
+        extra="Extra night: €00 incl. VAT"
+      />
+    </div>
+    <p class="pricing_details">
+      Room price covers the full room. One person books and pays the total amount and arranges roommates independently.<br
+      />
+      <a>Check out this page for more information on the venue.</a>
+    </p>
   </Content>
 </Base>
+
+<style lang="scss" is:global>
+  .pricing {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 22px;
+  }
+
+  .content .pricing_details {
+    margin-top: 48px;
+    max-width: 480px;
+  }
+</style>

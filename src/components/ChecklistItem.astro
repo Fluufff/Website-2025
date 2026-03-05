@@ -3,3 +3,18 @@ import IconChevronRight from '~icons/brixFilled/check-circle'
 ---
 
 <li><IconChevronRight /><slot /></li>
+
+<style lang="scss" is:global>
+  @use '../styles/charter';
+
+  .checklist li {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+
+    > svg {
+      flex-shrink: 0;
+      margin-top: 5px;
+    }
+  }
+</style>

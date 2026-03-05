@@ -1,3 +1,12 @@
+@mixin display1SemiBold {
+  /* Display/1/Semi Bold */
+  font-family: var(--font-inter), sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 18px; /* 150% */
+}
+
 @mixin display2SemiBold {
   /* Display/2/Semi Bold */
   font-family: var(--font-inter), sans-serif;
@@ -41,6 +50,15 @@
   font-style: normal;
   font-weight: 600;
   line-height: 24px; /* 133.333% */
+}
+
+@mixin display8SemiBold {
+  /* Display/8/Semi Bold */
+  font-family: var(--font-inter), sans-serif;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 40px; /* 111.111% */
 }
 
 @mixin heading1 {
