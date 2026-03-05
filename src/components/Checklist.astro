@@ -1,0 +1,56 @@
+---
+interface Props {
+  columns?: boolean
+}
+
+const isColumns = Astro.props.columns ?? false
+---
+
+{
+  isColumns ? (
+    <div class="checklist columns">
+      <ul class="">
+        <slot />
+      </ul>
+    </div>
+  ) : (
+    <ul class="checklist">
+      <slot />
+    </ul>
+  )
+}
+
+<style lang="scss" is:global>
+  @use '../styles/charter';
+  @use '../styles/text-styles';
+
+  .checklist {
+    margin-top: 48px;
+    margin-bottom: 48px;
+    li {
+      max-width: 270px;
+    }
+  }
+
+  .checklist ul,
+  ul.checklist {
+    list-style: none;
+  }
+
+  // Non-columns mode
+  ul.checklist {
+    padding: 0;
+  }
+
+  // Columns mode
+  .checklist.columns {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    > ul {
+      column-count: 2;
+    }
+  }
+</style>

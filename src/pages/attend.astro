@@ -1,0 +1,22 @@
+---
+import Base from '../layouts/Base.astro'
+import Hero from '../components/sections/Hero.astro'
+import Content from '../components/sections/Content.astro'
+import Checklist from '../components/Checklist.astro'
+import ChecklistItem from '../components/ChecklistItem.astro'
+---
+
+<Base>
+  <Hero headline="Prepare your quest">
+    <p>Discover ticket options, accomodation packages, and ways to support Flüüff.</p>
+  </Hero>
+  <Content headline="Residential tickets" bg="primary">
+    <p>Full convention access + hotel stay (Wednesday through Sunday, 4 nights)</p>
+    <Checklist columns>
+      <ChecklistItem>Full access to all convention events, programming</ChecklistItem>
+      <ChecklistItem>Personal badge with lanyard</ChecklistItem>
+      <ChecklistItem>Hotel stay for the duration of the convention</ChecklistItem>
+      <ChecklistItem>Access to general amenities</ChecklistItem>
+    </Checklist>
+  </Content>
+</Base>

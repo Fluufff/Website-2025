@@ -2,15 +2,15 @@ import { SVG, blankIconSet, cleanupSVG, runSVGO, parseColors, cleanupInlineStyle
 
 const iconSet = blankIconSet('')
 
-for await (const file of Deno.readDir('./utils/Line Rounded')) {
-  const svgText = await Deno.readTextFile(`./utils/Line Rounded/${file.name}`)
+for await (const file of Deno.readDir('./utils/Filled')) {
+  const svgText = await Deno.readTextFile(`./utils/Filled/${file.name}`)
   const svg = new SVG(svgText)
   cleanupSVG(svg)
   cleanupInlineStyle(svg)
   parseColors(svg, {
     defaultColor: 'currentColor',
     callback: (_attr, colorStr, color) => {
-      return !color || isEmptyColor(color) ? colorStr : 'currentColor'
+      return !color || isEmptyColor(color) || colorStr === 'white' ? colorStr : 'currentColor'
     }
   })
   runSVGO(svg)
@@ -20,4 +20,4 @@ for await (const file of Deno.readDir('./utils/Line Rounded')) {
 }
 
 const exported = JSON.stringify(iconSet.export(), null, '\t') + '\n'
-await Deno.writeTextFile('./src/assets/icons.json', exported)
+await Deno.writeTextFile('./src/assets/icons-filled.json', exported)

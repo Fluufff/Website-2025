@@ -4,7 +4,7 @@ import favicons from 'astro-favicons'
 import vue from '@astrojs/vue'
 import Icons from 'unplugin-icons/vite'
 
-import brix from './utils/brix-icon-loader.ts'
+import brix, { brixFilled } from './utils/brix-icon-loader.ts'
 
 import tailwindcss from '@tailwindcss/vite'
 
@@ -28,7 +28,7 @@ export default defineConfig({
   },
 
   vite: {
-    plugins: [Icons({ compiler: 'vue3', customCollections: { brix } }), tailwindcss()]
+    plugins: [Icons({ compiler: 'vue3', customCollections: { brix, brixFilled } }), tailwindcss()]
   },
 
   experimental: {
