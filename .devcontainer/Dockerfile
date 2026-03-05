@@ -1,4 +1,5 @@
-FROM mcr.microsoft.com/vscode/devcontainers/typescript-node:16
+# https://github.com/devcontainers/images/tree/main/src/typescript-node
+FROM mcr.microsoft.com/devcontainers/typescript-node:24
 
 ENV DENO_INSTALL=/deno
 RUN mkdir /dino && \

@@ -6,10 +6,13 @@ import Icons from 'unplugin-icons/vite'
 
 import brix from './utils/brix-icon-loader.ts'
 
+// deno-lint-ignore no-process-global
+const getenv = (name: string) => typeof Deno !== "undefined" ? Deno.env.get(name) : process.env[name];
+
 // https://astro.build/config
 export default defineConfig({
-  site: Deno.env.get('SITE')!,
-  base: Deno.env.get('SITE_BASE_URL')!,
+  site: getenv('SITE')!,
+  base: getenv('SITE_BASE_URL')!,
   integrations: [icon(), vue({ appEntrypoint: '/src/app.ts' }), favicons()],
 
   env: {
