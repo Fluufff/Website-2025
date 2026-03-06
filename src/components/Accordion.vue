@@ -129,6 +129,7 @@ function clicked(q: Element, a: Element) {
     }
 
     > [data-icon] {
+      user-select: none;
       margin-left: 16px;
       display: block;
       visibility: hidden;
