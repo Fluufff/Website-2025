@@ -5,13 +5,16 @@ import Content from '../components/sections/Content.astro'
 import Checklist from '../components/Checklist.astro'
 import ChecklistItem from '../components/ChecklistItem.astro'
 import PricingCard from '../components/PricingCard.astro'
+import Socials from '../content/socials.astro'
+import Faq from '../content/Faq.astro'
+import FaqItem from '../content/FaqItem.astro'
 ---
 
 <Base>
   <Hero headline="Prepare your quest">
     <p>Discover ticket options, accomodation packages, and ways to support Flüüff.</p>
   </Hero>
-  <Content headline="Residential tickets" bg="primary" wider>
+  <Content headline="Residential tickets" bg="primary" wider class="pricing_content">
     <p>Full convention access + hotel stay (Wednesday through Sunday, 4 nights)</p>
     <Checklist columns primary>
       <ChecklistItem>Full access to all convention events, programming</ChecklistItem>
@@ -63,18 +66,139 @@ import PricingCard from '../components/PricingCard.astro'
       <a>Check out this page for more information on the venue.</a>
     </p>
   </Content>
+  <Content headline="Day tickets" class="pricing_content">
+    <p>Lorem ipsum dolor sit amet consectetur adipiscing eli mattis sit phasellus mollis sit aliquam sit nullam.</p>
+    <div class="pricing">
+      <PricingCard
+        color="primary"
+        title="Day ticket"
+        price="01"
+        pricePer="per person"
+        checklist={[
+          'Full access to all convention events, programming, and general amenities',
+          'Personal badge with lanyard'
+        ]}
+      />
+      <PricingCard
+        color="primary"
+        title="Weekend ticket"
+        price="02"
+        pricePer="per person"
+        checklist={[
+          'Full access to all convention events, programming, and general amenities',
+          'Personal badge with lanyard'
+        ]}
+      />
+      <PricingCard
+        color="dark"
+        title="All-days pass"
+        price="03"
+        pricePer="per person"
+        checklist={[
+          'Full access to all convention events, programming, and general amenities',
+          'Personal badge with lanyard'
+        ]}
+      />
+    </div>
+    <p class="pricing_details">
+      At-door pricing is €85, and daily passes are available for €35.<br />
+      Accommodation not included in these prices. <br />
+      Note: There will be no refunds for registration fees.
+    </p>
+  </Content>
+  <Content headline="Sponsorships" class="pricing_content" bg="primary-dark" wider>
+    <p>Contribute to the growth of Flüüfff and be recognised as a valued supporter of our community.</p>
+    <div class="pricing">
+      <PricingCard
+        color="dark"
+        title="Supporter"
+        price="01"
+        description="Show your support for Flüüfff and contribute to making this year’s convention possible."
+        checklist={['Your name listed on the website as a sponsor', 'Mention in the conbook', 'Our eternal gratitude']}
+      />
+      <PricingCard
+        color="dark"
+        title="Builder"
+        price="02"
+        description="Provide support that helps us cover the essential building blocks of the convention."
+        checklist={[
+          'Your name listed on the website as a sponsor',
+          'Mention in the conbook',
+          'Our eternal gratitude',
+          'Special sponsor badge marking'
+        ]}
+      />
+      <PricingCard
+        color="dark"
+        title="Architect"
+        price="03"
+        description="Contribute at a higher level and help shape the experience for our community."
+        checklist={[
+          'Your name listed on the website as a sponsor',
+          'Mention in the conbook',
+          'Our eternal gratitude',
+          'Special sponsor badge marking',
+          'Personal thank-you gesture'
+        ]}
+      />
+      <PricingCard
+        color="dark"
+        title="Patron"
+        price="04"
+        description="Offer significant support and play a key role in sustaining and growing Flüüfff."
+        checklist={[
+          'Your name listed on the website as a sponsor',
+          'Mention in the conbook',
+          'Our eternal gratitude',
+          'Special sponsor badge marking',
+          'Personal thank-you gesture',
+          'One of a kind, personal thank you letter from the Chairdragon'
+        ]}
+      />
+    </div>
+  </Content>
+  <Socials />
+  <Faq>
+    <FaqItem question="Can I pay in installments?">
+      Installment payment is not officially offered. Tickets must be paid in full at registration unless a specific
+      arrangement has been made.
+    </FaqItem>
+    <FaqItem question="Which payment methods do you accept?">
+      Payments for registration are handled online and are via bank transfer only. For hotel or food purchases, local
+      card and cash payments are accepted at the venue.
+    </FaqItem>
+  </Faq>
 </Base>
 
 <style lang="scss" is:global>
-  .pricing {
+  .content .pricing {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     gap: 22px;
+    margin: 48px 0;
+
+    @media (max-width: 1200px) and (min-width: 601px) {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      flex-direction: column;
+      align-items: center;
+
+      > :nth-child(odd) {
+        justify-self: end;
+      }
+    }
+
+    @media (max-width: 600px) {
+      flex-direction: column;
+
+      .pricing-card {
+        width: 100%;
+      }
+    }
   }
 
   .content .pricing_details {
-    margin-top: 48px;
     max-width: 480px;
   }
 </style>

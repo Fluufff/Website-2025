@@ -17,7 +17,7 @@ interface Props {
 const image = Astro.props.image
 ---
 
-<div class="pricing-card">
+<div class="pricing-card" class:list={[Astro.props.color]}>
   {
     image && (
       <Picture src={image} formats={['avif', 'webp']} fallbackFormat="jpg" alt="" height={148} widths={[300, 600]} />
@@ -57,6 +57,38 @@ const image = Astro.props.image
     width: 274px;
     gap: 24px;
     box-shadow: 0 1px 4px 0 rgba(25, 33, 61, 0.08);
+
+    &.primary > h3 {
+      color: charter.$primary500;
+    }
+
+    &.dark {
+      background: charter.$primary800;
+      border-color: transparent;
+
+      p.description {
+        color: charter.$primary50;
+      }
+
+      > *,
+      .vat {
+        color: charter.$primary50;
+      }
+
+      > .pricing-card__price {
+        .per {
+          color: charter.$primary50;
+        }
+      }
+
+      .checklist {
+        border-top-color: charter.$primary200;
+
+        svg path[fill='#fff'] {
+          fill: charter.$primary800;
+        }
+      }
+    }
 
     > h3 {
       @include text-styles.heading4;

@@ -27,7 +27,6 @@ const isColumns = Astro.props.columns ?? false
 
   .checklist {
     margin-top: 48px;
-    margin-bottom: 48px;
 
     &.primary li svg {
       color: charter.$primary500;
@@ -42,6 +41,9 @@ const isColumns = Astro.props.columns ?? false
   // Non-columns mode
   ul.checklist {
     padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
   }
 
   // Columns mode
@@ -55,6 +57,10 @@ const isColumns = Astro.props.columns ?? false
       display: grid;
       grid-template-columns: 270px 270px;
       gap: 24px 14px;
+
+      @media (max-width: 600px) {
+        grid-template-columns: 1fr;
+      }
     }
   }
 </style>
